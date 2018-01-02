@@ -45,7 +45,7 @@ class Messages_model extends CI_Model{
           $strSQL = "INSERT INTO Messages (MSGS_TITLE, MSGS_TEXT, MSGS_CLNT_ID)
                      VALUES ('{$Title}', '{$Text}', '{$ClientID}')";
           $query = $this->db->query($strSQL);
-
+          return $query;
         }
 
         public function editMessage($ID, $Title, $Text, $ClientID){

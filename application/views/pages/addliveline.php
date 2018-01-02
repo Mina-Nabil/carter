@@ -2,7 +2,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add Station</h1>
+                    <h1 class="page-header">Add Live Line</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -37,7 +37,7 @@
                                       </div>
 
                                       <div class="form-group">
-                                          <label>Line Name</label>
+                                          <label>Bus Name</label>
                                           <select class="form-control" name='livelineBusID'>
                                                 <option value='' >Not Available</option>
                                             <?foreach($Buses as $bus){?>

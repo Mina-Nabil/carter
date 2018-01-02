@@ -9,7 +9,7 @@ class Favourite_lines extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  private function CheckUser($Function, $PageName = 'Favourite_lines'){
+  private function CheckUser($Function, $PageName = 'Favourite_Lines'){
     //Returns header array if user is correct
 
     $userType = $this->session->userdata['USRTYPE'];
@@ -46,19 +46,14 @@ class Favourite_lines extends CI_Controller{
     $data['TableData'] = $this->Favourite_lines_model->getFavourite_lines();
 
     $data['TableHeaders'] = array(
-      'ID',
-      'Line Name',
+      'Client ID',
       'Client Name',
-      'Bus Type/ Bus Seat Count',
-      'Start Time',
-      'Canceled?',
-      'Completed?',
-      'Revenue',
+      'Line Name',
       'Edit',
       'Delete'
     );
 
-    $data['Table_Name'] = 'Favourite_lines';
+    $data['Table_Name'] = 'Favourite lines';
     $data['Url_Name']   = 'favourite_lines';
 
     $data['MSGOK']      = $MSGOK  ;
@@ -88,15 +83,14 @@ class Favourite_lines extends CI_Controller{
 
     $data['Clients'] = $this->Clients_model->getClients();
     $data['Lines'] = $this->Lines_model->getLines();
-    $data['Buses'] = $this->Buses_model->getBuses();
 
-    $data['LVLN_ID']      = ''              ;
-    $data['LVLN_LINE_ID']    = ''              ;
-    $data['LVLN_BUS_ID']    = ''              ;
-    $data['LVLN_TIME']    = ''              ;
-    $data['LVLN_CANC']    = ''         ;
-    $data['LVLN_COMP']    = ''              ;
-    $data['LVLN_CLNT_ID']    = ''           ;
+    $data['FVLN_ID']      = ''              ;
+    $data['FVLN_LINE_ID']    = ''              ;
+    $data['FVLN_BUS_ID']    = ''              ;
+    $data['FVLN_TIME']    = ''              ;
+    $data['FVLN_CANC']    = ''         ;
+    $data['FVLN_COMP']    = ''              ;
+    $data['FVLN_CLNT_ID']    = ''           ;
 
     $data['formURL']      = 'insertfavourite_lines'  ;
 
@@ -104,7 +98,7 @@ class Favourite_lines extends CI_Controller{
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addfavourite_line', $data);
+    $this->load->view('pages/addfavourite_lines', $data);
     $this->load->view('templates/footer');
   }
 
@@ -124,15 +118,10 @@ class Favourite_lines extends CI_Controller{
       $header['ArrURL'] = $result;
     }
 
-    $favourite_lineName = $this->input->post('favourite_lineName');
-    $favourite_lineBusID = $this->input->post('favourite_lineBusID');
-    $favourite_lineTime = $this->input->post('favourite_lineTime');
-    $favourite_lineRevenue = $this->input->post('favourite_lineRevenue');
+    $favourite_lineLineID = $this->input->post('favourite_lineLineID');
     $favourite_lineClientID = $this->input->post('favourite_lineClientID');
-    $favourite_lineisComplete = $this->input->post('favourite_lineisComplete');
 
-    $this->Favourite_lines_model->insertFavourite_line($favourite_lineName, $favourite_lineClientID, $favourite_lineBusID,
-                                         $favourite_lineTime, $favourite_lineRevenue, $favourite_lineisComplete);
+    $this->Favourite_lines_model->insertFavourite_line($favourite_lineLineID, $favourite_lineClientID);
 
     $this->load->view('pages/favourite_lines_redirect');
 
@@ -160,9 +149,9 @@ class Favourite_lines extends CI_Controller{
     $data['Clients'] = $this->Clients_model->getClients();
     $data['Lines'] = $this->Lines_model->getLines();
 
-    $data['LVLN_ID']      = $Favourite_line['LVLN_ID']  ;
-    $data['LVLN_LINE_ID']    = $Favourite_line['LVLN_LINE_ID']  ;
-    $data['LVLN_CLNT_ID']    = $Favourite_line['LVLN_CLNT_ID'];
+    $data['FVLN_ID']      = $Favourite_line['FVLN_ID']  ;
+    $data['FVLN_LINE_ID']    = $Favourite_line['FVLN_LINE_ID']  ;
+    $data['FVLN_CLNT_ID']    = $Favourite_line['FVLN_CLNT_ID'];
 
     $data['formURL']      = 'editfavourite_lines/' . $ID  ;
 
@@ -170,7 +159,7 @@ class Favourite_lines extends CI_Controller{
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addfavourite_line', $data);
+    $this->load->view('pages/addfavourite_lines', $data);
     $this->load->view('templates/footer');
 
   }

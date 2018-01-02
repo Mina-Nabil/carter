@@ -170,9 +170,27 @@ class Api extends CI_Controller{
     $messageText = $this->input->post('messageText');
     $messageClientID = $this->input->post('messageClientID');
 
-    $this->Messages_model->insertMessage($messageTitle, $messageText, $messageClientID);
-    echo '1';
+    if($this->Messages_model->insertMessage($messageTitle, $messageText, $messageClientID)) echo 1;
+    else echo '0';
 
+  }
+
+  public function add_favourite(){
+
+    $favourite_lineLineID = $this->input->post('favourite_lineLineID');
+    $favourite_lineClientID = $this->input->post('favourite_lineClientID');
+
+    if($this->Favourite_lines_model->insertFavourite_line($favourite_lineLineID, $favourite_lineClientID)) echo 1;
+    else echo 0;
+  }
+
+  public function get_favourites($ClientID){
+    echo json_encode($this->Favourite_lines_model->getFavourite_Line_byClientID($ClientID), JSON_UNESCAPED_UNICODE);
+  }
+
+  public function delete_favourite($ID){
+    $this->Favourite_lines_model->deleteFavourite_line($ID);
+    echo 1;
   }
 
 

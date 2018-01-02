@@ -178,6 +178,14 @@ $route['buses/modify/(:num)'] = 'Buses/modifypage/$1';
 $route['editbuses/(:num)'] = 'Buses/edit/$1';
 $route['buses/delete/(:num)'] = 'Buses/delete/$1';
 
+//Favourite_line ROUTES
+$route['favourite_lines'] = 'Favourite_lines/home';
+$route['addfavourite_lines'] = 'Favourite_lines/addpage';
+$route['insertfavourite_lines'] = 'Favourite_lines/insert';
+$route['favourite_lines/modify/(:num)'] = 'Favourite_lines/modifypage/$1';
+$route['editfavourite_lines/(:num)'] = 'Favourite_lines/edit/$1';
+$route['favourite_lines/delete/(:num)'] = 'Favourite_lines/delete/$1';
+
 
 //API
 $route['api/login'] = 'Api/login';
@@ -195,6 +203,8 @@ $route['api/get_aboutus'] = 'Api/get_aboutus';
 $route['api/get_messages/(:num)'] = 'Api/get_messages/$1';
 $route['api/post_messages'] = 'Api/post_messages';
 $route['api/get_favourites/(:num)'] = 'Api/get_favourites/$1';
+$route['api/delete_favourite/(:num)'] = 'Api/delete_favourite/$1';
+$route['api/add_favourite'] = 'Api/add_favourite';
 
 
 

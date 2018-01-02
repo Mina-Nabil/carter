@@ -11,11 +11,21 @@ class Favourite_Lines_model extends CI_Model{
 
         public function getFavourite_Lines(){
 
-          $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME, DIST_NAME, CITY_NAME
-                      FROM favourite_lines, karter.lines, clients, districts, cities
+          $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME
+                      FROM favourite_lines, karter.lines, clients
                       WHERE FVLN_LINE_ID = LINE_ID
-                      AND FVLN_CLNT_ID = CLNT_ID  AND DIST_ID = CITY_ID
-                      AND LINE_ID = DIST_ID  ";
+                      AND FVLN_CLNT_ID = CLNT_ID ";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
+        public function getFavourite_Line_byClientID($ID){
+
+          $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME
+                    FROM favourite_lines, karter.lines, clients
+                    WHERE FVLN_LINE_ID = LINE_ID AND FVLN_CLNT_ID = CLNT_ID
+                    AND  FVLN_CLNT_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
@@ -23,11 +33,10 @@ class Favourite_Lines_model extends CI_Model{
 
         public function getFavourite_Line_byID($ID){
 
-          $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME, DIST_NAME, CITY_NAME
-                    FROM favourite_lines, karter.lines, clients, districts, cities
-                    WHERE FVLN_LINE_ID = LINE_ID
-                    AND FVLN_CLNT_ID = CLNT_ID  AND DIST_ID = CITY_ID
-                    AND LINE_ID = DIST_ID  AND FVLN_ID = {$ID}";
+          $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME
+                    FROM favourite_lines, karter.lines, clients
+                    WHERE FVLN_LINE_ID = LINE_ID AND FVLN_CLNT_ID = CLNT_ID
+                    AND  FVLN_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
@@ -41,7 +50,7 @@ class Favourite_Lines_model extends CI_Model{
 
           $inputs = array($LineID, $ClientID);
           $query = $this->db->query($strSQL, $inputs);
-
+          return $query;
         }
 
         public function editFavourite_Line($ID, $LineID, $ClientID){
