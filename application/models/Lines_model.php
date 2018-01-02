@@ -18,6 +18,15 @@ class Lines_model extends CI_Model{
 
         }
 
+        public function getSummarizedLines(){
+
+          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_TAGS
+                      FROM karter.lines";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
         public function getLinesByDistrict($DistrictID){
 
           $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,

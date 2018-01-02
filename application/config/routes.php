@@ -200,6 +200,7 @@ $route['api/get_bus_data/(:num)'] = 'Api/get_bus_data/$1';
 $route['api/get_all_lines/(:num)'] = 'Api/get_all_lines/$1';
 $route['api/get_faqs'] = 'Api/get_faqs';
 $route['api/get_aboutus'] = 'Api/get_aboutus';
+$route['api/get_lines_summary'] = 'Api/get_lines_summary';
 $route['api/get_messages/(:num)'] = 'Api/get_messages/$1';
 $route['api/post_messages'] = 'Api/post_messages';
 $route['api/get_favourites/(:num)'] = 'Api/get_favourites/$1';

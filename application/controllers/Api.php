@@ -193,6 +193,10 @@ class Api extends CI_Controller{
     echo 1;
   }
 
+  public function get_lines_summary(){
+    echo json_encode($this->Lines_model->getSummarizedLines(), JSON_UNESCAPED_UNICODE);
+  }
+
 
 
 }
