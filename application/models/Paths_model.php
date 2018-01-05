@@ -12,7 +12,7 @@ class Paths_model extends CI_Model{
         public function getPaths($LineID){
 
           $strSQL = "SELECT PATH_ID, PATH_LINE_ID, PATH_INDX, PATH_REL_TIME, PATH_STTN_ID, DIST_NAME,
-                            LINE_NAME, STTN_ADRS, STTN_NAME
+                            LINE_NAME, STTN_ADRS, STTN_NAME, STTN_LONG, STTN_LATT, STTN_DIST_ID
                       FROM Paths, karter.lines, stations, districts
                       WHERE PATH_LINE_ID = LINE_ID AND STTN_ID = PATH_STTN_ID AND STTN_DIST_ID = DIST_ID
                       AND LINE_ID = {$LineID}";

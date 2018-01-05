@@ -29,31 +29,50 @@ class Lines_model extends CI_Model{
 
         public function getLinesByDistrict($DistrictID){
 
-          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
-                            DIST_NAME AS START_DIST_NAME,
-                            STTN_NAME AS START_STTN_NAME
+
+
+          $strSQL = "SELECT LINE_ID
                       FROM karter.lines, districts, paths, stations
+                      WHERE DIST_ID = {$DistrictID}
+                      AND PATH_STTN_ID = STTN_ID
+                      AND STTN_DIST_ID = DIST_ID
+                      AND PATH_LINE_ID = LINE_ID ";
+
+          $query = $this->db->query($strSQL);
+          $lineres  = $query->result_array();
+          $lines = array();
+          foreach($lineres as $row){
+            array_push($lines, $row['LINE_ID']);
+          }
+
+          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
+                            DIST_NAME AS START_DIST_NAME, CITY_NAME AS START_CITY_NAME,
+                            STTN_NAME AS START_STTN_NAME
+                      FROM karter.lines, districts, cities, paths, stations
                       WHERE PATH_LINE_ID = LINE_ID
                       AND PATH_STTN_ID = STTN_ID
                       AND STTN_DIST_ID = DIST_ID
-                      AND DIST_ID      = " . $DistrictID;
-
-          $query = $this->db->query($strSQL);
+                      AND DIST_CITY_ID = CITY_ID
+                      AND LINE_ID IN ?
+                      AND PATH_INDX = 0";
+          $query = $this->db->query($strSQL, array($lines));
           $res1  = $query->result_array();
 
           $strSQL = "SELECT l1.LINE_ID,
                             DIST_NAME as END_DIST_NAME, CITY_NAME as END_CITY_NAME,
-                            STTN_NAME as END_STTN_NAME
+                            STTN_NAME as END_STTN_NAME,
+                            STTN_ADRS as END_STTN_ADRS
                       FROM karter.lines as l1, districts, cities, paths, stations
                       WHERE PATH_LINE_ID = LINE_ID
                       AND PATH_STTN_ID = STTN_ID
                       AND STTN_DIST_ID = DIST_ID
+                      AND LINE_ID IN ?
                       AND DIST_CITY_ID = CITY_ID
                       AND PATH_INDX = (SELECT MAX(PATH_INDX) FROM paths, karter.lines
                                        WHERE PATH_LINE_ID = LINE_ID
                                        AND LINE_ID = l1.LINE_ID);";
 
-          $query2 = $this->db->query($strSQL);
+          $query2 = $this->db->query($strSQL, array($lines));
           $res2   = $query2->result_array();
 
           $res = array();

@@ -42,6 +42,13 @@ class Favourite_Lines_model extends CI_Model{
 
         }
 
+        public function isFavourite($ClientID, $LineID){
+          $strSQL = "SELECT Count(*) as res FROM favourite_lines
+                     WHERE FVLN_LINE_ID = {$LineID} AND FVLN_CLNT_ID = {$ClientID}";
+                     $query = $this->db->query($strSQL);
+                     return $query->result_array()[0]['res'];
+        }
+
 
         public function insertFavourite_Line($LineID, $ClientID){
             //NN Time BusID Name LineID
