@@ -42,8 +42,8 @@ class Aboutus_model extends CI_Model{
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "UPDATE Aboutus
                     SET ABUT_TITLE   = ?,
-                        ABUT_ARBC_TITLE  = ?,
                         ABUT_TEXT    = ?,
+                        ABUT_ARBC_TITLE  = ?,
                         ABUT_ARBC_TEXT   = ?
                     WHERE
                         `ABUT_ID`= ?";
