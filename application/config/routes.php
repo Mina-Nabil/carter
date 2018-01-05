@@ -206,8 +206,8 @@ $route['api/post_messages'] = 'Api/post_messages';
 $route['api/get_favourites/(:num)'] = 'Api/get_favourites/$1';
 $route['api/delete_favourite/(:num)'] = 'Api/delete_favourite/$1';
 $route['api/add_favourite'] = 'Api/add_favourite';
-$route['api/isFavourite/(:num)'] = 'Api/isFavourite/$1';
-$route['api/get_line_details/(:num)'] = 'Api/get_line_details/$1';
+$route['api/isFavourite'] = 'Api/isFavourite';
+$route['api/get_path/(:num)'] = 'Api/get_path/$1';
 
 
 $route['404_override'] = '';

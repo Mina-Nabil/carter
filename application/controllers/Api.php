@@ -197,12 +197,13 @@ class Api extends CI_Controller{
     echo json_encode($this->Lines_model->getSummarizedLines(), JSON_UNESCAPED_UNICODE);
   }
 
-  public function get_line_details($LineID){
+  public function get_path($LineID){
     echo json_encode($this->Paths_model->getPaths($LineID));
   }
 
-  public function isFavourite($LineID){
-    $ClientID = $this->input->post('clientID');
+  public function isFavourite(){
+    $ClientID = $this->input->post('ClientID');
+    $LineID = $this->input->post('LineID');
     echo $this->Favourite_lines_model->isFavourite($ClientID, $LineID);
  }
 
