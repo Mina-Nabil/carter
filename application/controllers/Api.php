@@ -62,8 +62,8 @@ class Api extends CI_Controller{
       $clientEmail = $this->input->post('clientEmail');
       $clientPass = $this->input->post('clientPass');
 
-      $validEmail = isEmailExist($clientEmail);
-      $validuser = checkUser($clientEmail, $clientPass);
+      $validEmail = $this->Clients_model->isEmailExist($clientEmail);
+      $validuser = $this->Clients_model->checkUser($clientEmail, $clientPass);
 
       if ($validuser) {
         echo 1;
