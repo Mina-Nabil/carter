@@ -59,9 +59,9 @@ class Clients_model extends CI_Model{
 
 
         public function checkUser($Email, $Pass){
-          $strSQL = 'SELECT COUNT(*) AS clientcount from clients where CLNT_EMAIL = ' . $Email;
-          $strSQL += ' AND CLNT_PASS = ' . $Pass;
-          $query = $this->db->query($strSQL);
+          $strSQL = "SELECT COUNT(*) AS clientcount from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;
+
+          $query = $this->db->query($strSQL, array($Email, $Pass));
           $clientcount = $query->result_array()[0]['clientcount'];
 
           if($clientcount == 0) return false;
