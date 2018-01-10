@@ -23,8 +23,8 @@ class Clients_model extends CI_Model{
 
         public function getClient_byID($ID){
 
-          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME
-                            CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID
+          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME, CITY_ID,
+                            Clients.CLNT_EMAIL, CLNT_IMG, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID
                       FROM Clients, cities, districts
                       WHERE DIST_CITY_ID = CITY_ID
                       AND   CLNT_DIST_ID = DIST_ID AND CLNT_ID = {$ID}";
