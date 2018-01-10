@@ -35,8 +35,9 @@ class Clients_model extends CI_Model{
 
         public function setImage($ID, $Image){
 
-          $strSQL = "UPDATE Clients SET CLNT_IMG = '{$Image}' WHERE `CLNT_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+          $strSQL = "UPDATE Clients SET CLNT_IMG = ? WHERE `CLNT_ID`= ? ";
+          $query = $this->db->query($strSQL, array($Image, $ID));
+
         }
 
         public function isEmailExist($Email){
@@ -59,13 +60,14 @@ class Clients_model extends CI_Model{
 
 
         public function checkUser($Email, $Pass){
-          $strSQL = "SELECT COUNT(*) AS clientcount from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;
+          $strSQL = "SELECT CLNT_ID from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;
 
           $query = $this->db->query($strSQL, array($Email, $Pass));
-          $clientcount = $query->result_array()[0]['clientcount'];
+          $result = $query->result_array();
+          if(isset($result[0]['CLNT_ID'])) return $result[0]['CLNT_ID'];
+         else return false;
 
-          if($clientcount == 0) return false;
-          else return true;
+        
         }
 
 
