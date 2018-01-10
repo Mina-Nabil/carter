@@ -49,15 +49,6 @@ class Clients_model extends CI_Model{
           else return true;
         }
 
-        public function isTagExist($Tag){
-
-          $strSQL = "SELECT COUNT(*) AS tags from clients where CLNT_TAG = ?";
-          $query = $this->db->query($strSQL, array($Tag));
-          $tagCount = $query->result_array()[0]['tags'];
-          if($tagCount == 0) return false;
-          else return true;
-        }
-
 
         public function checkUser($Email, $Pass){
           $strSQL = "SELECT CLNT_ID from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;
@@ -67,7 +58,7 @@ class Clients_model extends CI_Model{
           if(isset($result[0]['CLNT_ID'])) return $result[0]['CLNT_ID'];
          else return false;
 
-        
+
         }
 
 

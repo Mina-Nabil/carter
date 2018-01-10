@@ -33,13 +33,6 @@ class Api extends CI_Controller{
      return;
    } //Email Already Taken
 
-   $TagTaken =   $this->Clients_model->isTagExist($clientTag);
-
-   if($TagTaken) {
-     echo 3;
-    return;
-  } //Tag Already Taken
-
     $ID = $this->Clients_model->regClient($clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
                                      $clientBalance, $clientTag, $clientDistID);
 
@@ -66,17 +59,17 @@ class Api extends CI_Controller{
       $validuser = $this->Clients_model->checkUser($clientEmail, $clientPass);
 
       if ($validuser) {
-        echo 1;
+        echo $validuser;
         return;
       } //log in success
 
       if(!$validuser  && $validEmail ) {
-        echo 2;
+        echo 'WrongPass';
         return;
       } //wrong pass, valid mail
 
       if(!$validuser  && !$validEmail ) {
-        echo 0;
+        echo 'WrongUser';
         return;
       } //wrong data
 
