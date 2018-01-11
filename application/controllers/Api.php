@@ -76,6 +76,41 @@ class Api extends CI_Controller{
 
   }
 
+  public function change_pw(){
+    $clientEmail = $this->input->post('clientEmail');
+    $clientOldPass = $this->input->post('clientOldPass');
+    $clientNewPass = $this->input->post('clientNewPass');
+
+    $validEmail = $this->Clients_model->isEmailExist($clientEmail);
+    $validuser = $this->Clients_model->checkUser($clientEmail, $clientOldPass);
+
+    if($validuser){
+      echo $this->Clients_model->changePass($clientEmail, $clientNewPass);
+
+    }
+    else if($validEmail)
+    {
+      echo 'WrongPass';
+    }
+    else echo "InvalidMail";
+
+  }
+
+  public function update_profile(){
+
+
+    $clientFirstName = trim($this->input->post('clientFirstName'));
+    $clientSecondName = trim($this->input->post('clientSecondName'));
+    $clientName = $clientFirstName .  ' ' . $clientSecondName;
+    $clientDistID = $this->input->post('clientDistID');
+    $clientEmail = $this->input->post('clientEmail');
+
+    if($this->Clients_model->editClientByUser($clientName, $clientDistID, $clientEmail)) echo '1';
+    else echo 0;
+
+
+  }
+
   public function set_image(){
 
     $clientID = $this->input->post('clientID');

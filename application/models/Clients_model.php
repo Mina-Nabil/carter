@@ -49,6 +49,13 @@ class Clients_model extends CI_Model{
           else return true;
         }
 
+        public function changePass($Email, $Pass){
+
+          $strSQL = "UPDATE Clients SET CLNT_PASS = ? WHERE `CLNT_EMAIL`= ? ";
+          $query = $this->db->query($strSQL, array($Pass, $Email));
+          if($query) return 1;
+        }
+
 
         public function checkUser($Email, $Pass){
           $strSQL = "SELECT CLNT_ID from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;
@@ -58,6 +65,19 @@ class Clients_model extends CI_Model{
           if(isset($result[0]['CLNT_ID'])) return $result[0]['CLNT_ID'];
          else return false;
 
+
+        }
+
+        public function editClientByUser($Name, $AreaID, $Email){
+
+          $strSQL = "UPDATE Clients
+                    SET CLNT_NAME = ?, CLNT_DIST_ID = ?
+                    WHERE
+                        `CLNT_EMAIL`=?";
+
+          $inputs = array($Name, $AreaID, $Email);
+          $query = $this->db->query($strSQL, $inputs);
+          if($query) return 1;
 
         }
 

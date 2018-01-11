@@ -46,7 +46,6 @@ class Traveltickets extends CI_Controller{
     $data['TableData'] = $this->Traveltickets_model->getTraveltickets();
 
     $data['TableHeaders'] = array(
-      'ID',
       'Line Name',
       'Client Name',
       'Bus Type/ Bus Seat Count',
