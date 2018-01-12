@@ -116,8 +116,7 @@ class Api extends CI_Controller{
     $clientID = $this->input->post('clientID');
     $clientImg = $this->input->post('clientImg');
 
-    $this->Clients_model->setImage($clientID, $clientImg);
-    echo 1;
+    echo $this->Clients_model->setImage($clientID, $clientImg);
     return ;
   }
 

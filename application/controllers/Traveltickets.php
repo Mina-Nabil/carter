@@ -25,8 +25,64 @@ class Traveltickets extends CI_Controller{
 
   }
 
-  public function home($MSGErr = '', $MSGOK = '')
+  public function defaultPage(){
+
+      $result = $this->CheckUser('HOME');
+      if($result == false){
+        // User not logged in
+        $this->load->view("login_redirect");
+        return;
+      }else if($result == 1){
+        // User not permitted
+        $this->load->view('pages/traveltickets_redirect');
+        return;
+      }
+      else {
+        $header['ArrURL'] = $result;
+      }
+
+      $data['Clients'] = $this->Clients_model->getClients();
+      $data['Table_Name'] = 'Traveltickets';
+
+      $this->load->view('templates/header', $header);
+      $this->load->view('pages/travelticket_default', $data);
+      $this->load->view('templates/footer');
+
+  }
+
+  public function defaultaddPage(){
+
+      $result = $this->CheckUser('HOME');
+      if($result == false){
+        // User not logged in
+        $this->load->view("login_redirect");
+        return;
+      }else if($result == 1){
+        // User not permitted
+        $this->load->view('pages/traveltickets_redirect');
+        return;
+      }
+      else {
+        $header['ArrURL'] = $result;
+      }
+
+      $data['Clients'] = $this->Clients_model->getClients();
+      $data['Table_Name'] = 'Traveltickets';
+
+      $this->load->view('templates/header', $header);
+      $this->load->view('pages/travelticket_adddefault', $data);
+      $this->load->view('templates/footer');
+
+  }
+
+  public function home($ClientID = '', $MSGErr = '', $MSGOK = '')
   {
+
+    $ClientID = $this->input->get('ClientID');
+    if($ClientID == ''){
+      $this->load->view('pages/traveltickets_redirect');
+      return;
+    }
 
     $result = $this->CheckUser('HOME');
     if($result == false){
@@ -43,13 +99,14 @@ class Traveltickets extends CI_Controller{
     }
 
 
-    $data['TableData'] = $this->Traveltickets_model->getTraveltickets();
+    $data['TableData'] = $this->Traveltickets_model->getTraveltickets($ClientID);
 
     $data['TableHeaders'] = array(
       'Line Name',
       'Client Name',
-      'Bus Type/ Bus Seat Count',
-      'Start Time',
+      'Start Station',
+      'End Station',
+      'Pick Up Time',
       'Canceled?',
       'Paid?',
       'Price',
@@ -69,7 +126,13 @@ class Traveltickets extends CI_Controller{
 
   }
 
-  public function addpage($MSGErr = '', $MSGOK = ''){
+  public function addpage($ClientID = '', $MSGErr = '', $MSGOK = ''){
+
+    $ClientID = $this->input->get('ClientID');
+    if($ClientID == ''){
+      $this->load->view('pages/traveltickets_redirect');
+      return;
+    }
 
     $result = $this->CheckUser('ADD');
     if($result == false){
@@ -88,13 +151,14 @@ class Traveltickets extends CI_Controller{
     $data['Clients'] = $this->Clients_model->getClients();
     $data['LiveLines'] = $this->LiveLines_model->getLiveLines();
 
-    $data['TRTK_ID']      = ''              ;
-    $data['TRTK_LVLN_ID']    = ''              ;
-    $data['TRTK_BUS_ID']    = ''              ;
-    $data['TRTK_TIME']    = ''              ;
-    $data['TRTK_CANC']    = ''         ;
-    $data['TRTK_PAID']    = ''              ;
-    $data['TRTK_CLNT_ID']    = ''           ;
+    $data['TRTK_ID']      = '' ;
+    $data['TRTK_LVLN_ID']    = ''   ;
+    $data['TRTK_CLNT_ID']    = ''  ;
+    $data['TRTK_START_INDX']    = ''   ;
+    $data['TRTK_CANC']    = ''      ;
+    $data['TRTK_PAID']    = ''   ;
+    $data['TRTK_PRICE']    = ''  ;
+    $data['TRTK_END_INDX']    = '' ;
 
     $data['formURL']      = 'inserttraveltickets'  ;
 
@@ -102,7 +166,7 @@ class Traveltickets extends CI_Controller{
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addtravelticket', $data);
+    $this->load->view('pages/addtraveltickets', $data);
     $this->load->view('templates/footer');
   }
 

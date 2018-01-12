@@ -186,6 +186,17 @@ $route['favourite_lines/modify/(:num)'] = 'Favourite_lines/modifypage/$1';
 $route['editfavourite_lines/(:num)'] = 'Favourite_lines/edit/$1';
 $route['favourite_lines/delete/(:num)'] = 'Favourite_lines/delete/$1';
 
+//Traveltickets ROUTES
+$route['traveltickets'] = 'Traveltickets/defaultPage';
+$route['traveltickets/(:num)'] = 'Traveltickets/home/$1';
+$route['addtraveltickets'] = 'Traveltickets/defaultaddPage';
+$route['addtraveltickets/(:num)'] = 'Traveltickets/addpage/$1';
+$route['inserttraveltickets'] = 'Traveltickets/insert';
+$route['traveltickets/modify/(:num)'] = 'Traveltickets/modifypage/$1';
+$route['edittraveltickets/(:num)'] = 'Traveltickets/edit/$1';
+$route['traveltickets/delete/(:num)'] = 'Traveltickets/delete/$1';
+
+
 
 //API
 $route['api/login'] = 'Api/login';

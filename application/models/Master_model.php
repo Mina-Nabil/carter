@@ -156,6 +156,18 @@ class Master_model extends CI_Model{
           'USER-HOME', 'USER-ADD'
         )
       );
+
+      $tmp['Traveltickets'] = array(
+        'HomeLink' => 'traveltickets',
+        'AddLink' => 'addtraveltickets',
+        'Type' => 'table',
+        'Name' => 'Tickets',
+        'Permissions' => array(
+          'ADMIN-HOME', 'ADMIN-ADD', 'ADMIN-EDIT', 'ADMIN-DEL',
+          'USER-HOME', 'USER-ADD'
+        )
+      );
+
       $tmp['AboutUs'] = array(
         'HomeLink' => 'aboutus',
         'AddLink' => 'addaboutus',

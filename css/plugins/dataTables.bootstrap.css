@@ -4,6 +4,10 @@ div.dataTables_length label {
   font-weight: normal;
 }
 
+div.dataTables_filter {
+  direction:ltr;
+}
+
 div.dataTables_length select {
   width: 75px;
 }
@@ -44,6 +48,7 @@ table.dataTable {
   margin-top: 6px !important;
   margin-bottom: 6px !important;
   max-width: none !important;
+  direction:ltr;
 }
 
 table.dataTable thead .sorting,

@@ -84,6 +84,7 @@ class Stations extends CI_Controller{
     }
 
     $data['Districts'] = $this->Districts_model->getDistricts();
+    $data['Cities'] = $this->Cities_model->getCities();
 
     $data['STTN_ID']      = ''              ;
     $data['STTN_NAME']    = ''              ;
@@ -153,6 +154,7 @@ class Stations extends CI_Controller{
     $Station = $this->Stations_model->getStation_byID($ID)[0];
 
     $data['Districts'] = $this->Districts_model->getDistricts();
+    $data['Cities'] = $this->Cities_model->getCities();
 
     $data['STTN_ID']      = $Station['STTN_ID']  ;
     $data['STTN_NAME']    = $Station['STTN_NAME']  ;

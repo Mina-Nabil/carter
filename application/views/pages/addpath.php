@@ -36,7 +36,9 @@
                                                   <label>Station Name</label>
                                                   <select class="form-control" name="pathStationID[<?=$number?>]">
                                                     <?foreach($Stations as $station){?>
-                                                        <option value=<?=$station['STTN_ID']?> <?if($point['PATH_STTN_ID'] == $station['STTN_ID'])  echo 'selected';?> required><?=$station['STTN_NAME']?></option>
+                                                        <option value=<?=$station['STTN_ID']?> <?if($point['PATH_STTN_ID'] == $station['STTN_ID'])  echo 'selected';?> required>
+                                                          <?=$station['DIST_NAME'] . ' - ' . $station['STTN_NAME']?>
+                                                        </option>
                                                     <?}?>
                                                   </select>
                                                   <label>Enter Relative Time</label>

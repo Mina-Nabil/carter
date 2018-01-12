@@ -17,6 +17,7 @@
 
    <!-- Custom Theme JavaScript -->
    <script src="<?=base_url() . 'js/sb-admin-2.js'?>"></script>
+   <!-- JS for Searchable Dropdown List-->
 
    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
    <script>
@@ -30,6 +31,34 @@
          });
 
 });
+   </script>
+
+   <script>
+       $(document).ready(function () {
+        var allOptions = $('#selectdist option')
+        $('#selectcity').change(function () {
+            $('#selectdist option').remove()
+            var classN = $('#selectcity option:selected').prop('class');
+            var opts = allOptions.filter('.' + classN);
+            $.each(opts, function (i, j) {
+                $(j).appendTo('#selectdist');
+            });
+        });
+    });
+   </script>
+
+   <script>
+       $(document).ready(function () {
+        var allOptions = $('#selectdist option')
+        $('#selectdist').change(function () {
+            $('#selectdist option').remove()
+            var classN = $('#selectcity option:selected').prop('class');
+            var opts = allOptions.filter('.' + classN);
+            $.each(opts, function (i, j) {
+                $(j).appendTo('#selectdist');
+            });
+        });
+    });
    </script>
 
    <script type='text/javascript'>
@@ -85,7 +114,7 @@
              foreach($Stations as $station){?>
               var option<?=$i?> = document.createElement('option');
               option<?=$i?>.value = <?=$station['STTN_ID']?>;
-              option<?=$i?>.innerHTML = '<?=$station['STTN_NAME']?>';
+              option<?=$i?>.innerHTML = '<?=$station['DIST_NAME'] . ' - ' . $station['STTN_NAME']?>';
               list.appendChild(option<?=$i?>);
 
             <?  $i++; }?>
@@ -159,7 +188,7 @@
               foreach($Stations as $station){?>
                var option<?=$i?> = document.createElement('option');
                option<?=$i?>.value = <?=$station['STTN_ID']?>;
-               option<?=$i?>.innerHTML = '<?=$station['STTN_NAME']?>';
+               option<?=$i?>.innerHTML = '<?=$station['DIST_NAME'] . ' - ' . $station['STTN_NAME']?>';
                list.appendChild(option<?=$i?>);
 
              <?  $i++; }?>

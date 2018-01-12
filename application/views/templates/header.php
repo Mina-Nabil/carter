@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Karter</title>
-
+    <!-- Searchable Dropdown List -->
     <!-- Bootstrap Core CSS -->
     <link href="<?=base_url() . 'css/bootstrap.min.css'?>" rel="stylesheet">
 

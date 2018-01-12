@@ -22,8 +22,9 @@
                                     <tr class="odd gradeX">
                                         <td><?=$data['LINE_NAME']?></td>
                                         <td><?=$data['CLNT_NAME']?></td>
-                                        <td><?=$data['BUS_TYPE'] . ' / ' . $data['BUS_NUMBER']?></td>
-                                        <td><?=$data['TRTK_TIME']?></td>
+                                        <td><?=$data['START_STTN']?></td>
+                                        <td><?=$data['END_STTN']?></td>
+                                        <td><?=$data['PATH_REL_TIME']?></td>
                                         <td><?=$data['TRTK_CANC']?></td>
                                         <td><?=$data['TRTK_COMP']?></td>
                                         <td><?=$data['TRTK_REVN']?></td>

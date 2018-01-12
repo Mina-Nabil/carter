@@ -43,10 +43,18 @@
                                             <p class="help-block">Enter Station English Address.</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>City Name</label>
+                                            <select class="form-control" id="selectcity" >
+                                              <?foreach($Cities as $city){?>
+                                                  <option class="<?=$city['CITY_ID']?>" required><?=$city['CITY_NAME']?></option>
+                                              <?}?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label>District Name</label>
-                                            <select class="form-control" name='stationDistrictID'>
+                                            <select class="form-control" id="selectdist" name='stationDistrictID'>
                                               <?foreach($Districts as $district){?>
-                                                  <option value=<?=$district['DIST_ID']?> <?if($STTN_DIST_ID == $district['DIST_ID'])  echo 'selected';?> required><?=$district['DIST_NAME']?></option>
+                                                  <option value=<?=$district['DIST_ID']?> class="selectors <?=$district['DIST_CITY_ID']?>" <?if($STTN_DIST_ID == $district['DIST_ID'])  echo 'selected';?> required><?=$district['DIST_NAME']?></option>
                                               <?}?>
                                             </select>
                                         </div>

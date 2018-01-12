@@ -23,7 +23,7 @@
                                             <p class="help-block">Enter District Name, Example: Nasr City, El Rehab.</p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Selects</label>
+                                            <label>Cities</label>
                                             <select class="form-control" name='districtCityID'>
                                               <?foreach($Cities as $city){?>
                                                   <option value=<?=$city['CITY_ID']?> <?if($DIST_CITY_ID == $city['CITY_ID'])  echo 'selected';?> ><?=$city['CITY_NAME']?></option>
