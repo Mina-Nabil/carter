@@ -92,15 +92,17 @@ class Lines_model extends CI_Model{
 
         public function getHomeLines(){
 
-          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
+          $strSQL = "SELECT l1.LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
                             DIST_NAME AS START_DIST_NAME, CITY_NAME AS START_CITY_NAME,
                             STTN_NAME AS START_STTN_NAME
-                      FROM karter.lines, districts, cities, paths, stations
+                      FROM karter.lines as l1, districts, cities, paths, stations
                       WHERE PATH_LINE_ID = LINE_ID
                       AND PATH_STTN_ID = STTN_ID
                       AND STTN_DIST_ID = DIST_ID
                       AND DIST_CITY_ID = CITY_ID
-                      AND PATH_INDX = 0";
+                      AND PATH_INDX = (SELECT MIN(PATH_INDX) FROM paths, karter.lines
+                                       WHERE PATH_LINE_ID = LINE_ID
+                                       AND LINE_ID = l1.LINE_ID);";
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 

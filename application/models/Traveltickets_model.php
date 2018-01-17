@@ -74,16 +74,54 @@ class TravelTickets_model extends CI_Model{
 
         }
 
+        //Check if tickets is available
+        //Get Seats Available
+
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price){
-            //NN LiveLineID BusID Name LineID
-          $strSQL = "INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX,
+
+
+          $this->db->trans_start();
+          $strSQL2 = "LOCK TABLE traveltickets WRITE;";
+          $query = $this->db->query($strSQL2);
+
+          $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX,
                                   TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_PRICE)
                      VALUES       (?, ?, ?, ?, ?, ?, ?)";
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price);
-          $query = $this->db->query($strSQL, $inputs);
 
+
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price);
+          $query = $this->db->query($strSQL2, $inputs);
+
+          $strSQL =  "SELECT LAST_INSERT_ID() as EntID";
+          $query = $this->db->query($strSQL);
+          $TravelticketID = $query->result_array()[0]['EntID'];
+
+          $strSQL = 'UNLOCK TABLES; ';
+          $query = $this->db->query($strSQL);
+
+          for($i = $StartIndx ; $i <= $EndIndx ; $i++){
+
+            $strSQL3 = 'SELECT PATH_ID, PATH_STTN_ID
+                        FROM livelines, karter.lines, paths
+                        WHERE LVLN_LINE_ID = LINE_ID
+                        AND   PATH_LINE_ID = LINE_ID
+                        AND   LVLN_ID = ' . $LiveLineID;
+            $query = $this->db->query($strSQL3);
+            $PathID = $query->result_array()[0]['PATH_ID'];
+            $StationID = $query->result_array()[0]['PATH_STTN_ID'];
+
+            $strSQL = 'INSERT INTO stationtickets (STTK_STTN_ID, STTK_TRTK_ID, STTK_CLNT_ID,
+                                                   STTK_LVLN_ID, STTK_PATH_ID, STTK_INDX)
+                      VALUES ({$StationID}, {$TravelticketID}, {$ClientID},
+                              {$LiveLineID}, {$PathID}, {$i}) ; ';
+           $query = $this->db->query($strSQL);
+
+          }
+          $this->db->trans_complete();
+
+//test this function
         }
 
         public function editTravelTicket($ID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price){
