@@ -102,7 +102,9 @@ class Lines_model extends CI_Model{
                       AND DIST_CITY_ID = CITY_ID
                       AND PATH_INDX = (SELECT MIN(PATH_INDX) FROM paths, karter.lines
                                        WHERE PATH_LINE_ID = LINE_ID
-                                       AND LINE_ID = l1.LINE_ID);";
+                                       AND LINE_ID = l1.LINE_ID)
+                       ORDER BY LINE_ID;";
+
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
@@ -116,17 +118,14 @@ class Lines_model extends CI_Model{
                       AND DIST_CITY_ID = CITY_ID
                       AND PATH_INDX = (SELECT MAX(PATH_INDX) FROM paths, karter.lines
                                        WHERE PATH_LINE_ID = LINE_ID
-                                       AND LINE_ID = l1.LINE_ID);";
+                                       AND LINE_ID = l1.LINE_ID)
+                      ORDER BY LINE_ID;";
 
           $query2 = $this->db->query($strSQL);
           $res2   = $query2->result_array();
 
           $res = array();
           $i=0;
-          echo '<pre>';
-          print_r($res2);
-          print_r($res1);
-          echo '</pre>';
 
           foreach($res1 as $row){
             $res[$i] = $row;
