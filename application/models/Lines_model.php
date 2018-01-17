@@ -124,8 +124,8 @@ class Lines_model extends CI_Model{
           $res = array();
           $i=0;
 
-          print_f($res2);
-          print_f($res1);
+          print_r($res2);
+          print_r($res1);
 
           foreach($res1 as $row){
             $res[$i] = $row;
