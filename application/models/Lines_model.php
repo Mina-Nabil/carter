@@ -36,7 +36,8 @@ class Lines_model extends CI_Model{
                       WHERE DIST_ID = {$DistrictID}
                       AND PATH_STTN_ID = STTN_ID
                       AND STTN_DIST_ID = DIST_ID
-                      AND PATH_LINE_ID = LINE_ID ";
+                      AND PATH_LINE_ID = LINE_ID
+                      ORDER BY LINE_ID;";
 
           $query = $this->db->query($strSQL);
           $lineres  = $query->result_array();
@@ -54,7 +55,8 @@ class Lines_model extends CI_Model{
                       AND STTN_DIST_ID = DIST_ID
                       AND DIST_CITY_ID = CITY_ID
                       AND LINE_ID IN ?
-                      AND PATH_INDX = 0";
+                      AND PATH_INDX = 0
+                      ORDER BY LINE_ID;";
           $query = $this->db->query($strSQL, array($lines));
           $res1  = $query->result_array();
 
@@ -70,7 +72,8 @@ class Lines_model extends CI_Model{
                       AND DIST_CITY_ID = CITY_ID
                       AND PATH_INDX = (SELECT MAX(PATH_INDX) FROM paths, karter.lines
                                        WHERE PATH_LINE_ID = LINE_ID
-                                       AND LINE_ID = l1.LINE_ID);";
+                                       AND LINE_ID = l1.LINE_ID)
+                       ORDER BY LINE_ID;";
 
           $query2 = $this->db->query($strSQL, array($lines));
           $res2   = $query2->result_array();
@@ -154,20 +157,22 @@ class Lines_model extends CI_Model{
         public function insertLine($Name, $Desc, $Tags ){
             //NN Latitude Longitude Name DistrictID
           $strSQL = "INSERT INTO karter.lines (LINE_NAME, LINE_DESC, LINE_TAGS)
-                     VALUES ('{$Name}', '{$Desc}', '{$Tags}')";
-          $query = $this->db->query($strSQL);
+                     VALUES (?, ?, ?)";
+
+          $query = $this->db->query($strSQL, array($Name, $Desc, $Tags));
 
         }
 
         public function editLine($ID, $Name, $Desc, $Tags){
             //NN Latitude Longitude Name DistrictID
           $strSQL = "UPDATE karter.lines
-                    SET LINE_NAME         = '{$Name}',
-                        LINE_DESC         = '{$Desc}',
-                        LINE_TAGS         ='{$Tags}'
+                    SET LINE_NAME         = ?,
+                        LINE_DESC         = ?,
+                        LINE_TAGS         =?
                     WHERE
-                        `LINE_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+                        `LINE_ID`=?";
+
+          $query = $this->db->query($strSQL, array($Name, $Desc, $Tags, $ID));
 
         }
 

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '52.41.123.105',
 	'username' => 'root',
-	'port' 		 => '3309',
-	'password' => 'MINA4ever',
+	'port' 		 => '3306',
+	'password' => 'onepush@011',
 	'database' => 'karter',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

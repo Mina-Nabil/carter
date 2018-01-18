@@ -27,11 +27,17 @@ class Api extends CI_Controller{
     && ($clientPass !== null) && ($clientTag !== null)) {
 
     $EmailTaken =   $this->Clients_model->isEmailExist($clientEmail);
+    $NumberTaken =   $this->Clients_model->isNumberExist($clientTel);
 
     if($EmailTaken) {
       echo 2;
      return;
    } //Email Already Taken
+
+   if($NumberTaken) {
+     echo 3;
+    return;
+  }
 
     $ID = $this->Clients_model->regClient($clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
                                      $clientBalance, $clientTag, $clientDistID);
@@ -52,23 +58,23 @@ class Api extends CI_Controller{
 
 
     public function login(){
-      $clientEmail = $this->input->post('clientEmail');
+      $clientTel = $this->input->post('clientTel');
       $clientPass = $this->input->post('clientPass');
 
-      $validEmail = $this->Clients_model->isEmailExist($clientEmail);
-      $validuser = $this->Clients_model->checkUser($clientEmail, $clientPass);
+      $validNumber = $this->Clients_model->isNumberExist($clientTel);
+      $validuser = $this->Clients_model->checkUserbyTel($clientTel, $clientPass);
 
       if ($validuser) {
         echo $validuser;
         return;
       } //log in success
 
-      if(!$validuser  && $validEmail ) {
+      if(!$validuser  && $validNumber ) {
         echo 'WrongPass';
         return;
       } //wrong pass, valid mail
 
-      if(!$validuser  && !$validEmail ) {
+      if(!$validuser  && !$validNumber ) {
         echo 'WrongUser';
         return;
       } //wrong data
@@ -77,22 +83,17 @@ class Api extends CI_Controller{
   }
 
   public function change_pw(){
-    $clientEmail = $this->input->post('clientEmail');
+    $clientID = $this->input->post('clientID');
     $clientOldPass = $this->input->post('clientOldPass');
     $clientNewPass = $this->input->post('clientNewPass');
 
-    $validEmail = $this->Clients_model->isEmailExist($clientEmail);
-    $validuser = $this->Clients_model->checkUser($clientEmail, $clientOldPass);
+    $validuser = $this->Clients_model->checkUserbyID($clientID, $clientOldPass);
 
     if($validuser){
-      echo $this->Clients_model->changePass($clientEmail, $clientNewPass);
+    echo $this->Clients_model->changePassbyID($clientID, $clientNewPass);
 
     }
-    else if($validEmail)
-    {
-      echo 'WrongPass';
-    }
-    else echo "InvalidMail";
+    else echo "WrongPass ";
 
   }
 
@@ -103,9 +104,9 @@ class Api extends CI_Controller{
     $clientSecondName = trim($this->input->post('clientSecondName'));
     $clientName = $clientFirstName .  ' ' . $clientSecondName;
     $clientDistID = $this->input->post('clientDistID');
-    $clientEmail = $this->input->post('clientEmail');
+    $clientID = $this->input->post('clientID');
 
-    if($this->Clients_model->editClientByUser($clientName, $clientDistID, $clientEmail)) echo '1';
+    if($this->Clients_model->editClientByUserID($clientName, $clientDistID, $clientID)) echo '1';
     else echo 0;
 
 
@@ -117,6 +118,15 @@ class Api extends CI_Controller{
     $clientImg = $this->input->post('clientImg');
 
     echo $this->Clients_model->setImage($clientID, $clientImg);
+    return ;
+  }
+
+  public function set_tag(){
+
+    $clientID = $this->input->post('ClientID');
+    $clientTag = $this->input->post('ClientTag');
+
+    echo $this->Clients_model->setTag($clientID, $clientTag);
     return ;
   }
 
@@ -234,6 +244,47 @@ class Api extends CI_Controller{
     echo $this->Favourite_lines_model->isFavourite($ClientID, $LineID);
  }
 
+  public function requestSpecialBus(){
 
+   $Seats = $this->input->post('linerequestSeats');
+   $isTwoWays = $this->input->post('linerequestisTwoWays');
+   $ClientID = $this->input->post('linerequestClientID');
+   $BackTime = $this->input->post('linerequestBackTime');
+   $StartTime= $this->input->post('linerequestStartTime');
+   $Notes= $this->input->post('linerequestNotes');
+   $StartStationID= $this->input->post('linerequestStrtSttnID');
+   $EndStationID= $this->input->post('linerequestEndSttnID');
+
+   if(($Seats !== null) && ($isTwoWays !== null) && ($ClientID !== null)
+     && ($StartTime !== null) && ($StartStationID !== null) && ($EndStationID !== null)) {
+
+
+   $this->Linerequests_model->insertLinerequest($Seats, $isTwoWays, $ClientID, $BackTime, $StartTime, $Notes, $StartStationID, $EndStationID);
+   echo '1';
+ }
+ else echo '0';
+
+}
+
+
+  public function getNotifications(){
+
+  echo json_encode($this->Notifications_model->getAppNotifications(), JSON_UNESCAPED_UNICODE);
+
+  }
+
+  public function resetUser(){
+    $ClientID = $this->input->post('ClientID');
+    $this->Favourite_lines_model->deleteFavourite_Client($ClientID);
+    echo 1;
+  }
+
+  public function getArticle(){
+
+    $IDs = $this->Articles_model->getArticlesID();
+    $randomIndex = rand(0, sizeof($IDs)-1);
+    echo json_encode($this->Articles_model->getArticle_byID($IDs[$randomIndex]), JSON_UNESCAPED_UNICODE);
+
+  }
 
 }

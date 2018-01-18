@@ -84,6 +84,16 @@ class Master_model extends CI_Model{
           'USER-HOME', 'USER-ADD'
         )
       );
+      $tmp['Linerequests'] = array(
+        'HomeLink' => 'linerequests',
+        'AddLink' => 'addlinerequests',
+        'Type' => 'table',
+        'Name' => 'Line Requests',
+        'Permissions' => array(
+          'ADMIN-HOME', 'ADMIN-ADD', 'ADMIN-EDIT', 'ADMIN-DEL',
+          'USER-HOME', 'USER-ADD'
+        )
+      );
       $tmp['Paths'] = array(
         'HomeLink' => 'paths',
         'AddLink' => 'addpaths',
@@ -99,6 +109,16 @@ class Master_model extends CI_Model{
         'AddLink' => 'addarticles',
         'Type' => 'table',
         'Name' => 'Articles',
+        'Permissions' => array(
+          'ADMIN-HOME', 'ADMIN-ADD', 'ADMIN-EDIT', 'ADMIN-DEL',
+          'USER-HOME', 'USER-ADD'
+        )
+      );
+      $tmp['Notifications'] = array(
+        'HomeLink' => 'notifications',
+        'AddLink' => 'addnotifications',
+        'Type' => 'table',
+        'Name' => 'Notifications',
         'Permissions' => array(
           'ADMIN-HOME', 'ADMIN-ADD', 'ADMIN-EDIT', 'ADMIN-DEL',
           'USER-HOME', 'USER-ADD'
@@ -167,6 +187,7 @@ class Master_model extends CI_Model{
           'USER-HOME', 'USER-ADD'
         )
       );
+
 
       $tmp['AboutUs'] = array(
         'HomeLink' => 'aboutus',

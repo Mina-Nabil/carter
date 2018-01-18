@@ -147,6 +147,14 @@ $route['faqs/modify/(:num)'] = 'Faqs/modifypage/$1';
 $route['editfaqs/(:num)'] = 'Faqs/edit/$1';
 $route['faqs/delete/(:num)'] = 'Faqs/delete/$1';
 
+//Notifications ROUTES
+$route['notifications'] = 'Notifications/home';
+$route['addnotifications'] = 'Notifications/addpage';
+$route['insertnotifications'] = 'Notifications/insert';
+$route['notifications/modify/(:num)'] = 'Notifications/modifypage/$1';
+$route['editnotifications/(:num)'] = 'Notifications/edit/$1';
+$route['notifications/delete/(:num)'] = 'Notifications/delete/$1';
+
 //AboutUs ROUTES
 $route['aboutus'] = 'AboutUs/home';
 $route['addaboutus'] = 'AboutUs/addpage';
@@ -161,6 +169,13 @@ $route['addmessages'] = 'Messages/addpage';
 $route['insertmessages'] = 'Messages/insert';
 $route['messages/modify/(:num)'] = 'Messages/modifypage/$1';
 $route['messages/delete/(:num)'] = 'Messages/delete/$1';
+
+//Linerequests ROUTES
+$route['linerequests'] = 'Linerequests/home';
+$route['addlinerequests'] = 'Linerequests/addpage';
+$route['insertlinerequests'] = 'Linerequests/insert';
+$route['linerequests/modify/(:num)'] = 'Linerequests/modifypage/$1';
+$route['linerequests/delete/(:num)'] = 'Linerequests/delete/$1';
 
 //Drivers ROUTES
 $route['drivers'] = 'Drivers/home';
@@ -218,6 +233,8 @@ $route['api/get_favourites/(:num)'] = 'Api/get_favourites/$1';
 $route['api/delete_favourite/(:num)'] = 'Api/delete_favourite/$1';
 $route['api/add_favourite'] = 'Api/add_favourite';
 $route['api/isFavourite'] = 'Api/isFavourite';
+$route['api/getNotifications'] = 'Api/getNotifications';
+$route['api/resetUser'] = 'Api/resetUser';
 $route['api/get_path/(:num)'] = 'Api/get_path/$1';
 
 

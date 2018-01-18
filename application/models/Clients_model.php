@@ -40,6 +40,13 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function setTag($ID, $Tag){
+
+          $strSQL = "UPDATE Clients SET CLNT_TAG = ? WHERE `CLNT_ID`= ? ";
+          $query = $this->db->query($strSQL, array($Tag, $ID));
+
+        }
+
         public function isEmailExist($Email){
 
           $strSQL = "SELECT COUNT(*) AS emails from clients where CLNT_EMAIL = ?";
@@ -49,12 +56,29 @@ class Clients_model extends CI_Model{
           else return true;
         }
 
+        public function isNumberExist($Number){
+
+          $strSQL = "SELECT COUNT(*) AS numbers from clients where CLNT_TEL = ?";
+          $query = $this->db->query($strSQL, array($Number));
+          $numCount = $query->result_array()[0]['numbers'];
+          if($numCount == 0) return false;
+          else return true;
+        }
+
         public function changePass($Email, $Pass){
 
           $strSQL = "UPDATE Clients SET CLNT_PASS = ? WHERE `CLNT_EMAIL`= ? ";
           $query = $this->db->query($strSQL, array($Pass, $Email));
           if($query) return 1;
         }
+
+        public function changePassbyID($ID, $Pass){
+
+          $strSQL = "UPDATE Clients SET CLNT_PASS = ? WHERE `CLNT_ID`= ? ";
+          $query = $this->db->query($strSQL, array($Pass, $ID));
+          if($query) return 1;
+        }
+
 
 
         public function checkUser($Email, $Pass){
@@ -68,6 +92,29 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function checkUserbyID($ID, $Pass){
+          $strSQL = "SELECT CLNT_ID from clients where CLNT_ID = ? AND CLNT_PASS = ?" ;
+
+          $query = $this->db->query($strSQL, array($ID, $Pass));
+          $result = $query->result_array();
+          if(isset($result[0]['CLNT_ID'])) return $result[0]['CLNT_ID'];
+         else return false;
+
+
+        }
+
+        public function checkUserbyTel($Tel, $Pass){
+          $strSQL = "SELECT CLNT_ID from clients where CLNT_TEL = ? AND CLNT_PASS = ?" ;
+
+          $query = $this->db->query($strSQL, array($Tel, $Pass));
+          $result = $query->result_array();
+          if(isset($result[0]['CLNT_ID'])) return $result[0]['CLNT_ID'];
+         else return false;
+
+
+        }
+
+
         public function editClientByUser($Name, $AreaID, $Email){
 
           $strSQL = "UPDATE Clients
@@ -76,6 +123,19 @@ class Clients_model extends CI_Model{
                         `CLNT_EMAIL`=?";
 
           $inputs = array($Name, $AreaID, $Email);
+          $query = $this->db->query($strSQL, $inputs);
+          if($query) return 1;
+
+        }
+
+        public function editClientByUserID($Name, $AreaID, $ID){
+
+          $strSQL = "UPDATE Clients
+                    SET CLNT_NAME = ?, CLNT_DIST_ID = ?
+                    WHERE
+                        `CLNT_ID`=?";
+
+          $inputs = array($Name, $AreaID, $ID);
           $query = $this->db->query($strSQL, $inputs);
           if($query) return 1;
 

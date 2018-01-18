@@ -18,6 +18,18 @@ class Articles_model extends CI_Model{
 
         }
 
+        public function getArticlesID(){
+
+          $strSQL = "SELECT RTCL_ID
+                      FROM Articles";
+          $query = $this->db->query($strSQL);
+          $res   =  $query->result_array();
+          $ret = array();
+          foreach ($res as $row) array_push($ret, $row['RTCL_ID']);
+          return $ret;
+
+        }
+
         public function getArticle_byID($ID){
 
           $strSQL = "SELECT RTCL_ID, RTCL_TITLE, RTCL_TEXT, RTCL_ARBC_TITLE, RTCL_ARBC_TEXT
@@ -31,21 +43,21 @@ class Articles_model extends CI_Model{
         public function insertArticle($Title, $Text, $ArabicTitle, $ArbcText){
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "INSERT INTO Articles (RTCL_TITLE, RTCL_TEXT, RTCL_ARBC_TITLE, RTCL_ARBC_TEXT)
-                     VALUES ('{$Title}', '{$Text}', '{$ArabicTitle}', '{$ArbcText}')";
-          $query = $this->db->query($strSQL);
+                     VALUES (?,?,?,?)";
+          $query = $this->db->query($strSQL, array($Title, $Text, $ArabicTitle, $ArbcText));
 
         }
 
         public function editArticle($ID, $Title, $Text, $ArabicTitle, $ArbcText){
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "UPDATE Articles
-                    SET RTCL_TITLE   = '{$Title}',
-                        RTCL_ARBC_TITLE  = '{$ArabicTitle}',
-                        RTCL_TEXT    = '{$Text}',
-                        RTCL_ARBC_TEXT   = '{$ArbcText}',
+                    SET RTCL_TITLE   = ?,
+                        RTCL_TEXT    = ?,
+                        RTCL_ARBC_TITLE  = ?,
+                        RTCL_ARBC_TEXT   = ?
                     WHERE
-                        `RTCL_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+                        `RTCL_ID`=?";
+          $query = $this->db->query($strSQL, array($Title, $Text, $ArabicTitle, $ArbcText));
 
         }
 

@@ -31,7 +31,7 @@
                                             <label>Client Name</label>
                                             <select class="form-control" name='messageClientID' <?if($disabled) echo 'readonly'; else echo 'required'?>>
                                               <?foreach($Clients as $client){?>
-                                                  <option value=<?=$client['CLNT_ID']?> <?if($MSGS_CLNT_ID == $client['CLNT_ID'])  echo 'selected';?> required><?=$client['CLNT_NAME']?></option>
+                                                  <option value=<?=$client['CLNT_ID']?> <?if($MSGS_CLNT_ID == $client['CLNT_ID'])  echo 'selected'; else echo 'disabled';?> required><?=$client['CLNT_NAME']?></option>
                                               <?}?>
                                             </select>
                                         </div>

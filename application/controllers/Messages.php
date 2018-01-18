@@ -148,7 +148,7 @@ class Messages extends CI_Controller{
 
     $Message = $this->Messages_model->getMessage_byID($ID)[0];
 
-    $data['Districts'] = $this->Clients_model->getClients();
+    $data['Clients'] = $this->Clients_model->getClients();
 
     $data['MSGS_ID']      = $Message['MSGS_ID']  ;
     $data['MSGS_TITLE']    = $Message['MSGS_TITLE']  ;

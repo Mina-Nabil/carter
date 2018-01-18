@@ -43,20 +43,20 @@ class Messages_model extends CI_Model{
         public function insertMessage($Title, $Text, $ClientID){
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "INSERT INTO Messages (MSGS_TITLE, MSGS_TEXT, MSGS_CLNT_ID)
-                     VALUES ('{$Title}', '{$Text}', '{$ClientID}')";
-          $query = $this->db->query($strSQL);
+                     VALUES (?, ?, ?)";
+          $query = $this->db->query($strSQL, array($Title, $Text, $ClientID));
           return $query;
         }
 
         public function editMessage($ID, $Title, $Text, $ClientID){
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "UPDATE Messages
-                    SET MSGS_TITLE   = '{$Title}',
-                        MSGS_TEXT    = '{$Text}',
-                        MSGS_CLNT_ID   = '{$ClientID}',
+                    SET MSGS_TITLE   = ?,
+                        MSGS_TEXT    = ?,
+                        MSGS_CLNT_ID   = ?
                     WHERE
-                        `MSGS_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+                        `MSGS_ID`= ?";
+          $query = $this->db->query($strSQL, array($Title, $Text, $ClientID, $ID));
 
         }
 
