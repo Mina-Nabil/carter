@@ -26,16 +26,10 @@ class Api extends CI_Controller{
     if(($clientName !== null) && ($clientTel !== null) && ($clientDistID !== null)
     && ($clientPass !== null) && ($clientTag !== null)) {
 
-    $EmailTaken =   $this->Clients_model->isEmailExist($clientEmail);
     $NumberTaken =   $this->Clients_model->isNumberExist($clientTel);
 
-    if($EmailTaken) {
-      echo 2;
-     return;
-   } //Email Already Taken
-
    if($NumberTaken) {
-     echo 3;
+     echo 2;
     return;
   }
 
@@ -104,9 +98,10 @@ class Api extends CI_Controller{
     $clientSecondName = trim($this->input->post('clientSecondName'));
     $clientName = $clientFirstName .  ' ' . $clientSecondName;
     $clientDistID = $this->input->post('clientDistID');
+    $clientEmail = $this->input->post('clientEmail');
     $clientID = $this->input->post('clientID');
 
-    if($this->Clients_model->editClientByUserID($clientName, $clientDistID, $clientID)) echo '1';
+    if($this->Clients_model->editClientByUserID($clientName, $clientDistID, $clientEmail, $clientID)) echo '1';
     else echo 0;
 
 
@@ -285,6 +280,11 @@ class Api extends CI_Controller{
     $randomIndex = rand(0, sizeof($IDs)-1);
     echo json_encode($this->Articles_model->getArticle_byID($IDs[$randomIndex]), JSON_UNESCAPED_UNICODE);
 
+  }
+
+  public function getFreeCode(){
+    $ClientID = $this->input->post('ClientID');
+    echo $this->Clients_model->getFreeCode($ClientID);
   }
 
 }

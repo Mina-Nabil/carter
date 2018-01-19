@@ -79,6 +79,53 @@ class Clients_model extends CI_Model{
           if($query) return 1;
         }
 
+        public function generateFreeCode($ID){
+          $strSQL = "SELECT CLNT_NAME FROM clients where CLNT_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          $Name = $query->result_array()[0]['CLNT_NAME'];
+          $Number = rand(0, 999);
+          $Code = str_replace (' ', '', $Name) . $Number;
+          return $Code;
+        }
+
+        public function setFreeCode($ID, $Code){
+
+          $strSQL = "UPDATE Clients SET CLNT_FREE_CODE = ? WHERE `CLNT_ID`= ? ";
+          $query = $this->db->query($strSQL, array($Code, $ID));
+
+        }
+
+        public function isCodeExist($Code){
+
+          $strSQL = "SELECT COUNT(*) AS codes from clients where CLNT_FREE_CODE = ?";
+          $query = $this->db->query($strSQL, array($Code));
+          $codeCount = $query->result_array()[0]['codes'];
+          if($codeCount == 0) return false;
+          else return true;
+        }
+
+
+
+        public function getFreeCode($ID){
+          $strSQL = "SELECT CLNT_FREE_CODE FROM clients where CLNT_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          $Code = $query->result_array()[0]['CLNT_FREE_CODE'];
+          //Generate Free code and insert it into database
+          if($Code == '' || $Code == null){
+            $generated = false;
+            while(!$generated){
+              $Code = $this->generateFreeCode($ID);
+              if($this->isCodeExist($Code));
+              else {
+                $this->setFreeCode($ID, $Code);
+                $generated = true;
+              }
+            }
+          } else
+          return $Code;
+
+        }
+
 
 
         public function checkUser($Email, $Pass){
@@ -128,14 +175,14 @@ class Clients_model extends CI_Model{
 
         }
 
-        public function editClientByUserID($Name, $AreaID, $ID){
+        public function editClientByUserID($Name, $AreaID, $Email, $ID){
 
           $strSQL = "UPDATE Clients
-                    SET CLNT_NAME = ?, CLNT_DIST_ID = ?
+                    SET CLNT_NAME = ?, CLNT_DIST_ID = ?, CLNT_EMAIL = ?
                     WHERE
                         `CLNT_ID`=?";
 
-          $inputs = array($Name, $AreaID, $ID);
+          $inputs = array($Name, $AreaID, $Email, $ID);
           $query = $this->db->query($strSQL, $inputs);
           if($query) return 1;
 
