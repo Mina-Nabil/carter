@@ -36,7 +36,7 @@ class Clients_model extends CI_Model{
         public function setImage($ID, $Image){
 
           $strSQL = "UPDATE Clients SET CLNT_IMG = ? WHERE `CLNT_ID`= ? ";
-          $query = $this->db->query($strSQL, array($Image, $ID));
+          return $this->db->query($strSQL, array($Image, $ID));
 
         }
 
