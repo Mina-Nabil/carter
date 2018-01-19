@@ -116,7 +116,7 @@ class Api extends CI_Controller{
     return ;
   }
 
-  public function set_tag(){
+  public function setTag(){
 
     $clientID = $this->input->post('ClientID');
     $clientTag = $this->input->post('ClientTag');
