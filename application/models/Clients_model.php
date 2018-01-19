@@ -119,6 +119,7 @@ class Clients_model extends CI_Model{
               else {
                 $this->setFreeCode($ID, $Code);
                 $generated = true;
+                return $Code;
               }
             }
           } else
