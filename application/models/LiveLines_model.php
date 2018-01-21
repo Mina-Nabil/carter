@@ -51,12 +51,11 @@ class LiveLines_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           $livelines = $query->result_array();
-          print_r($livelines);
           $adjustedArray = array();
           foreach ($livelines as $row) {
 
             if(isset($adjustedArray[$row['LVLN_ID']])){
-              array_push($adjustedArray[$row['LVLN_ID']]['Lines'], array('Index' => $row['PATH_INDX'],
+              array_push($adjustedArray[$row['LVLN_ID']]['Stations'], array('Index' => $row['PATH_INDX'],
                                                                     'Sttn' => $row['STTN_NAME'],
                                                                     'MinutesFromStart'=>['PATH_REL_TIME']));
             }
@@ -65,7 +64,7 @@ class LiveLines_model extends CI_Model{
             $obj = array(
               'LiveLineID' => $row['LVLN_ID'],
               'StartTime' => $row['LVLN_TIME'],
-              'Lines' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>['PATH_REL_TIME']),
+              'Stations' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>$row['PATH_REL_TIME']),
             );
             $adjustedArray[$row['LVLN_ID']] = $obj;
           }
