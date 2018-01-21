@@ -317,7 +317,7 @@ class Api extends CI_Controller{
     $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,
                                                    $EndIndex, 0, 0, $Price, $isHandi);
 
-    if($res) $this->Clients_model->decrementBalance($ClientID, $Price);
+    if($res) $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
     echo $res;
     }
     else echo 'NS';
