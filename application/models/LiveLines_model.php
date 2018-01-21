@@ -57,7 +57,7 @@ class LiveLines_model extends CI_Model{
             if(isset($adjustedArray[$row['LVLN_ID']])){
               array_push($adjustedArray[$row['LVLN_ID']]['Stations'], array('Index' => $row['PATH_INDX'],
                                                                     'Sttn' => $row['STTN_NAME'],
-                                                                    'MinutesFromStart'=>['PATH_REL_TIME']));
+                                                                    'MinutesFromStart'=>$row['PATH_REL_TIME']));
             }
             else {
 
