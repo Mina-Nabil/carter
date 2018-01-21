@@ -28,8 +28,9 @@ class Paths_model extends CI_Model{
                      ORDER BY PATH_INDX";
 
           $query = $this->db->query($strSQL);
-          $Start = $query->result_array()[0]['PATH_INDX'];
-          $End = end($query->result_array())['PATH_INDX'];
+          $result = $query->result_array();
+          $Start = $result[0]['PATH_INDX'];
+          $End = end($result)['PATH_INDX'];
           return array('Start' => $Start, 'End' => $End);
         }
 
