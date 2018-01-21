@@ -29,9 +29,14 @@ class Paths_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           $result = $query->result_array();
+          if(isset($result[0])){
           $Start = $result[0]['PATH_INDX'];
           $End = end($result)['PATH_INDX'];
           return array('Start' => $Start, 'End' => $End);
+        } else {
+          return array('Start' => 0, 'End' =>0);
+        }
+
         }
 
         public function getPath_byLineID($LineID){
