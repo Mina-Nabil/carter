@@ -92,7 +92,7 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL, array($LiveLineID, $Indicies));
           $Seats = $query->result_array()[0]['tt'];
 
-          $strSQL = "SELECT BUS_SEATS FROM buses, livelines
+          $strSQL = "SELECT BUS_SEATS FROM buses, live_lines
                      WHERE LVLN_BUS_ID = BUS_ID
                      AND LVLN_ID = " . $LiveLineID;
 
