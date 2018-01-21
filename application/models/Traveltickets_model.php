@@ -84,13 +84,13 @@ class TravelTickets_model extends CI_Model{
         public function getSeatsAvailable($LiveLineID, $Indicies){
 
 
-          $strSQL = "SELECT MIN(X1) as out FROM
+          $strSQL = "SELECT MIN(X1) as tt FROM
                     (SELECT COUNT(*) as X1 FROM karter.stationtickets
 						         WHERE STTK_LVLN_ID = ?
                      AND   STTK_INDX IN ? ) AS temp";
 
           $query = $this->db->query($strSQL, array($LiveLineID, $Indicies));
-          $Seats = $query->result_array()[0]['out'];
+          $Seats = $query->result_array()[0]['tt'];
 
           $strSQL = "SELECT BUS_SEATS FROM buses, livelines
                      WHERE LVLN_BUS_ID = BUS_ID
