@@ -128,7 +128,7 @@ class TravelTickets_model extends CI_Model{
           for($i = $StartIndx ; $i <= $EndIndx ; $i++){
 
             $strSQL3 = 'SELECT PATH_ID, PATH_STTN_ID
-                        FROM livelines, karter.lines, paths
+                        FROM live_lines, karter.lines, paths
                         WHERE LVLN_LINE_ID = LINE_ID
                         AND   PATH_LINE_ID = LINE_ID
                         AND   LVLN_ID = ' . $LiveLineID;
