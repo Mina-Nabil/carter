@@ -29,7 +29,7 @@ class Paths_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           $result = $query->result_array();
-          $return = array()
+          $return = array();
           if(isset($result[0])){
             foreach($result as $row){
               array_push($return, $row['PATH_INDX']);
