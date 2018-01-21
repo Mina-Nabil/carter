@@ -314,10 +314,11 @@ class Api extends CI_Controller{
 
     if($this->Traveltickets_model->isAvailable($LiveLineID, $StartIndex, $EndIndex, $NoofTickets)){
 
-    echo $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,
+    $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,
                                                    $EndIndex, 0, 0, $Price, $isHandi);
 
-
+    if($res) $this->Clients_model->decrementBalance($ClientID, $Price);
+    echo $res;
     }
     else echo 'NS';
   }
