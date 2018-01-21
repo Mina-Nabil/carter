@@ -138,9 +138,8 @@ class TravelTickets_model extends CI_Model{
 
             $strSQL = "INSERT INTO stationtickets (STTK_STTN_ID, STTK_TRTK_ID, STTK_CLNT_ID,
                                                    STTK_LVLN_ID, STTK_PATH_ID, STTK_INDX)
-                      VALUES ({$StationID}, {$TravelticketID}, {$ClientID},
-                              {$LiveLineID}, {$PathID}, {$i}) ; ";
-           $query = $this->db->query($strSQL);
+                      VALUES (?,?,?,?,?,?) ; ";
+           $query = $this->db->query($strSQL,array($StationID, $TravelticketID, $ClientID, $LiveLineID, $PathID, $i));
 
           }
           $strSQL = "INSERT INTO Balance_log (BLOG_CHNG, BLOG_DATE, BLOG_CLNT_ID, BLOG_CMMT)
