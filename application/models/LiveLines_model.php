@@ -45,7 +45,7 @@ class LiveLines_model extends CI_Model{
                      AND PATH_STTN_ID = STTN_NAME
                      AND LINE_ID = PATH_ID
                      AND PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
-                     AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$ENDSttn})
+                     AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$EndSttn})
                      AND LVLN_COMP = 0
                      ORDER BY ID ASC, PATH_INDX ASC";
 
