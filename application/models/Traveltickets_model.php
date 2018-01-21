@@ -20,8 +20,8 @@ class TravelTickets_model extends CI_Model{
           }
 
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -32,8 +32,8 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -43,7 +43,6 @@ class TravelTickets_model extends CI_Model{
                       AND PATH_STTN_ID = STTN_ID";
           $query2 = $this->db->query($strSQL);
           $res2  = $query2->result_array();
-
 
                     $res = array();
                     $i=0;
@@ -64,7 +63,7 @@ class TravelTickets_model extends CI_Model{
         public function getTravelTicket_byID($ID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE
                     FROM traveltickets, live_lines, karter.lines, clients
                     WHERE TRTK_LVLN_ID = LVLN_ID
                     AND TRTK_CLNT_ID = CLNT_ID
@@ -74,9 +73,9 @@ class TravelTickets_model extends CI_Model{
 
         }
         //isAvailable
-        public function isAvailable($LiveLineID, $StartIndx, $EndIndx){
+        public function isAvailable($LiveLineID, $StartIndx, $EndIndx, $NoofTickets){
           $AvailableSeats = $this->getSeatsAvailable($LiveLineID, $StartIndx, $EndIndx);
-          if($AvailableSeats > 0) return $AvailableSeats;
+          if($AvailableSeats >= $NoofTickets) return true;
           else return false;
         }
 
@@ -103,7 +102,7 @@ class TravelTickets_model extends CI_Model{
           //Test this function
         }
 
-        public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price){
+        public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi){
 
 
           $this->db->trans_start();
@@ -111,12 +110,12 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL2);
 
           $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX,
-                                  TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_PRICE)
-                     VALUES       (?, ?, ?, ?, ?, ?, ?)";
+                                  TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE)
+                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
 
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price);
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi);
           $query = $this->db->query($strSQL2, $inputs);
 
           $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
@@ -144,19 +143,24 @@ class TravelTickets_model extends CI_Model{
            $query = $this->db->query($strSQL);
 
           }
+          $strSQL = "INSERT INTO Balance_log (BLOG_CHNG, BLOG_DATE, BLOG_CLNT_ID, BLOG_CMMT)
+                     VALUES (?, NOW() , ?, ?)";
+          $query = $this->db->query($strSQL, array($Price, $ClientID, 'User subscribed Ticket ' . $TravelticketID));
           $this->db->trans_complete();
+          return $this->db->trans_status();
+
 
 //test this function
         }
 
-        public function editTravelTicket($ID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price){
+        public function editTravelTicket($ID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi){
             //NN LiveLineID BusID Name LineID
           $strSQL = "UPDATE traveltickets
                     SET TRTK_CLNT_ID   = ?, TRTK_LVLN_ID  = ?, TRTK_START_INDX = ?, TRTK_END_INDX  = ?,
-                        TRTK_CANC   = ?, TRTK_PAID   = ?, TRTK_PRICE = ?
+                        TRTK_CANC   = ?, TRTK_PAID   = ?, TRTK_PRICE = ?, TRTK_ISHAND = ?
                     WHERE  `TRTK_ID`= ?";
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $ID);
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $ID);
           $query = $this->db->query($strSQL, $inputs);
 
         }

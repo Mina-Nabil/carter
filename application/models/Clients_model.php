@@ -127,7 +127,27 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function incrementBalance($ClientID, $Balance){
+          $strSQL = "UPDATE Clients
+                    SET  CLNT_BLNC = CLNT_BLNC + ?
+                    WHERE
+                        `CLNT_ID`=? ";
 
+          $inputs = array($Balance, $ClientID);
+          $query = $this->db->query($strSQL, $inputs);
+
+        }
+
+        public function decrementBalance($ClientID, $Balance){
+          $strSQL = "UPDATE Clients
+                    SET  CLNT_BLNC = CLNT_BLNC - ?
+                    WHERE
+                        `CLNT_ID`=?";
+
+          $inputs = array($Balance, $ClientID);
+          $query = $this->db->query($strSQL, $inputs);
+
+        }
 
         public function checkUser($Email, $Pass){
           $strSQL = "SELECT CLNT_ID from clients where CLNT_EMAIL = ? AND CLNT_PASS = ?" ;

@@ -46,20 +46,20 @@
                                           </select>
                                       </div>
                                       <div class="form-group">
-                                          <label>Line Time</label>
+                                          <label>Line Start Time</label>
                                           <input class=form-control name=livelineTime type=datetime-local value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                       </div>
 
 
                                         <div class="form-group">
-                                            <label>Live Line Completed?</label>
+                                            <label>is Completed?</label>
                                             <select class="form-control" name='livelineisComplete'>
                                               <option value=0 <?if($LVLN_COMP == 0)  echo 'selected';?>>False</option>
                                               <option value=1 <?if($LVLN_COMP == 1)  echo 'selected';?>>True</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Live Line Cancelled?</label>
+                                            <label>is Cancelled?</label>
                                             <select class="form-control" name='livelineisCancelled'>
                                               <option value=0 <?if($LVLN_CANC == 0)  echo 'selected';?>>False</option>
                                               <option value=1 <?if($LVLN_CANC == 1)  echo 'selected';?>>True</option>
@@ -67,8 +67,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Live Line Arabic Revenue</label>
-                                            <input class="form-control" name='livelineRevenue' type="number" step="0.01" value='<?=$LVLN_REVN?>'>
+                                            <label>Ticket Price</label>
+                                            <input class="form-control" name='livelineTicketPrice' type="number" step="0.01" value='<?=$LVLN_TCKT_PRICE?>'>
+                                            <p class="help-block">Enter Live Line Revenue.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Revenue</label>
+                                            <input class="form-control" name='livelineRevenue' type="number" step="0.01" value='<?=$LVLN_REVN?>' readonly>
                                             <p class="help-block">Enter Live Line Revenue.</p>
                                         </div>
 

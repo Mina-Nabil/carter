@@ -31,21 +31,21 @@ class Balancelogs_model extends CI_Model{
         public function insertBalancelog($Change, $ClientID, $Date, $Comment){
             //NN Tel Email Name CityID
           $strSQL = "INSERT INTO Balance_log (BLOG_CHNG, BLOG_DATE, BLOG_CLNT_ID, BLOG_CMMT)
-                     VALUES ('{$Change}', '{$Date}', '{$ClientID}', '{$Comment}')";
-          $query = $this->db->query($strSQL);
+                     VALUES (?, ?, ?, ?)";
+          $query = $this->db->query($strSQL, array($Change, $Date, $ClientID, $Comment));
 
         }
 
         public function editBalancelog($ID, $Change, $ClientID, $Date, $Comment){
             //NN Tel Email Name CityID
           $strSQL = "UPDATE Balance_log
-                    SET BLOG_CHNG   = '{$Change}',
-                        BLOG_DATE  = '{$Date}',
-                        BLOG_CMMT   = '{$Comment}',
-                        BLOG_CLNT_ID ='{$ClientID}'
+                    SET BLOG_CHNG   = ?,
+                        BLOG_DATE  = ?,
+                        BLOG_CMMT   = ?,
+                        BLOG_CLNT_ID = ?
                     WHERE
                         `BLOG_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+          $query = $this->db->query($strSQL,  array($Change, $Date, $ClientID, $Comment));
 
         }
 

@@ -289,8 +289,8 @@ class Api extends CI_Controller{
 
   public function getLineDetails(){
     $LineID = $this->input->post('LineID');
-    $StartStation = $this->input->post('StartSttn');
-    $EndStation = $this->input->post('EndSttn');
+    $StartStation = $this->input->post('StartStationID');
+    $EndStation = $this->input->post('EndStationID');
 
     $Lines = $this->LiveLines_model->getAvailableLines($LineID, $StartStation, $EndStation);
     $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation);
@@ -300,6 +300,26 @@ class Api extends CI_Controller{
 
     echo json_encode($Lines, JSON_UNESCAPED_UNICODE);
 
+  }
+
+  public function subscribeTicket(){
+
+    $LiveLineID  = $this->input->post('LiveLineID');
+    $StartIndex  = $this->input->post('StartIndex');
+    $EndIndex  = $this->input->post('EndIndex');
+    $NoofTickets = $this->input->post('NoofTickets');
+    $isHandi     = $this->input->post('isHandi');
+    $ClientID    = $this->input->post('ClientID');
+    $Price       = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
+
+    if($this->Traveltickets_model->isAvailable($LiveLineID, $StartIndex, $EndIndex, $NoofTickets)){
+
+    return $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,
+                                                   $EndIndex, 0, 0, $Price, $isHandi);
+
+
+    }
+    else return 'NS';
   }
 
 }

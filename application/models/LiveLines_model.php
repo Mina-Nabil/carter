@@ -11,7 +11,7 @@ class LiveLines_model extends CI_Model{
 
         public function getLiveLines(){
 
-          $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC,
+          $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_TCKT_PRICE,
                             LVLN_COMP, LVLN_REVN, BUS_NUMBER, BUS_TYPE, DRVR_NAME
                       FROM live_lines, karter.lines, drivers, buses
                       WHERE LVLN_LINE_ID = LINE_ID
@@ -25,7 +25,7 @@ class LiveLines_model extends CI_Model{
         public function getLiveLine_byID($ID){
 
           $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, LVLN_REVN,
-                            BUS_NUMBER, BUS_TYPE, DRVR_NAME
+                            BUS_NUMBER, BUS_TYPE, DRVR_NAME, LVLN_TCKT_PRICE
                     FROM live_lines, karter.lines, drivers, buses
                     WHERE LVLN_LINE_ID = LINE_ID
                     AND LVLN_DRVR_ID = DRVR_ID
@@ -35,8 +35,18 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        public function getTicketPricebyID($ID){
+
+          $strSQL = "SELECT LVLN_TCKT_PRICE
+                    FROM live_lines
+                    WHERE LVLN_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array()[0]['LVLN_TCKT_PRICE'];
+
+        }
+
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
-          $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME
+          $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME, LVLN_TCKT_PRICE
                      FROM live_lines, karter.lines, paths, stations
                      WHERE LVLN_LINE_ID = {$LineID}
                      AND LVLN_TIME > NOW()
@@ -79,24 +89,24 @@ class LiveLines_model extends CI_Model{
         }
 
 
-        public function insertLiveLine($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn){
+        public function insertLiveLine($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice){
             //NN Time BusID Name LineID
-          $strSQL = "INSERT INTO live_lines (LVLN_LINE_ID, LVLN_DRVR_ID, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, LVLN_REVN)
+          $strSQL = "INSERT INTO live_lines (LVLN_LINE_ID, LVLN_DRVR_ID, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, LVLN_REVN, LVLN_TCKT_PRICE)
                      VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-          $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn);
+          $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice);
           $query = $this->db->query($strSQL, $inputs);
 
         }
 
-        public function editLiveLine($ID, $LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn){
+        public function editLiveLine($ID, $LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice){
             //NN Time BusID Name LineID
           $strSQL = "UPDATE live_lines
                     SET LVLN_LINE_ID   = ?, LVLN_DRVR_ID  = ?, LVLN_TIME = ?, LVLN_BUS_ID  = ?,
-                        LVLN_CANC   = ?, LVLN_COMP   = ?, LVLN_REVN = ?
+                        LVLN_CANC   = ?, LVLN_COMP   = ?, LVLN_REVN = ?, LVLN_TCKT_PRICE = ?
                     WHERE  `LVLN_ID`=?";
 
-          $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $ID);
+          $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice, $ID);
           $query = $this->db->query($strSQL, $inputs);
 
         }

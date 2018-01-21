@@ -106,8 +106,10 @@ class Traveltickets extends CI_Controller{
       'Client Name',
       'Start Station',
       'End Station',
+      'Registeration Time',
       'Pick Up Time',
       'Canceled?',
+      'Handicapped?',
       'Paid?',
       'Price',
       'Edit',
@@ -158,6 +160,7 @@ class Traveltickets extends CI_Controller{
     $data['TRTK_CANC']    = ''      ;
     $data['TRTK_PAID']    = ''   ;
     $data['TRTK_PRICE']    = ''  ;
+    $data['TRTK_ISHAND']    = ''  ;
     $data['TRTK_END_INDX']    = '' ;
 
     $data['formURL']      = 'inserttraveltickets'  ;
@@ -193,10 +196,12 @@ class Traveltickets extends CI_Controller{
     $travelticketPrice = $this->input->post('travelticketPrice');
     $travelticketClientID = $this->input->post('travelticketClientID');
     $travelticketisPaid = $this->input->post('travelticketisPaid');
+    $travelticketisHandi = $this->input->post('travelticketisHandi');
     $travelticketisCancelled = $this->input->post('travelticketisCancelled');
 
     $this->Traveltickets_model->insertTravelticket($travelticketClientID, $travelticketLivelineID, $travelticketStartIndx,
-                                  $travelticketEndIndx, $travelticketisCancelled, $travelticketisPaid, $travelticketPrice);
+                                  $travelticketEndIndx, $travelticketisCancelled, $travelticketisPaid, $travelticketPrice,
+                                  $travelticketisHandi);
 
     $this->load->view('pages/traveltickets_redirect');
 
@@ -231,6 +236,7 @@ class Traveltickets extends CI_Controller{
     $data['TRTK_END_INDX']    = $Travelticket['TRTK_END_INDX']  ;
     $data['TRTK_PAID']    = $Travelticket['TRTK_PAID']  ;
     $data['TRTK_PRICE']    = $Travelticket['TRTK_PRICE']  ;
+    $data['TRTK_ISHAND']    = $Travelticket['TRTK_ISHAND']  ;
     $data['TRTK_CLNT_ID']    = $Travelticket['TRTK_CLNT_ID'];
 
     $data['formURL']      = 'edittraveltickets/' . $ID  ;
@@ -267,10 +273,11 @@ class Traveltickets extends CI_Controller{
     $travelticketClientID = $this->input->post('travelticketClientID');
     $travelticketisPaid = $this->input->post('travelticketisPaid');
     $travelticketisCancelled = $this->input->post('travelticketisCancelled');
+    $travelticketisHandi = $this->input->post('travelticketisHandi');
 
 
     $this->Traveltickets_model->editTravelticket($ID, $travelticketClientID, $travelticketLivelineID, $travelticketStartIndx,
-                                  $travelticketEndIndx, $travelticketisCancelled, $travelticketisPaid, $travelticketPrice);
+                                  $travelticketEndIndx, $travelticketisCancelled, $travelticketisPaid, $travelticketPrice, $travelticketisHandi);
 
      $this->load->view('pages/traveltickets_redirect');
 

@@ -27,6 +27,7 @@
                                         <td><?=$data['LVLN_TIME']?></td>
                                         <td><?=$data['LVLN_CANC']?></td>
                                         <td><?=$data['LVLN_COMP']?></td>
+                                        <td><?=$data['LVLN_TCKT_PRICE']?></td>
                                         <td><?=$data['LVLN_REVN']?></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['LVLN_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['LVLN_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>

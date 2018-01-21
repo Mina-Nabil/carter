@@ -24,6 +24,7 @@
                                         <td><?=$data['CLNT_NAME']?></td>
                                         <td><?=$data['START_STTN']?></td>
                                         <td><?=$data['END_STTN']?></td>
+                                        <td><?=$data['TRTK_REG_DATE']?></td>
                                         <td><?=$data['PATH_REL_TIME']?></td>
                                         <td><?=$data['TRTK_CANC']?></td>
                                         <td><?=$data['TRTK_COMP']?></td>
