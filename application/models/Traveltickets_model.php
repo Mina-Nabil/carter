@@ -120,7 +120,7 @@ class TravelTickets_model extends CI_Model{
 
           $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
           $query = $this->db->query($strSQL);
-          $TravelticketID = $query->result_array()[0]['maxID`'];
+          $TravelticketID = $query->result_array()[0]['maxID'];
 
           $strSQL = 'UNLOCK TABLES; ';
           $query = $this->db->query($strSQL);
