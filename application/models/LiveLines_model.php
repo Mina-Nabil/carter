@@ -35,6 +35,49 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        public function getAvailableLines($LineID, $StartSttn, $EndSttn){
+          $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME
+                     FROM live_lines, karter.lines, paths, stations
+                     WHERE LVLN_LINE_ID = {$LineID}
+                     AND LVLN_TIME > NOW()
+                     AND LVLN_CANC = 0
+                     AND LVLN_LINE_ID = LINE_ID
+                     AND PATH_STTN_ID = STTN_NAME
+                     AND LINE_ID = PATH_ID
+                     AND PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
+                     AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$ENDSttn})
+                     AND LVLN_COMP = 0
+                     ORDER BY ID ASC, PATH_INDX ASC";
+
+          $query = $this->db->query($strSQL);
+          $livelines = $query->result_array();
+          $adjustedArray = array();
+          foreach ($livelines as $row) {
+
+            if(isset($adjustedArray[$row['LVLN_ID']])){
+              array_push($adjustedArray[$row['LVLN_ID']]['Lines'], array('Index' => $row['PATH_INDX'],
+                                                                    'Sttn' => $row['STTN_NAME'],
+                                                                    'MinutesFromStart'=>['PATH_REL_TIME']));
+            }
+            else {
+
+            $obj = array(
+              'LiveLineID' => $row['LVLN_ID'],
+              'StartTime' => $row['LVLN_TIME'],
+              'Lines' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>['PATH_REL_TIME']),
+            );
+            $adjustedArray[$row['LVLN_ID']] = $obj;
+          }
+        }
+
+        return $adjustedArray;
+
+
+
+
+
+        }
+
 
         public function insertLiveLine($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn){
             //NN Time BusID Name LineID
@@ -55,7 +98,7 @@ class LiveLines_model extends CI_Model{
 
           $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $ID);
           $query = $this->db->query($strSQL, $inputs);
-          
+
         }
 
         public function deleteLiveLine($ID){

@@ -73,10 +73,39 @@ class TravelTickets_model extends CI_Model{
           return $query->result_array();
 
         }
+        //isAvailable
+        public function isAvailable($LiveLineID, $StartIndx, $EndIndx){
+          $AvailableSeats = $this->getSeatsAvailable($LiveLineID, $StartIndx, $EndIndx);
+          if($AvailableSeats > 0) return $AvailableSeats;
+          else return false;
+        }
 
-        //Check if tickets is available
         //Get Seats Available
+        public function getSeatsAvailable($LiveLineID, $StartIndx, $EndIndx){
 
+          $indicies = array();
+          for($i = $StartIndx ; $StartIndx < $EndIndx ; $i++){
+            array_push($indicies, $i);
+          }
+
+          $strSQL = "SELECT MIN(X1) as out FROM
+                    (SELECT COUNT(*) as X1 FROM karter.stationtickets
+						         WHERE STTK_LVLN_ID = ?
+                     AND   STTK_INDX IN ? ) AS temp";
+
+          $query = $this->db->query($strSQL, array($LiveLineID, $indicies));
+          $Seats = $query->result_array()[0]['out'];
+
+          $strSQL = "SELECT BUS_SEATS FROM buses, livelines
+                     WHERE LVLN_BUS_ID = BUS_ID
+                     AND LVLN_ID = " . $LiveLineID;
+
+          $query = $this->db->query($strSQL);
+          $MaxSeats = $query->result_array()[0]['BUS_SEATS'];
+
+          return $MaxSeats - $Seats;
+          //Test this function
+        }
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price){
 
@@ -94,9 +123,9 @@ class TravelTickets_model extends CI_Model{
           $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price);
           $query = $this->db->query($strSQL2, $inputs);
 
-          $strSQL =  "SELECT LAST_INSERT_ID() as EntID";
+          $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
           $query = $this->db->query($strSQL);
-          $TravelticketID = $query->result_array()[0]['EntID'];
+          $TravelticketID = $query->result_array()[0]['maxID`'];
 
           $strSQL = 'UNLOCK TABLES; ';
           $query = $this->db->query($strSQL);
@@ -112,10 +141,10 @@ class TravelTickets_model extends CI_Model{
             $PathID = $query->result_array()[0]['PATH_ID'];
             $StationID = $query->result_array()[0]['PATH_STTN_ID'];
 
-            $strSQL = 'INSERT INTO stationtickets (STTK_STTN_ID, STTK_TRTK_ID, STTK_CLNT_ID,
+            $strSQL = "INSERT INTO stationtickets (STTK_STTN_ID, STTK_TRTK_ID, STTK_CLNT_ID,
                                                    STTK_LVLN_ID, STTK_PATH_ID, STTK_INDX)
                       VALUES ({$StationID}, {$TravelticketID}, {$ClientID},
-                              {$LiveLineID}, {$PathID}, {$i}) ; ';
+                              {$LiveLineID}, {$PathID}, {$i}) ; ";
            $query = $this->db->query($strSQL);
 
           }

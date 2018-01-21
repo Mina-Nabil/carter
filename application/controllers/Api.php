@@ -287,4 +287,19 @@ class Api extends CI_Controller{
     echo $this->Clients_model->getFreeCode($ClientID);
   }
 
+  public function getLineDetails(){
+    $LineID = $this->input->post('LineID');
+    $StartStation = $this->input->post('StartSttn');
+    $EndStation = $this->input->post('EndSttn');
+
+    $Lines = $this->LiveLines_model->getAvailableLines($LineID, $StartStation, $EndStation);
+    $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation)
+    foreach ($Lines as $row){
+      $Lines[$row['LiveLineID']]['TicketsAv'] = $this->TravelTickets_model->getSeatsAvailable($row['LiveLineID'];
+    }
+
+    echo json_encode($Lines, JSON_UNESCAPED_UNICODE);
+
+  }
+
 }

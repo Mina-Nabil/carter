@@ -21,6 +21,18 @@ class Paths_model extends CI_Model{
 
         }
 
+        public function getPathIndicies($LineID, $StartSttn, $EndSttn){
+          $strSQL = "SELECT PATH_INDX FROM paths
+                     WHERE PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
+                     AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$ENDSttn})
+                     ORDER BY PATH_INDX";
+
+          $query = $this->db->query($strSQL);
+          $Start = $query->result_array()[0]['PATH_INDX'];
+          $End = end($query->result_array())['PATH_INDX'];
+          return array('Start' => $Start, 'End' => $End);
+        }
+
         public function getPath_byLineID($LineID){
 
           $strSQL = "SELECT PATH_ID, PATH_LINE_ID, PATH_INDX, PATH_REL_TIME, PATH_STTN_ID
