@@ -294,12 +294,8 @@ class Api extends CI_Controller{
 
     $Lines = $this->LiveLines_model->getAvailableLines($LineID, $StartStation, $EndStation);
     $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation);
-    print_r($Indicies);
-    $start = $Indicies['Start'];
-    $end = $Indicies['End'];
-    echo $start . '-' . $end;
     foreach ($Lines as $row){
-      $Lines[$row['LiveLineID']]['TicketsAv'] = $this->Traveltickets_model->getSeatsAvailable($row['LiveLineID'], $start, $end);
+      $Lines[$row['LiveLineID']]['TicketsAv'] = $this->Traveltickets_model->getSeatsAvailable($row['LiveLineID'], $Indicies);
     }
 
     echo json_encode($Lines, JSON_UNESCAPED_UNICODE);
