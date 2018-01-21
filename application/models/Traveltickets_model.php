@@ -74,7 +74,7 @@ class TravelTickets_model extends CI_Model{
         }
         //isAvailable
         public function isAvailable($LiveLineID, $StartIndx, $EndIndx, $NoofTickets){
-          $AvailableSeats = $this->getSeatsAvailable($LiveLineID, $StartIndx, $EndIndx);
+          $AvailableSeats = $this->getSeatsAvailable($LiveLineID, range($StartIndx,$EndIndx,1));
           if($AvailableSeats >= $NoofTickets) return true;
           else return false;
         }
