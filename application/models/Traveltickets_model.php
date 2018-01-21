@@ -84,10 +84,9 @@ class TravelTickets_model extends CI_Model{
         public function getSeatsAvailable($LiveLineID, $StartIndx, $EndIndx){
 
           $indicies = array();
-          $k = 0;
+          $i = 0;
           for($i = $StartIndx ; $StartIndx < $EndIndx ; $i++){
-            $indicies[$k] = $i;
-            $k++;
+            array_push($indicies, $i);
           }
 
           $strSQL = "SELECT MIN(X1) as out FROM
