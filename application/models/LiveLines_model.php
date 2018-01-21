@@ -51,6 +51,7 @@ class LiveLines_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           $livelines = $query->result_array();
+          print_r($livelines);
           $adjustedArray = array();
           foreach ($livelines as $row) {
 
