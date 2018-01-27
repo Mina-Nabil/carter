@@ -236,7 +236,7 @@ $route['api/isFavourite'] = 'Api/isFavourite';
 $route['api/getNotifications'] = 'Api/getNotifications';
 $route['api/resetUser'] = 'Api/resetUser';
 $route['api/get_path/(:num)'] = 'Api/get_path/$1';
-$route['api/$'] = 'Api/DefaultError';
+$route['api/(:any)'] = 'Api/DefaultError/$1';
 
 
 $route['404_override'] = '';
