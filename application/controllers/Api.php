@@ -337,4 +337,9 @@ class Api extends CI_Controller{
 
   }
 
+  public function DefaultError(){
+    echo json_encode(array('Message' => 'Api Not Found'), JSON_UNESCAPED_UNICODE);
+
+  }
+
 }
