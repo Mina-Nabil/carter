@@ -11,15 +11,6 @@ class TravelTickets_model extends CI_Model{
 
         public function getTravelTickets($clientID){
 
-          $strSQL = 'SELECT TRTK_ID FROM traveltickets WHERE TRTK_CLNT_ID = ?';
-          $query = $this->db->query($strSQL, array($clientID));
-          $ticketsarr = $query->result_array();
-          $tickets = array();
-          foreach($ticketsarr as $row){
-            array_push($tickets, $row['TRTK_ID']);
-          }
-
-
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
@@ -41,6 +32,104 @@ class TravelTickets_model extends CI_Model{
                       AND LINE_ID = PATH_LINE_ID
                       AND TRTK_END_INDX = PATH_INDX
                       AND PATH_STTN_ID = STTN_ID";
+          $query2 = $this->db->query($strSQL);
+          $res2  = $query2->result_array();
+
+                    $res = array();
+                    $i=0;
+                    foreach($res1 as $row){
+                      $res[$i] = $row;
+                      $i++;
+                    }
+                    $i=0;
+                    foreach($res2 as $row){
+                      $res[$i] = array_merge($res[$i], $row);
+                      $i++;
+                    }
+                    return $res;
+
+          return $res2;
+        }
+
+        public function getOldTravelTicketsByClient($clientID){
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
+                      FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
+                      AND LVLN_LINE_ID = LINE_ID
+                      AND LINE_ID = PATH_LINE_ID
+                      AND CLNT_ID = {$clientID}
+                      AND TRTK_START_INDX = PATH_INDX
+                      AND LVLN_TIME < NOW()
+                      AND PATH_STTN_ID = STTN_ID
+                      ORDER BY LVLN_TIME DESC";
+          $query = $this->db->query($strSQL);
+          $res1  = $query->result_array();
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
+                      FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
+                      AND LVLN_LINE_ID = LINE_ID
+                      AND LINE_ID = PATH_LINE_ID
+                      AND CLNT_ID = {$clientID}
+                      AND TRTK_END_INDX = PATH_INDX
+                      AND LVLN_TIME < NOW()
+                      AND PATH_STTN_ID = STTN_ID
+                      ORDER BY LVLN_TIME DESC";
+
+          $query2 = $this->db->query($strSQL);
+          $res2  = $query2->result_array();
+
+                    $res = array();
+                    $i=0;
+                    foreach($res1 as $row){
+                      $res[$i] = $row;
+                      $i++;
+                    }
+                    $i=0;
+                    foreach($res2 as $row){
+                      $res[$i] = array_merge($res[$i], $row);
+                      $i++;
+                    }
+                    return $res;
+
+          return $res2;
+        }
+
+        public function getNewTravelTicketsByClient($clientID){
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
+                      FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
+                      AND LVLN_LINE_ID = LINE_ID
+                      AND LINE_ID = PATH_LINE_ID
+                      AND CLNT_ID = {$clientID}
+                      AND TRTK_START_INDX = PATH_INDX
+                      AND LVLN_TIME > NOW()
+                      AND PATH_STTN_ID = STTN_ID
+                      ORDER BY LVLN_TIME ASC";
+          $query = $this->db->query($strSQL);
+          $res1  = $query->result_array();
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
+                      FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
+                      AND LVLN_LINE_ID = LINE_ID
+                      AND LINE_ID = PATH_LINE_ID
+                      AND CLNT_ID = {$clientID}
+                      AND TRTK_END_INDX = PATH_INDX
+                      AND LVLN_TIME > NOW()
+                      AND PATH_STTN_ID = STTN_ID
+                      ORDER BY LVLN_TIME ASC";
+
           $query2 = $this->db->query($strSQL);
           $res2  = $query2->result_array();
 

@@ -323,4 +323,18 @@ class Api extends CI_Controller{
     else echo 'NS';
   }
 
+  public function getOldTrips(){
+
+    $ClientID    = $this->input->post('ClientID');
+    echo json_encode($this->Traveltickets_model->getOldTravelTicketsByClient($ClientID), JSON_UNESCAPED_UNICODE);
+
+  }
+
+  public function getNewTrips(){
+
+    $ClientID    = $this->input->post('ClientID');
+    echo json_encode($this->Traveltickets_model->getNewTravelTicketsByClient($ClientID), JSON_UNESCAPED_UNICODE);
+
+  }
+
 }
