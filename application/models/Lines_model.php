@@ -48,7 +48,7 @@ class Lines_model extends CI_Model{
 
           $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
                             DIST_NAME AS START_DIST_NAME, CITY_NAME AS START_CITY_NAME,
-                            STTN_NAME AS START_STTN_NAME
+                            STTN_NAME AS START_STTN_NAME, STTN_ADRS as START_STTN_ADRS
                       FROM karter.lines, districts, cities, paths, stations
                       WHERE PATH_LINE_ID = LINE_ID
                       AND PATH_STTN_ID = STTN_ID
