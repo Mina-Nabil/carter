@@ -92,7 +92,7 @@ class LiveLines_model extends CI_Model{
         public function insertLiveLine($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice){
             //NN Time BusID Name LineID
           $strSQL = "INSERT INTO live_lines (LVLN_LINE_ID, LVLN_DRVR_ID, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, LVLN_REVN, LVLN_TCKT_PRICE)
-                     VALUES (?, ?, ?, ?, ?, ?, ?)";
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
           $inputs = array($LineID, $DriverID, $Time, $BusID, $isCancelled, $isCompleted, $Revn, $TicketPrice);
           $query = $this->db->query($strSQL, $inputs);
