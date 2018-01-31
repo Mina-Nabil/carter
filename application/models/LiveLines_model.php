@@ -46,7 +46,8 @@ class LiveLines_model extends CI_Model{
         }
 
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
-          $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME, LVLN_TCKT_PRICE
+          $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME,
+                            LVLN_TCKT_PRICE
                      FROM live_lines, karter.lines, paths, stations
                      WHERE LVLN_LINE_ID = {$LineID}
                      AND LVLN_TIME > NOW()
@@ -74,21 +75,22 @@ class LiveLines_model extends CI_Model{
             $obj = array(
               'LiveLineID' => $row['LVLN_ID'],
               'StartTime' => $row['LVLN_TIME'],
-              'Stations' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>$row['PATH_REL_TIME']),
+              'Price' => $row['LVLN_TCKT_PRICE'],
+              'Stations' =>  array()  ,
             );
+
+            array_push($obj['Stations'], array ('Index' => $row['PATH_INDX'],
+                                                'Sttn' => $row['STTN_NAME'],
+                                                'MinutesFromStart'=>$row['PATH_REL_TIME']);
 
             $adjustedArray['LineIDs'] = array();
             array_push($adjustedArray['LineIDs'], $row['LVLN_ID']);
-            
+
             $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
           }
         }
 
         return $adjustedArray;
-
-
-
-
 
         }
 
