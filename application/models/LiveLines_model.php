@@ -64,11 +64,10 @@ class LiveLines_model extends CI_Model{
           $adjustedArray = array();
           foreach ($livelines as $row) {
 
-            if(isset($adjustedArray[$row['LVLN_ID']])){
-              array_push($adjustedArray[$row['LVLN_ID']]['Stations'], array('Index' => $row['PATH_INDX'],
+            if(isset($adjustedArray['FullLines'][$row['LVLN_ID']])){
+              array_push($adjustedArray['FullLines'][$row['LVLN_ID']]['Stations'], array('Index' => $row['PATH_INDX'],
                                                                     'Sttn' => $row['STTN_NAME'],
                                                                     'MinutesFromStart'=>$row['PATH_REL_TIME']));
-              array_push($adjustedArray['Lines'], $row['LVLN_ID']);
             }
             else {
 
@@ -78,8 +77,8 @@ class LiveLines_model extends CI_Model{
               'Stations' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>$row['PATH_REL_TIME']),
             );
 
-            $adjustedArray[$row['LVLN_ID']] = $obj;
-            $adjustedArray['Lines'] = array();
+            $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
+            $adjustedArray['LineIDs'] = array();
             array_push($adjustedArray['Lines'], $row['LVLN_ID']);
           }
         }
