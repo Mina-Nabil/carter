@@ -157,7 +157,7 @@
             div1.appendChild(input)
 
             var a = document.createElement('a')
-            add.addEventListener('click', function(){
+            a.addEventListener('click', function(){
               addTime(id+1);
             });
             a.className='btn btn-success'
