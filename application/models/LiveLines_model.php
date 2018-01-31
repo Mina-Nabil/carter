@@ -79,7 +79,7 @@ class LiveLines_model extends CI_Model{
 
             $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
             $adjustedArray['LineIDs'] = array();
-            array_push($adjustedArray['Lines'], $row['LVLN_ID']);
+            array_push($adjustedArray['LineIDs'], $row['LVLN_ID']);
           }
         }
 
