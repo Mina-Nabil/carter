@@ -77,9 +77,10 @@ class LiveLines_model extends CI_Model{
               'Stations' => array ('Index' => $row['PATH_INDX'],'Sttn' => $row['STTN_NAME'], 'MinutesFromStart'=>$row['PATH_REL_TIME']),
             );
 
-            $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
             $adjustedArray['LineIDs'] = array();
             array_push($adjustedArray['LineIDs'], $row['LVLN_ID']);
+            
+            $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
           }
         }
 
