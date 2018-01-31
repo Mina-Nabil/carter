@@ -223,6 +223,7 @@ class TravelTickets_model extends CI_Model{
             $strSQL3 = 'SELECT PATH_ID, PATH_STTN_ID
                         FROM live_lines, karter.lines, paths
                         WHERE LVLN_LINE_ID = LINE_ID
+                        AND   PATH_INDX = {$i}
                         AND   PATH_LINE_ID = LINE_ID
                         AND   LVLN_ID = ' . $LiveLineID;
             $query = $this->db->query($strSQL3);

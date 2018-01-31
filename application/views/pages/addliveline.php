@@ -106,7 +106,7 @@
                                             class=form-control name=livelineTime1
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
-                                            <br><br>
+                                            <br>
                                             <a onclick="addTime(1)" class="btn btn-success">Add Line Time</a>
                                         </div>
 
@@ -164,8 +164,7 @@
 
             var br = document.createElement('br')
             insertAfter(div1, br)
-            var br2 = document.createElement('br')
-            insertAfter(br, br2)
+          
 
 
           }
