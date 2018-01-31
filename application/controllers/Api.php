@@ -301,7 +301,6 @@ class Api extends CI_Controller{
     }
 
     echo json_encode($Lines, JSON_UNESCAPED_UNICODE);
-    echo json_encode($LineIDs, JSON_UNESCAPED_UNICODE);
 
   }
 
