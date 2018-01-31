@@ -238,8 +238,9 @@ class TravelTickets_model extends CI_Model{
           $strSQL = "INSERT INTO Balance_log (BLOG_CHNG, BLOG_DATE, BLOG_CLNT_ID, BLOG_CMMT)
                      VALUES (?, NOW() , ?, ?)";
           $query = $this->db->query($strSQL, array($Price, $ClientID, 'User subscribed Ticket ' . $TravelticketID));
+
           $this->db->trans_complete();
-          return $this->db->trans_status();
+          return array ('0' => $this->db->trans_status(),  'ID' => $TravelticketID);
 
 
 //test this function

@@ -45,10 +45,7 @@
                                             <?}?>
                                           </select>
                                       </div>
-                                      <div class="form-group">
-                                          <label>Line Start Time</label>
-                                          <input class=form-control name=livelineTime type=datetime-local value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
-                                      </div>
+
 
 
                                         <div class="form-group">
@@ -78,6 +75,36 @@
                                             <p class="help-block">Enter Live Line Revenue.</p>
                                         </div>
 
+                                        <div class="form-group">
+                                          <label>Days</label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d1">Saturday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d2">Sunday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d3">Monday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value ="d4">Tuesday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d5">Wednesday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d6">Thursday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" value="d7">Friday
+                                          </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Line Start Time</label>
+                                            <input class=form-control name=livelineTime type=datetime-local value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
+                                        </div>
+
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
                                     </form>
@@ -94,3 +121,7 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
+
+        <script>
+
+        </script>

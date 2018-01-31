@@ -320,7 +320,7 @@ class Api extends CI_Controller{
                                                    $EndIndex, 0, 0, $Price, $isHandi);
 
     if($res) $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
-    echo $res;
+    echo $res['ID'];
     }
     else echo 'NS';
   }
