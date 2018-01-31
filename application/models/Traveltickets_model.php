@@ -12,7 +12,7 @@ class TravelTickets_model extends CI_Model{
         public function getTravelTickets($clientID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -54,7 +54,7 @@ class TravelTickets_model extends CI_Model{
         public function getOldTravelTicketsByClient($clientID){
 
           $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -105,7 +105,7 @@ class TravelTickets_model extends CI_Model{
         public function getNewTravelTicketsByClient($clientID){
 
           $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -156,7 +156,7 @@ class TravelTickets_model extends CI_Model{
         public function getTravelTicket_byID($ID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS
                     FROM traveltickets, live_lines, karter.lines, clients
                     WHERE TRTK_LVLN_ID = LVLN_ID
                     AND TRTK_CLNT_ID = CLNT_ID
@@ -195,20 +195,21 @@ class TravelTickets_model extends CI_Model{
           //Test this function
         }
 
-        public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi){
+        public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
+                                           $isPaid, $Price, $isHandi, $NoofTickets){
 
 
           $this->db->trans_start();
           $strSQL2 = "LOCK TABLE traveltickets WRITE;";
           $query = $this->db->query($strSQL2);
 
-          $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX,
-                                  TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE)
-                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+          $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
+                                                  TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS)
+                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 
 
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi);
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets);
           $query = $this->db->query($strSQL2, $inputs);
 
           $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
@@ -247,14 +248,14 @@ class TravelTickets_model extends CI_Model{
 //test this function
         }
 
-        public function editTravelTicket($ID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi){
+        public function editTravelTicket($ID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets){
             //NN LiveLineID BusID Name LineID
           $strSQL = "UPDATE traveltickets
                     SET TRTK_CLNT_ID   = ?, TRTK_LVLN_ID  = ?, TRTK_START_INDX = ?, TRTK_END_INDX  = ?,
-                        TRTK_CANC   = ?, TRTK_PAID   = ?, TRTK_PRICE = ?, TRTK_ISHAND = ?
+                        TRTK_CANC   = ?, TRTK_PAID   = ?, TRTK_PRICE = ?, TRTK_ISHAND = ?, TRTK_SEATS = ?
                     WHERE  `TRTK_ID`= ?";
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $ID);
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $ID);
           $query = $this->db->query($strSQL, $inputs);
 
         }

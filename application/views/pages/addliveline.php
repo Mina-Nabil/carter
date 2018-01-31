@@ -128,6 +128,11 @@
         <!-- /#page-wrapper -->
 
         <script type='text/javascript'>
+
+        function insertAfter(newNode, referenceNode) {
+          referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
+
           function addTime(id){
 
             var oldInput = document.getElementById('time' + id);
@@ -164,7 +169,7 @@
 
             var br = document.createElement('br')
             insertAfter(div1, br)
-          
+
 
 
           }
