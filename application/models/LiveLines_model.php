@@ -47,12 +47,14 @@ class LiveLines_model extends CI_Model{
 
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
           $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME,
-                            LVLN_TCKT_PRICE
-                     FROM live_lines, karter.lines, paths, stations
+                            LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER
+                     FROM live_lines, karter.lines, paths, stations, drivers, buses
                      WHERE LVLN_LINE_ID = {$LineID}
                      AND LVLN_TIME > NOW()
                      AND LVLN_CANC = 0
                      AND LVLN_LINE_ID = LINE_ID
+                     AND LVLN_DRVR_ID = DRVR_ID
+                     AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
                      AND LINE_ID = PATH_LINE_ID
                      AND PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
@@ -75,6 +77,9 @@ class LiveLines_model extends CI_Model{
             $obj = array(
               'LiveLineID' => $row['LVLN_ID'],
               'StartTime' => $row['LVLN_TIME'],
+              'DriverName' => $row['DRVR_NAME'],
+              'DriverImg' => $row['DRVR_IMG'],
+              'BusBumber' => $row['BUS_NUMBER'],
               'Price' => $row['LVLN_TCKT_PRICE'],
               'Stations' =>  array()  ,
             );
