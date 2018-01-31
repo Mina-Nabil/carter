@@ -220,12 +220,12 @@ class TravelTickets_model extends CI_Model{
 
           for($i = $StartIndx ; $i <= $EndIndx ; $i++){
 
-            $strSQL3 = 'SELECT PATH_ID, PATH_STTN_ID
+            $strSQL3 = "SELECT PATH_ID, PATH_STTN_ID
                         FROM live_lines, karter.lines, paths
                         WHERE LVLN_LINE_ID = LINE_ID
                         AND   PATH_INDX = {$i}
                         AND   PATH_LINE_ID = LINE_ID
-                        AND   LVLN_ID = ' . $LiveLineID;
+                        AND   LVLN_ID = " . $LiveLineID;
             $query = $this->db->query($strSQL3);
             $PathID = $query->result_array()[0]['PATH_ID'];
             $StationID = $query->result_array()[0]['PATH_STTN_ID'];
