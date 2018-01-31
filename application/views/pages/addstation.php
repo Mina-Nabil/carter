@@ -23,6 +23,11 @@
                                             <p class="help-block">Enter Station Name, Example: Madinet Nasr - Awel Abbas.</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>Arabic Station Name</label>
+                                            <input class="form-control" name='stationArbcName' value='<?=$STTN_ARBC_NAME?>' required>
+                                            <p class="help-block">Enter Station Name, Example: مدينه نصر - اول عباس.</p>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Station Latitude</label>
                                             <input class="form-control" name='stationLatitude' type="number" step="0.000000000000001" value='<?=$STTN_LATT?>' required>
                                             <p class="help-block">Enter Station Latitude.</p>

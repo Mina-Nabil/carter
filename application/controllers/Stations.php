@@ -91,6 +91,7 @@ class Stations extends CI_Controller{
     $data['STTN_LATT']    = ''              ;
     $data['STTN_LONG']    = ''              ;
     $data['STTN_ARBC_ADRS']    = ''         ;
+    $data['STTN_ARBC_NAME']    = ''         ;
     $data['STTN_ADRS']    = ''              ;
     $data['STTN_DIST_ID']    = ''           ;
 
@@ -124,11 +125,12 @@ class Stations extends CI_Controller{
     $stationLatitude = $this->input->post('stationLatitude');
     $stationLong = $this->input->post('stationLong');
     $stationArbcAdrs = $this->input->post('stationArbcAdrs');
+    $stationArbcName = $this->input->post('stationArbcName');
     $stationDistrictID = $this->input->post('stationDistrictID');
     $stationAddress = $this->input->post('stationAddress');
 
     $this->Stations_model->insertStation($stationName, $stationDistrictID, $stationLatitude,
-                                         $stationLong, $stationArbcAdrs, $stationAddress);
+                                         $stationLong, $stationArbcAdrs, $stationAddress, $stationArbcName);
 
     $this->load->view('pages/stations_redirect');
 
@@ -161,6 +163,7 @@ class Stations extends CI_Controller{
     $data['STTN_LATT']    = $Station['STTN_LATT']   ;
     $data['STTN_LONG']    = $Station['STTN_LONG'] ;
     $data['STTN_ARBC_ADRS']    = $Station['STTN_ARBC_ADRS']   ;
+    $data['STTN_ARBC_NAME']    = $Station['STTN_ARBC_NAME']   ;
     $data['STTN_ADRS']    = $Station['STTN_ADRS']  ;
     $data['STTN_DIST_ID']    = $Station['STTN_DIST_ID'];
 
@@ -195,11 +198,12 @@ class Stations extends CI_Controller{
     $stationLatitude = $this->input->post('stationLatitude');
     $stationLong = $this->input->post('stationLong');
     $stationArbcAdrs = $this->input->post('stationArbcAdrs');
+    $stationArbcName = $this->input->post('stationArbcName');
     $stationDistrictID = $this->input->post('stationDistrictID');
     $stationAddress = $this->input->post('stationAddress');
 
     $this->Stations_model->editStation($ID, $stationName, $stationDistrictID, $stationLatitude,
-                                       $stationLong, $stationArbcAdrs, $stationAddress);
+                                       $stationLong, $stationArbcAdrs, $stationAddress, $stationArbcName);
 
     $this->load->view('pages/stations_redirect');
 
