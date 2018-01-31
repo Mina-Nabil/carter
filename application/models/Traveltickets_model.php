@@ -218,7 +218,7 @@ class TravelTickets_model extends CI_Model{
           $strSQL = 'UNLOCK TABLES; ';
           $query = $this->db->query($strSQL);
 
-          for($i = $StartIndx ; $i <= $EndIndx ; $i++){
+          for($i = $StartIndx ; $i < $EndIndx ; $i++){
 
             $strSQL3 = "SELECT PATH_ID, PATH_STTN_ID
                         FROM live_lines, karter.lines, paths
