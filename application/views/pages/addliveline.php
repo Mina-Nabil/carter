@@ -100,9 +100,14 @@
                                           </label>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="form-group" id=time1>
                                             <label>Line Start Time</label>
-                                            <input class=form-control name=livelineTime type=datetime-local value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
+                                            <input
+                                            class=form-control name=livelineTime1
+                                            type=datetime-local
+                                            value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
+
+                                            <a onclick="addTime(1)" class="btn btn-success">Add Line Time</a>
                                         </div>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
@@ -122,6 +127,39 @@
         </div>
         <!-- /#page-wrapper -->
 
-        <script>
+        <script type='text/javascript'>
+          function addTime(id){
 
+            var oldInput = document.getElementById('time' + id);
+
+            var div1 = document.createElement('div');
+            div1.className = 'form-group';
+            div1.id = 'time' +  (id + 1);
+            var label = document.createElement('label');
+            label.innerHTML = 'Line Start Time'
+
+            div1.appendChild(label);
+
+
+
+            var input = document.createElement('input');
+            input.className = 'form-control';
+            input.name = 'livelineTime' + id;
+            input.type = 'datetime-local'
+            input.value = '<?php echo date("Y-m-d\TH:i");?>'
+            input.required = true
+
+            div1.appendChild(input)
+
+            var a = document.createElement('a')
+            add.addEventListener('click', function(){
+              addTime(id+1);
+            });
+            a.className='btn btn-success'
+            a.innerHTML='Add Line Time'
+
+            div1.appendChild(a)
+
+
+          }
         </script>
