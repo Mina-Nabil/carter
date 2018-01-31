@@ -76,7 +76,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                          <label>Days</label>
+                                          <label>Days</label> <br>
                                           <label class="checkbox-inline">
                                               <input type="checkbox" value="d1">Saturday
                                           </label>
@@ -129,9 +129,9 @@
 
         <script type='text/javascript'>
 
-        function insertAfter(newNode, referenceNode) {
-          referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-        }
+          function insertAfter(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+          }
 
           function addTime(id){
 
@@ -151,7 +151,7 @@
             input.className = 'form-control';
             input.name = 'livelineTime' + id;
             input.type = 'datetime-local'
-            input.value = '<?php echo date("Y-m-d\TH:i");?>'
+            input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>
             input.required = true
 
             div1.appendChild(input)
@@ -170,7 +170,6 @@
             var br = document.createElement('br')
             insertAfter(div1, br)
 
-
-
           }
+
         </script>
