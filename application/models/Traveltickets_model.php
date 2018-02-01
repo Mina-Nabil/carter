@@ -53,8 +53,8 @@ class TravelTickets_model extends CI_Model{
 
         public function getOldTravelTicketsByClient($clientID){
 
-          $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS, STTN_ARBC_NAME as START_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -64,13 +64,12 @@ class TravelTickets_model extends CI_Model{
                       AND TRTK_START_INDX = PATH_INDX
                       AND LVLN_TIME < NOW()
                       AND PATH_STTN_ID = STTN_ID
-                      GROUP BY TRTK_LVLN_ID
                       ORDER BY LVLN_TIME DESC";
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE, STTN_ARBC_NAME as END_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -80,7 +79,6 @@ class TravelTickets_model extends CI_Model{
                       AND TRTK_END_INDX = PATH_INDX
                       AND LVLN_TIME < NOW()
                       AND PATH_STTN_ID = STTN_ID
-                      GROUP BY TRTK_LVLN_ID
                       ORDER BY LVLN_TIME DESC";
 
           $query2 = $this->db->query($strSQL);
@@ -104,8 +102,8 @@ class TravelTickets_model extends CI_Model{
 
         public function getNewTravelTicketsByClient($clientID){
 
-          $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS, STTN_ARBC_NAME as START_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -120,8 +118,8 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT COUNT(TRTK_ID) as TicketsNumber, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE, STTN_ARBC_NAME as END_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
