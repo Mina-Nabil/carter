@@ -1,4 +1,66 @@
 
+<script type='text/javascript'>
+
+  function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+  }
+
+  function checkboxes(){
+    var NoRepeat = document.getElementById('DR')
+    if(NoRepeat.value == true){
+      var d1 = document.getElementById('d1').checked = false
+      var d2 = document.getElementById('d2').checked = false
+      var d3 = document.getElementById('d3').checked = false
+      var d4 = document.getElementById('d4').checked = false
+      var d5 = document.getElementById('d5').checked = false
+      var d6 = document.getElementById('d6').checked = false
+      var d7 = document.getElementById('d7').checked = false
+
+    }
+  }
+
+  function addTime(id){
+
+    var oldInput = document.getElementById('time' + id);
+
+    var div1 = document.createElement('div');
+    div1.className = 'form-group';
+    div1.id = 'time' +  (id + 1);
+    var label = document.createElement('label');
+    label.innerHTML = 'Line Start Time'
+
+    div1.appendChild(label);
+
+
+
+    var input = document.createElement('input');
+    input.className = 'form-control';
+    input.name = 'livelineTime[' + id + ']';
+    input.type = 'datetime-local'
+    input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>
+    input.required = true
+
+    div1.appendChild(input)
+
+    var a = document.createElement('a')
+    a.addEventListener('click', function(){
+      addTime(id+1);
+    });
+    a.className='btn btn-success'
+    a.innerHTML='Add Line Time'
+
+    div1.appendChild(a)
+
+    insertAfter(oldInput, div1)
+
+    var br = document.createElement('br')
+    insertAfter(div1, br)
+
+  }
+
+</script>
+
+
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -129,64 +191,3 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
-        <script type='text/javascript'>
-
-          function insertAfter(newNode, referenceNode) {
-            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-          }
-
-          function checkboxes(){
-            var NoRepeat = document.getElementById('DR')
-            if(NoRepeat.value == true){
-              var d1 = document.getElementById('d1').checked = false
-              var d2 = document.getElementById('d2').checked = false
-              var d3 = document.getElementById('d3').checked = false
-              var d4 = document.getElementById('d4').checked = false
-              var d5 = document.getElementById('d5').checked = false
-              var d6 = document.getElementById('d6').checked = false
-              var d7 = document.getElementById('d7').checked = false
-            
-            }
-          }
-
-          function addTime(id){
-
-            var oldInput = document.getElementById('time' + id);
-
-            var div1 = document.createElement('div');
-            div1.className = 'form-group';
-            div1.id = 'time' +  (id + 1);
-            var label = document.createElement('label');
-            label.innerHTML = 'Line Start Time'
-
-            div1.appendChild(label);
-
-
-
-            var input = document.createElement('input');
-            input.className = 'form-control';
-            input.name = 'livelineTime[' + id + ']';
-            input.type = 'datetime-local'
-            input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>
-            input.required = true
-
-            div1.appendChild(input)
-
-            var a = document.createElement('a')
-            a.addEventListener('click', function(){
-              addTime(id+1);
-            });
-            a.className='btn btn-success'
-            a.innerHTML='Add Line Time'
-
-            div1.appendChild(a)
-
-            insertAfter(oldInput, div1)
-
-            var br = document.createElement('br')
-            insertAfter(div1, br)
-
-          }
-
-        </script>
