@@ -1,6 +1,8 @@
 
 <script type='text/javascript'>
 
+  max = 1;
+
   function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
@@ -19,13 +21,13 @@
     }
   }
 
-  function addTime(id){
+  function addTime(){
 
-    var oldInput = document.getElementById('time' + id);
+    var oldInput = document.getElementById('time' + max);
 
     var div1 = document.createElement('div');
     div1.className = 'form-group';
-    div1.id = 'time' +  (id + 1);
+    div1.id = 'time' +  (max + 1);
     var label = document.createElement('label');
     label.innerHTML = 'Line Start Time'
 
@@ -35,27 +37,18 @@
 
     var input = document.createElement('input');
     input.className = 'form-control';
-    input.name = 'livelineTime[' + id + ']';
+    input.name = 'livelineTime[' + (max+1) + ']';
     input.type = 'datetime-local'
     input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>;
     input.required = true
 
     div1.appendChild(input)
 
-    var a = document.createElement('a')
-    a.addEventListener('click', function(){
-      addTime(id+1);
-    });
-    a.className='btn btn-success'
-    a.innerHTML='Add Line Time'
-
-    div1.appendChild(a)
-
     insertAfter(div1, oldInput)
 
     var br = document.createElement('br')
     insertAfter(div1, br)
-
+    max++;
   }
 
 </script>
@@ -172,11 +165,11 @@
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                             <br>
-                                            <a onclick="addTime(1)" class="btn btn-success">Add Line Time</a>
                                         </div>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
+                                        <a onclick="addTime()" class="btn btn-success">Add Line Time</a>
                                     </form>
                                 </div>
                             </div>
