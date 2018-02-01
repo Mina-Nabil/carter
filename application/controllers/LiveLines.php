@@ -151,11 +151,11 @@ class LiveLines extends CI_Controller{
       $Wednesday = $this->input->post('d5');
       $Thursday = $this->input->post('d6');
       $Friday = $this->input->post('d7');
-
+      $livelineTimes = $this->input->post('livelineTime');
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
         $begin = new DateTime( timetostr($nextSat));
-        $this->createWeeklyLiveLines($begin);
+        $this->createWeeklyLiveLines($begin, $livelineTimes);
       }
 
 
@@ -168,13 +168,14 @@ class LiveLines extends CI_Controller{
 
   }
 
-  public function createWeeklyLiveLines($begin){
+  public function createWeeklyLiveLines($begin, $livelineTimes){
+    
         $thisyear = date('Y');
         $end = new DateTime( $thisyear . '-12-31' );
 
         $interval = DateInterval::createFromDateString('1 week');
         $period = new DatePeriod($begin, $interval, $end);
-        $livelineTimes = $this->input->post('livelineTime');
+
         foreach ( $period as $dt ){
           foreach ($livelineTimes as $key => $value) {
 
