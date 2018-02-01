@@ -152,6 +152,7 @@ class LiveLines extends CI_Controller{
       $Thursday = $this->input->post('d6');
       $Friday = $this->input->post('d7');
       $livelineTimes = $this->input->post('livelineTime');
+
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
         $begin = new DateTime( timetostr($nextSat));
@@ -175,13 +176,12 @@ class LiveLines extends CI_Controller{
         $thisyear = date('Y');
         $end = new DateTime( $thisyear . '-12-31' );
 
-        $interval = DateInterval::createFromDateString('1 week');
+        $interval = DateInterval::createFromDateString('7 day');
         $period = new DatePeriod($begin, $interval, $end);
 
         foreach ( $period as $dt ){
           foreach ($livelineTimes as $key => $value) {
 
-            ;
             $time = date("H:i:s",strtotime($value));
             $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
 
