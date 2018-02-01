@@ -155,7 +155,8 @@ class LiveLines extends CI_Controller{
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
         $begin = new DateTime( timetostr($nextSat));
-        $this->createWeeklyLiveLines($begin, $livelineTimes);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
       }
 
 
@@ -168,8 +169,9 @@ class LiveLines extends CI_Controller{
 
   }
 
-  public function createWeeklyLiveLines($begin, $livelineTimes){
-    
+  public function createWeeklyLiveLines($begin, $livelineTimes, $livelineID, $livelineDriverID, $livelineBusID,
+                                        $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue){
+
         $thisyear = date('Y');
         $end = new DateTime( $thisyear . '-12-31' );
 

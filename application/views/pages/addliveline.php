@@ -173,6 +173,7 @@
                                           <label class="checkbox-inline">
                                               <input type="checkbox" id='DR' onchange="checkboxes()" name="DR" value="1">Dont Repeat
                                           </label>
+                                          <p class="help-block">Only set Time, if the live line will be repeated</p>
                                         </div>
 
                                         <div class="form-group" id=time1>
@@ -182,7 +183,7 @@
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                             <br>
-                                            <p class="help-block">Only set Time, if the live line will be repeated</p>
+
                                         </div>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
