@@ -134,16 +134,40 @@ class LiveLines extends CI_Controller{
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
 
-
-
-    $livelineTimes = $this->input->post('livelineTime');
-
-    foreach ($livelineTimes as $key => $value) {
-      
+    $Repeated = $this->input->post('DR');
+    if($Repeated == false){
+      $livelineTimes = $this->input->post('livelineTime');
+      $livelineTime = $livelineTimes[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
                                             $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+    }
 
-       $i++;
+    else{
+
+      $begin = new DateTime( );
+      $thisyear = date('Y');
+      $end = new DateTime( $thisyear . '-12-31' );
+
+      $interval = DateInterval::createFromDateString('1 day');
+      $period = new DatePeriod($begin, $interval, $end);
+      $livelineTimes = $this->input->post('livelineTime');
+      foreach ( $period as $dt ){
+        foreach ($livelineTimes as $key => $value) {
+
+          ;
+          $time = date("H:i:s",strtotime($value));
+          $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
+
+          $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
+                                                $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+        }
+
+      }
+        echo $dt->format( "l Y-m-d H:i:s\n" );
+
+
+
+
     }
 
 
