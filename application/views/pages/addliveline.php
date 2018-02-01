@@ -7,7 +7,7 @@
 
   function checkboxes(){
     var NoRepeat = document.getElementById('DR')
-    if(NoRepeat.value == true){
+    if(NoRepeat.checked == true){
       document.getElementById('d1').checked = false
       document.getElementById('d2').checked = false
       document.getElementById('d3').checked = false
