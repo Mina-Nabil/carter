@@ -293,9 +293,10 @@ class Api extends CI_Controller{
     $EndStation = $this->input->post('EndStationID');
 
     $Lines = $this->LiveLines_model->getAvailableLines($LineID, $StartStation, $EndStation);
-
-
     $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation);
+
+    print_r($Lines);
+
     foreach ($Lines['FullLines'] as $row){
       $Lines['FullLines'][$row['LiveLineID']]['TicketsAv'] = $this->Traveltickets_model->getSeatsAvailable($row['LiveLineID'], $Indicies);
     }
