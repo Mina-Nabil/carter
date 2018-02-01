@@ -56,7 +56,7 @@ class LiveLines_model extends CI_Model{
                      AND LVLN_CANC = 0
                      AND LVLN_LINE_ID = LINE_ID
                      AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 20 DAY)
-                     AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL 10 DAY)
+                     AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -10 DAY)
                      AND LVLN_DRVR_ID = DRVR_ID
                      AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
