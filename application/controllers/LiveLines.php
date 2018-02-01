@@ -129,7 +129,7 @@ class LiveLines extends CI_Controller{
     $livelineID = $this->input->post('livelineLineID');
     $livelineBusID = $this->input->post('livelineBusID');
     $livelineRevenue = $this->input->post('livelineRevenue');
-    $livelineRevenue = $this->input->post('livelineTicketPrice');
+    $livelineTicketPrice = $this->input->post('livelineTicketPrice');
     $livelineDriverID = $this->input->post('livelineDriverID');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
@@ -139,7 +139,7 @@ class LiveLines extends CI_Controller{
       $livelineTimes = $this->input->post('livelineTime');
       $livelineTime = $livelineTimes[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
-                                            $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+                                            $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
     }
 
     else{
@@ -159,7 +159,7 @@ class LiveLines extends CI_Controller{
           $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
 
           $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
-                                                $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+                                                $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
         }
 
       }
@@ -241,11 +241,11 @@ class LiveLines extends CI_Controller{
     $livelineDriverID = $this->input->post('livelineDriverID');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
-    $livelineRevenue = $this->input->post('livelineTicketPrice');
+    $livelineTicketPrice = $this->input->post('livelineTicketPrice');
 
 
     $this->LiveLines_model->editLiveLine($ID, $livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
-                                         $livelineisCancelled, $livelineisComplete, $livelineRevenue, $livelineRevenue);
+                                         $livelineisCancelled, $livelineisComplete, $livelineTicketPrice, $livelineRevenue);
 
      $this->load->view('pages/livelines_redirect');
 
