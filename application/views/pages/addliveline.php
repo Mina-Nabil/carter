@@ -51,7 +51,7 @@
 
     div1.appendChild(a)
 
-    insertAfter(oldInput, div1)
+    insertAfter(div1, oldInput)
 
     var br = document.createElement('br')
     insertAfter(div1, br)
