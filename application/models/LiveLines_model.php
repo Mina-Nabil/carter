@@ -89,6 +89,7 @@ class LiveLines_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $livelines = $query->result_array();
           $adjustedArray = array();
+          $adjustedArray['LineIDs'] = array();
           foreach ($livelines as $row) {
 
             if(isset($adjustedArray['FullLines'][$row['LVLN_ID']])){
@@ -96,7 +97,6 @@ class LiveLines_model extends CI_Model{
                                                                     'Sttn' => $row['STTN_NAME'],
                                                                     'MinutesFromStart'=>$row['PATH_REL_TIME']));
 
-                array_push($adjustedArray['LineIDs'], $row['LVLN_ID']);
             }
             else {
 
@@ -114,7 +114,7 @@ class LiveLines_model extends CI_Model{
                                                 'Sttn' => $row['STTN_NAME'],
                                                 'MinutesFromStart'=>$row['PATH_REL_TIME']));
 
-            $adjustedArray['LineIDs'] = array();
+
             array_push($adjustedArray['LineIDs'], $row['LVLN_ID']);
 
             $adjustedArray['FullLines'][$row['LVLN_ID']] = $obj;
