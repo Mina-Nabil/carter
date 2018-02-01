@@ -48,7 +48,7 @@
 
     var br = document.createElement('br')
     insertAfter(div1, br)
-    max++;
+    max = max+1;
   }
 
 </script>
