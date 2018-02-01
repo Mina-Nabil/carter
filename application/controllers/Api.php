@@ -295,7 +295,7 @@ class Api extends CI_Controller{
     $Lines = $this->LiveLines_model->getAvailableLines($LineID, $StartStation, $EndStation);
     $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation);
 
-    if(!isset($adjustedArray['FullLines'])) {
+    if(!isset($Lines['FullLines'][0])) {
       echo json_encode(array(
         'Response' => 'NoLines'
       ));
