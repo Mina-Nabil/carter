@@ -17,7 +17,23 @@
       document.getElementById('d5').checked = false
       document.getElementById('d6').checked = false
       document.getElementById('d7').checked = false
+      document.getElementById('d1').disabled = true
+      document.getElementById('d2').disabled = true
+      document.getElementById('d3').disabled = true
+      document.getElementById('d4').disabled = true
+      document.getElementById('d5').disabled = true
+      document.getElementById('d6').disabled = true
+      document.getElementById('d7').disabled = true
 
+    }
+    else {
+      document.getElementById('d1').disabled = false
+      document.getElementById('d2').disabled = false
+      document.getElementById('d3').disabled = false
+      document.getElementById('d4').disabled = false
+      document.getElementById('d5').disabled = false
+      document.getElementById('d6').disabled = false
+      document.getElementById('d7').disabled = false
     }
   }
 

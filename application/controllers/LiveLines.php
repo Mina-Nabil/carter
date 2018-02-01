@@ -137,8 +137,16 @@ class LiveLines extends CI_Controller{
 
 
     $livelineTimes = $this->input->post('livelineTime');
-    $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
-                                          $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+
+    foreach ($livelineTimes as $key => $value) {
+      
+      $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
+                                            $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
+
+       $i++;
+    }
+
+
 
     $this->load->view('pages/livelines_redirect');
 
