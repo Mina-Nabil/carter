@@ -8,13 +8,13 @@
   function checkboxes(){
     var NoRepeat = document.getElementById('DR')
     if(NoRepeat.value == true){
-      var d1 = document.getElementById('d1').checked = false
-      var d2 = document.getElementById('d2').checked = false
-      var d3 = document.getElementById('d3').checked = false
-      var d4 = document.getElementById('d4').checked = false
-      var d5 = document.getElementById('d5').checked = false
-      var d6 = document.getElementById('d6').checked = false
-      var d7 = document.getElementById('d7').checked = false
+      document.getElementById('d1').checked = false
+      document.getElementById('d2').checked = false
+      document.getElementById('d3').checked = false
+      document.getElementById('d4').checked = false
+      document.getElementById('d5').checked = false
+      document.getElementById('d6').checked = false
+      document.getElementById('d7').checked = false
 
     }
   }
