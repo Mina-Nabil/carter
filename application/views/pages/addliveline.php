@@ -37,7 +37,7 @@
     input.className = 'form-control';
     input.name = 'livelineTime[' + id + ']';
     input.type = 'datetime-local'
-    input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>
+    input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>;
     input.required = true
 
     div1.appendChild(input)
