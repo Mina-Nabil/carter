@@ -296,7 +296,9 @@ class Api extends CI_Controller{
     $Indicies = $this->Paths_model->getPathIndicies($LineID, $StartStation, $EndStation);
 
     if(!isset($adjustedArray['FullLines'])) {
-      echo 'NoLines';
+      echo json_encode(array(
+        'Response' => 'NoLines'
+      ));
       return;
     }
 
