@@ -176,7 +176,7 @@ class TravelTickets_model extends CI_Model{
         public function getSeatsAvailable($LiveLineID, $Indicies){
 
 
-          $strSQL = "SELECT SUM(TRTK_SEATS) as tt FROM karter.stationtickets, traveltickets, livelines
+          $strSQL = "SELECT SUM(TRTK_SEATS) as tt FROM karter.stationtickets, traveltickets, live_lines
                      WHERE STTK_LVLN_ID = LVLN_ID
                      AND TRTK_LVLN_ID = LVLN_ID
                      AND STTK_LVLN_ID = ?
