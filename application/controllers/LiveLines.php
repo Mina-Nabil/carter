@@ -128,13 +128,15 @@ class LiveLines extends CI_Controller{
 
     $livelineID = $this->input->post('livelineLineID');
     $livelineBusID = $this->input->post('livelineBusID');
-    $livelineTime = $this->input->post('livelineTime') . ':00';
     $livelineRevenue = $this->input->post('livelineRevenue');
     $livelineRevenue = $this->input->post('livelineTicketPrice');
     $livelineDriverID = $this->input->post('livelineDriverID');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
 
+
+
+    $livelineTimes = $this->input->post('livelineTime');
     $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
                                           $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineRevenue);
 
@@ -213,7 +215,7 @@ class LiveLines extends CI_Controller{
     $livelineRevenue = $this->input->post('livelineTicketPrice');
 
 
-    $this->LiveLines_model->editLiveLine($ID, $livelineID, $livelineDriverID, $livelineTime, $livelineBusID, 
+    $this->LiveLines_model->editLiveLine($ID, $livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
                                          $livelineisCancelled, $livelineisComplete, $livelineRevenue, $livelineRevenue);
 
      $this->load->view('pages/livelines_redirect');

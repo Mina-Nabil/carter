@@ -78,32 +78,35 @@
                                         <div class="form-group">
                                           <label>Days</label> <br>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d1">Saturday
+                                              <input type="checkbox" id='d1' name="d1">Saturday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d2">Sunday
+                                              <input type="checkbox" id='d2' name="d2">Sunday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d3">Monday
+                                              <input type="checkbox" id='d3' name="d3">Monday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value ="d4">Tuesday
+                                              <input type="checkbox"  id='d4' name ="d4">Tuesday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d5">Wednesday
+                                              <input type="checkbox"  id='d5' name="d5">Wednesday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d6">Thursday
+                                              <input type="checkbox"  id='d6' name="d6">Thursday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" value="d7">Friday
+                                              <input type="checkbox"  id='d7' name="d7">Friday
+                                          </label>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" id='DR' onchange="checkboxes()" name="DR">Dont Repeat
                                           </label>
                                         </div>
 
                                         <div class="form-group" id=time1>
                                             <label>Line Start Time</label>
                                             <input
-                                            class=form-control name=livelineTime1
+                                            class=form-control name=livelineTime[1]
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                             <br>
@@ -133,6 +136,20 @@
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
           }
 
+          function checkboxes(){
+            var NoRepeat = document.getElementById('DR')
+            if(NoRepeat.value == true){
+              var d1 = document.getElementById('d1').checked = false
+              var d2 = document.getElementById('d2').checked = false
+              var d3 = document.getElementById('d3').checked = false
+              var d4 = document.getElementById('d4').checked = false
+              var d5 = document.getElementById('d5').checked = false
+              var d6 = document.getElementById('d6').checked = false
+              var d7 = document.getElementById('d7').checked = false
+            
+            }
+          }
+
           function addTime(id){
 
             var oldInput = document.getElementById('time' + id);
@@ -149,7 +166,7 @@
 
             var input = document.createElement('input');
             input.className = 'form-control';
-            input.name = 'livelineTime' + id;
+            input.name = 'livelineTime[' + id + ']';
             input.type = 'datetime-local'
             input.value = <?="'" . date("Y-m-d\TH:i") . "'"?>
             input.required = true
