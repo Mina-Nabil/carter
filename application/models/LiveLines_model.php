@@ -47,6 +47,10 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        public function updateRevenue($LineID){
+          SELECT SUM()
+        }
+
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
           $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME,
                             LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER
@@ -55,8 +59,7 @@ class LiveLines_model extends CI_Model{
                      AND LVLN_TIME > NOW()
                      AND LVLN_CANC = 0
                      AND LVLN_LINE_ID = LINE_ID
-                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 20 DAY)
-                     AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -10 DAY)
+                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)                   
                      AND LVLN_DRVR_ID = DRVR_ID
                      AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
