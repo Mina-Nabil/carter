@@ -176,10 +176,12 @@ class TravelTickets_model extends CI_Model{
         public function getSeatsAvailable($LiveLineID, $Indicies){
 
 
-          $strSQL = "SELECT MIN(X1) as tt FROM
-                    (SELECT COUNT(*) as X1 FROM karter.stationtickets
-						         WHERE STTK_LVLN_ID = ?
-                     AND   STTK_INDX IN ? ) AS temp";
+          $strSQL = "SELECT SUM(TRTK_SEATS) as tt FROM karter.stationtickets, traveltickets, livelines
+                     WHERE STTK_LVLN_ID = LVLN_ID
+                     WHERE TRTK_LVLN_ID = LVLN_ID
+                     WHERE STTK_LVLN_ID = ?
+                     AND   STTK_INDX IN ?
+                     GROUP BY STTK_LVLN_ID";
 
           $query = $this->db->query($strSQL, array($LiveLineID, $Indicies));
           $Seats = $query->result_array()[0]['tt'];
