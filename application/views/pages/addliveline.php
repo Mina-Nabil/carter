@@ -46,9 +46,10 @@
 
     insertAfter(div1, oldInput)
 
-    var br = document.createElement('br')
+    var br = document.createElement('br');
+    this.max = max+1;
     insertAfter(div1, br)
-    max = max+1;
+
   }
 
 </script>
