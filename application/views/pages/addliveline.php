@@ -182,6 +182,7 @@
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                             <br>
+                                            <p class="help-block">Only set Time, if the live line will be repeated</p>
                                         </div>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
