@@ -134,8 +134,8 @@ class LiveLines extends CI_Controller{
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
 
-    $Repeated = $this->input->post('DR');
-    if(!($Repeated == 1)){
+    $NotRepeated = $this->input->post('DR');
+    if(!($NotRepeated == 1)){
       $livelineTimes = $this->input->post('livelineTime');
       $livelineTime = $livelineTimes[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
@@ -155,7 +155,7 @@ class LiveLines extends CI_Controller{
 
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
-        $begin = new DateTime( timetostr($nextSat));
+        $begin = new DateTime( $nextSat);
         $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
       }
