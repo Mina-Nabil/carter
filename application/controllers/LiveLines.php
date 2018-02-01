@@ -163,9 +163,6 @@ class LiveLines extends CI_Controller{
         }
 
       }
-        echo $dt->format( "l Y-m-d H:i:s\n" );
-
-
 
 
     }
