@@ -160,6 +160,48 @@ class LiveLines extends CI_Controller{
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
       }
 
+      if($Sunday == 1){
+        $nextSat = date("Y-m-d", strtotime("next sunday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
+      if($Monday == 1){
+        $nextSat = date("Y-m-d", strtotime("next monday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
+      if($Tuesday == 1){
+        $nextSat = date("Y-m-d", strtotime("next tuesday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
+      if($Wednesday == 1){
+        $nextSat = date("Y-m-d", strtotime("next wednesday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
+      if($Thursday == 1){
+        $nextSat = date("Y-m-d", strtotime("next thursday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
+      if($Friday == 1){
+        $nextSat = date("Y-m-d", strtotime("next friday"));
+        $begin = new DateTime( $nextSat);
+        $this->createWeeklyLiveLines($begin, $livelineTimes , $livelineID, $livelineDriverID, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+      }
+
 
 
     }
