@@ -16,8 +16,8 @@ class LiveLines_model extends CI_Model{
                       FROM live_lines, karter.lines, drivers, buses
                       WHERE LVLN_LINE_ID = LINE_ID
                       AND LVLN_DRVR_ID = DRVR_ID
-                      AND LVLN_TIME < DATEADD(month, 1, DATE())
-                      AND LVLN_TIME > DATEADD(week, -2, DATE())
+                      AND LVLN_TIME < DATEADD(month, 1, NOW())
+                      AND LVLN_TIME > DATEADD(week, -2, NOW())
                       AND LVLN_BUS_ID = BUS_ID  ";
           $query = $this->db->query($strSQL);
           return $query->result_array();
