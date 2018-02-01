@@ -1,7 +1,7 @@
 
 <script type='text/javascript'>
 
-  max = 1;
+  var max = 1;
 
   function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
