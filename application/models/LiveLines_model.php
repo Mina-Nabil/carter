@@ -47,8 +47,25 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        public function setRevenue($ID, $Revn){
+          $strSQL = "UPDATE live_lines
+                    SET  LVLN_REVN = ?
+                    WHERE  `LVLN_ID`=?";
+
+          $inputs = array($Revn, $ID);
+          $query = $this->db->query($strSQL, $inputs);
+        }
+
         public function updateRevenue($LineID){
-          SELECT SUM()
+          $strSQL= "SELECT SUM(TRTK_PRICE) as tt
+                    FROM traveltickets
+                    WHERE TRTK_LVLN_ID = ?
+                    AND TRTK_PAID = 1";
+
+          $query = $this->db->query($strSQL, array($LineID));
+          $Revn = $query->result_array()[0]['tt'];
+          $this->setRevenue($LineID, $Revn);
+
         }
 
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
@@ -59,7 +76,7 @@ class LiveLines_model extends CI_Model{
                      AND LVLN_TIME > NOW()
                      AND LVLN_CANC = 0
                      AND LVLN_LINE_ID = LINE_ID
-                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)                   
+                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)
                      AND LVLN_DRVR_ID = DRVR_ID
                      AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
