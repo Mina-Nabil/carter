@@ -150,28 +150,28 @@
                                         <div class="form-group">
                                           <label>Days</label> <br>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" id='d1' name="d1">Saturday
+                                              <input type="checkbox" id='d1' name="d1" value="1"   >Saturday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" id='d2' name="d2">Sunday
+                                              <input type="checkbox" id='d2' name="d2" value="1"  >Sunday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" id='d3' name="d3">Monday
+                                              <input type="checkbox" id='d3' name="d3" value="1" >Monday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox"  id='d4' name ="d4">Tuesday
+                                              <input type="checkbox"  id='d4' name ="d4" value="1" >Tuesday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox"  id='d5' name="d5">Wednesday
+                                              <input type="checkbox"  id='d5' name="d5" value="1" >Wednesday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox"  id='d6' name="d6">Thursday
+                                              <input type="checkbox"  id='d6' name="d6" value="1" >Thursday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox"  id='d7' name="d7">Friday
+                                              <input type="checkbox"  id='d7' name="d7" value="1" >Friday
                                           </label>
                                           <label class="checkbox-inline">
-                                              <input type="checkbox" id='DR' onchange="checkboxes()" name="DR">Dont Repeat
+                                              <input type="checkbox" id='DR' onchange="checkboxes()" name="DR" value="1">Dont Repeat
                                           </label>
                                         </div>
 

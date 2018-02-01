@@ -76,7 +76,7 @@ class LiveLines_model extends CI_Model{
                      AND LVLN_TIME > NOW()
                      AND LVLN_CANC = 0
                      AND LVLN_LINE_ID = LINE_ID
-                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 3 DAY)
+                     AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)
                      AND LVLN_DRVR_ID = DRVR_ID
                      AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
@@ -84,7 +84,7 @@ class LiveLines_model extends CI_Model{
                      AND PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
                      AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$EndSttn})
                      AND LVLN_COMP = 0
-                     ORDER BY LineID ASC, PATH_INDX ASC";
+                     ORDER BY LineID ASC, PATH_INDX ASC, LVLN_TIME ASC";
 
           $query = $this->db->query($strSQL);
           $livelines = $query->result_array();

@@ -135,7 +135,7 @@ class LiveLines extends CI_Controller{
     $livelineisCancelled = $this->input->post('livelineisCancelled');
 
     $Repeated = $this->input->post('DR');
-    if($Repeated == false){
+    if(!($Repeated == 1)){
       $livelineTimes = $this->input->post('livelineTime');
       $livelineTime = $livelineTimes[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
@@ -144,25 +144,20 @@ class LiveLines extends CI_Controller{
 
     else{
 
-      $begin = new DateTime( );
-      $thisyear = date('Y');
-      $end = new DateTime( $thisyear . '-12-31' );
+      $Saturday = $this->input->post('d1');
+      $Sunday = $this->input->post('d2');
+      $Monday = $this->input->post('d3');
+      $Tuesday = $this->input->post('d4');
+      $Wednesday = $this->input->post('d5');
+      $Thursday = $this->input->post('d6');
+      $Friday = $this->input->post('d7');
 
-      $interval = DateInterval::createFromDateString('1 day');
-      $period = new DatePeriod($begin, $interval, $end);
-      $livelineTimes = $this->input->post('livelineTime');
-      foreach ( $period as $dt ){
-        foreach ($livelineTimes as $key => $value) {
-
-          ;
-          $time = date("H:i:s",strtotime($value));
-          $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
-
-          $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
-                                                $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
-        }
-
+      if($Saturday == 1){
+        $nextSat = date("Y-m-d", strtotime("next saturday"));
+        $begin = new DateTime( timetostr($nextSat));
+        $this->createWeeklyLiveLines($begin);
       }
+
 
 
     }
@@ -170,6 +165,28 @@ class LiveLines extends CI_Controller{
 
 
     $this->load->view('pages/livelines_redirect');
+
+  }
+
+  public function createWeeklyLiveLines($begin){
+        $thisyear = date('Y');
+        $end = new DateTime( $thisyear . '-12-31' );
+
+        $interval = DateInterval::createFromDateString('1 week');
+        $period = new DatePeriod($begin, $interval, $end);
+        $livelineTimes = $this->input->post('livelineTime');
+        foreach ( $period as $dt ){
+          foreach ($livelineTimes as $key => $value) {
+
+            ;
+            $time = date("H:i:s",strtotime($value));
+            $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
+
+            $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
+                                                  $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          }
+
+        }
 
   }
 
