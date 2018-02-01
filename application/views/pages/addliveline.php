@@ -173,7 +173,7 @@
                                           <label class="checkbox-inline">
                                               <input type="checkbox" id='DR' onchange="checkboxes()" name="DR" value="1">Dont Repeat
                                           </label>
-                                          <p class="help-block">Only set Time, if the live line will be repeated</p>
+                                          <p class="help-block">If the line will be repeated, set the Time only</p>
                                         </div>
 
                                         <div class="form-group" id=time1>

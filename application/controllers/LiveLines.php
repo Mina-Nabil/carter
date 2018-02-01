@@ -133,8 +133,6 @@ class LiveLines extends CI_Controller{
     $livelineDriverID = $this->input->post('livelineDriverID');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
-    $livelineTimes = $this->input->post('livelineTime');
-    print_r($livelineTimes);
 
     $NotRepeated = $this->input->post('DR');
     if($NotRepeated == 1){
