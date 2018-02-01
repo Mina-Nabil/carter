@@ -51,7 +51,7 @@ class Stations_model extends CI_Model{
                     WHERE
                         `STTN_ID`='{$ID}'";
 
-          $inputs = array($Name, $DistrictID, $Latitude, $Longitude, $ArbcAdrs, $Adrs, $ArbcName);
+          $inputs = array($Name, $Longitude, $Latitude, $ArbcAdrs, $ArbcName, $Adrs, $DistrictID);
           $query = $this->db->query($strSQL, $inputs);
 
         }
