@@ -33,7 +33,7 @@ class Favourite_Lines_model extends CI_Model{
 
         public function getFavouriteIDs_Line_byClientID($ID){
 
-          $strSQL = "SELECT FVLN_ID
+          $strSQL = "SELECT LINE_ID
                     FROM favourite_lines, karter.lines, clients
                     WHERE FVLN_LINE_ID = LINE_ID AND FVLN_CLNT_ID = CLNT_ID
                     AND  FVLN_CLNT_ID = {$ID}";
