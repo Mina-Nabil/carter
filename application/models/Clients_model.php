@@ -40,6 +40,13 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function setNumber($ID, $Num){
+
+          $strSQL = "UPDATE Clients SET CLNT_TEL = ? WHERE `CLNT_ID`= ? ";
+          return $this->db->query($strSQL, array($Num, $ID));
+
+        }
+
         public function setTag($ID, $Tag){
 
           $strSQL = "UPDATE Clients SET CLNT_TAG = ? WHERE `CLNT_ID`= ? ";

@@ -116,6 +116,15 @@ class Api extends CI_Controller{
     return ;
   }
 
+  public function set_MobNumber(){
+
+    $clientID = $this->input->post('ClientID');
+    $clientNum = $this->input->post('ClientNumber');
+
+    echo $this->Clients_model->setNumber($clientID, $clientNum);
+    return ;
+  }
+
   public function setTag(){
 
     $clientID = $this->input->post('ClientID');
@@ -217,7 +226,8 @@ class Api extends CI_Controller{
   }
 
   public function get_favourites($ClientID){
-    echo json_encode($this->Favourite_lines_model->getFavourite_Line_byClientID($ClientID), JSON_UNESCAPED_UNICODE);
+    $LinesArr = $this->Favourite_lines_model->getFavourite_Line_byClientID($ClientID);
+    echo json_encode($this->Lines_model->getLinesByArray($LinesArr), JSON_UNESCAPED_UNICODE);
   }
 
   public function delete_favourite($ID){

@@ -217,6 +217,7 @@ $route['traveltickets/delete/(:num)'] = 'Traveltickets/delete/$1';
 $route['api/login'] = 'Api/login';
 $route['api/register'] = 'Api/register';
 $route['api/set_image'] = 'Api/set_image';
+$route['api/set_MobNumber'] = 'Api/set_MobNumber';
 $route['api/get_profile'] = 'Api/get_profile';
 $route['api/update_profile'] = 'Api/update_profile';
 $route['api/change_pw'] = 'Api/change_pw';
