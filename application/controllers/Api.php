@@ -244,7 +244,7 @@ class Api extends CI_Controller{
   }
 
   public function isFavourite(){
-    $ClientID = $this->input->post('ClientID');
+    $ClientID = $this->input->post('clientID');
     $LineID = $this->input->post('LineID');
     echo $this->Favourite_lines_model->isFavourite($ClientID, $LineID);
  }
