@@ -226,7 +226,7 @@ class Api extends CI_Controller{
   }
 
   public function get_favourites($ClientID){
-    $LinesArr = $this->Favourite_lines_model->getFavourite_Line_byClientID($ClientID);
+    $LinesArr = $this->Favourite_lines_model->getFavouriteIDs_Line_byClientID($ClientID);
     echo json_encode($this->Lines_model->getLinesByArray($LinesArr), JSON_UNESCAPED_UNICODE);
   }
 

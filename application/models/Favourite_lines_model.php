@@ -31,6 +31,17 @@ class Favourite_Lines_model extends CI_Model{
 
         }
 
+        public function getFavouriteIDs_Line_byClientID($ID){
+
+          $strSQL = "SELECT FVLN_ID
+                    FROM favourite_lines, karter.lines, clients
+                    WHERE FVLN_LINE_ID = LINE_ID AND FVLN_CLNT_ID = CLNT_ID
+                    AND  FVLN_CLNT_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
         public function getFavourite_Line_byID($ID){
 
           $strSQL = "SELECT FVLN_ID, FVLN_LINE_ID, FVLN_CLNT_ID, LINE_NAME, CLNT_NAME
