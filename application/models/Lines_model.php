@@ -95,6 +95,12 @@ class Lines_model extends CI_Model{
 
         public function getLinesByArray($LinesArray){
 
+          $IDs = array();
+
+          foreach($LinesArray as $row){
+            array_push($IDs, $row['LINE_ID']);
+          }
+
           $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_DESC, LINE_TAGS,
                             DIST_NAME AS START_DIST_NAME, CITY_NAME AS START_CITY_NAME,
                             STTN_NAME AS START_STTN_NAME, STTN_ADRS as START_STTN_ADRS
@@ -106,7 +112,7 @@ class Lines_model extends CI_Model{
                       AND LINE_ID IN ?
                       AND PATH_INDX = 0
                       ORDER BY LINE_ID;";
-          $query = $this->db->query($strSQL, array($LinesArray));
+          $query = $this->db->query($strSQL, array($IDs));
           $res1  = $query->result_array();
 
           $strSQL = "SELECT l1.LINE_ID,
@@ -124,7 +130,7 @@ class Lines_model extends CI_Model{
                                        AND LINE_ID = l1.LINE_ID)
                        ORDER BY LINE_ID;";
 
-          $query2 = $this->db->query($strSQL, array($LinesArray));
+          $query2 = $this->db->query($strSQL, array($IDs));
           $res2   = $query2->result_array();
 
           $res = array();
