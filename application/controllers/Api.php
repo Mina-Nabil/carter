@@ -230,8 +230,10 @@ class Api extends CI_Controller{
     echo json_encode($this->Lines_model->getLinesByArray($LinesArr), JSON_UNESCAPED_UNICODE);
   }
 
-  public function delete_favourite($ID){
-    $this->Favourite_lines_model->deleteFavourite_line($ID);
+  public function delete_favourite(){
+    $ClientID = $this->input->post('ClientID');
+    $LineID = $this->input->post('LineID');
+    $this->Favourite_lines_model->deleteFavourite_LineByLineAndClient($ClientID, $LineID);
     echo 1;
   }
 

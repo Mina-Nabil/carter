@@ -87,6 +87,11 @@ class Favourite_Lines_model extends CI_Model{
           $query = $this->db->query($strSQL);
         }
 
+        public function deleteFavourite_LineByLineAndClient($ClientID, $LineID){
+          $strSQL = "DELETE FROM favourite_lines WHERE FVLN_LINE_ID = ? AND FVLN_CLNT_ID  = ?";
+          $query = $this->db->query($strSQL, array($LineID, $ClientID)) ;
+        }
+
         public function deleteFavourite_Client($ID){
           $strSQL = "DELETE FROM favourite_lines WHERE FVLN_CLNT_ID = {$ID}";
           $query = $this->db->query($strSQL);
