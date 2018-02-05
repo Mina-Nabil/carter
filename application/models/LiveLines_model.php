@@ -71,7 +71,7 @@ class LiveLines_model extends CI_Model{
 
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
           $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME,
-                            LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER
+                            LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER, BUS_TYPE, DRVR_MOB
                      FROM live_lines, karter.lines, paths, stations, drivers, buses
                      WHERE LVLN_LINE_ID = {$LineID}
                      AND LVLN_TIME > NOW()
