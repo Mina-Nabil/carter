@@ -37,9 +37,14 @@ class Clients_model extends CI_Model{
 
           if(!is_numeric($Percent))return "invalidInput";
 
-          $strSQL = "SELECT TOP ? PERCENT CLNT_ID FROM clients
-                    ORDER BY CLNT_BLNC";
+          $queryStr = "SELECT ROUND(COUNT(*) * ? / 100) AS percents FROM clients";
           $query = $this->db->query($strSQ, array($Percent));
+          $res = $query->result_array();
+          $Count = $res[0]['percents'];
+
+          $strSQL = "SELECT CLNT_ID FROM clients
+                     ORDER BY CLNT_BLNC LIMIT ?";
+          $query = $this->db->query($strSQ, array($Count));
           $res = $query->result_array();
           $ret = array();
           foreach($res as $row){
@@ -52,9 +57,14 @@ class Clients_model extends CI_Model{
 
           if(!is_numeric($Percent))return "invalidInput";
 
-          $strSQL = "SELECT TOP ? PERCENT CLNT_TAG FROM clients
-                    ORDER BY CLNT_BLNC";
+          $queryStr = "SELECT ROUND(COUNT(*) * ? / 100) AS percents FROM clients";
           $query = $this->db->query($strSQ, array($Percent));
+          $res = $query->result_array();
+          $Count = $res[0]['percents'];
+
+          $strSQL = "SELECT CLNT_TAG FROM clients
+                     ORDER BY CLNT_BLNC LIMIT ? ";
+          $query = $this->db->query($strSQ, array($Counts));
           $res = $query->result_array();
           $ret = array();
           foreach($res as $row){
