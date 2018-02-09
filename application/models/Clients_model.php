@@ -33,7 +33,7 @@ class Clients_model extends CI_Model{
 
         }
 
-        public function getClient_byID($ID){
+        public function getClientTag_byID($ID){
 
           $strSQL = "SELECT CLNT_TAG
                       FROM Clients
