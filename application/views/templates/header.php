@@ -57,7 +57,7 @@
                    </li>
                     <li>
                         <a href="#">
-                          <i class="fa fa-bar-chart-o fa-fw"></i> Tables
+                          <i class="fa fa-table fa-fw"></i> Tables
                           <span class="fa arrow"></span>
                         </a>
                         <ul class="nav nav-second-level">
@@ -83,6 +83,21 @@
                           </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <li>
+                            <a href="#">
+                              <i class="fa fa-edit fa-fw"></i> Admin Controls <span class="fa arrow"></span>
+                            </a>
+                              <ul class="nav nav-second-level">
+                                  <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                  foreach($ArrControlURL as $url){?>
+                                    <?if(isset($url['Name'])){?>
+                                    <li>
+                                      <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                    </li>
+                                    <?}?>
+                                <?}?>
+                            </ul>
+                      </li>
                     <li>
                       <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                      </li>

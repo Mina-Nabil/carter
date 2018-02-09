@@ -33,6 +33,36 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function getTopBalancedClientsIDs($Percent){
+
+          if(!is_numeric($Percent))return "invalidInput";
+
+          $strSQL = "SELECT TOP ? PERCENT CLNT_ID FROM clients
+                    ORDER BY CLNT_BLNC";
+          $query = $this->db->query($strSQ, array($Percent));
+          $res = $query->result_array();
+          $ret = array();
+          foreach($res as $row){
+            array_push($ret, $row['CLNT_ID']);
+          }
+          return $ret;
+        }
+
+        public function getTopBalancedClientsTags($Percent){
+
+          if(!is_numeric($Percent))return "invalidInput";
+
+          $strSQL = "SELECT TOP ? PERCENT CLNT_TAG FROM clients
+                    ORDER BY CLNT_BLNC";
+          $query = $this->db->query($strSQ, array($Percent));
+          $res = $query->result_array();
+          $ret = array();
+          foreach($res as $row){
+            array_push($ret, $row['CLNT_ID']);
+          }
+          return $ret;
+        }
+
         public function setImage($ID, $Image){
 
           $strSQL = "UPDATE Clients SET CLNT_IMG = ? WHERE `CLNT_ID`= ? ";

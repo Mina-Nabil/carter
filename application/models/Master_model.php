@@ -211,6 +211,17 @@ class Master_model extends CI_Model{
           )
         );
       }
+
+      $tmp['AdminControllers'] = array();
+      $tmp['AdminControllers']['Push_Notification']= array(
+        'HomeLink' => 'push',
+        'Type' => 'controller',
+        'Name' => 'Push Notification',
+        'Permissions' => array(
+          'ADMIN-HOME'
+        )
+      );
+
       return $tmp;
     } else {
       $tmp[0] = false;

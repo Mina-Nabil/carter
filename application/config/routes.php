@@ -211,6 +211,12 @@ $route['traveltickets/modify/(:num)'] = 'Traveltickets/modifypage/$1';
 $route['edittraveltickets/(:num)'] = 'Traveltickets/edit/$1';
 $route['traveltickets/delete/(:num)'] = 'Traveltickets/delete/$1';
 
+//Controllers
+$route['push'] = 'Push/home';
+$route['push/getAllPn'] = 'Push/getLogs/1';
+$route['push/getTopUsersPn'] = 'Push/getLogs/2';
+$route['push/getSpmsgsPn'] = 'Push/getLogs/3';
+$route['push/sendMsg'] = 'Push/initiateMsg';
 
 
 //API
@@ -235,7 +241,7 @@ $route['api/get_messages/(:num)'] = 'Api/get_messages/$1';
 $route['api/post_messages'] = 'Api/post_messages';
 $route['api/get_favourites/(:num)'] = 'Api/get_favourites/$1';
 $route['api/get_lines_by_districts/(:num)'] = 'Api/get_lines_by_districts/$1';
-$route['api/delete_favourite/(:num)'] = 'Api/delete_favourite/$1';
+$route['api/delete_favourite'] = 'Api/delete_favourite';
 $route['api/add_favourite'] = 'Api/add_favourite';
 $route['api/getFreeCode'] = 'Api/getFreeCode';
 $route['api/requestSpecialBus'] = 'Api/requestSpecialBus';
