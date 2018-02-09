@@ -33,18 +33,28 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function getClient_byID($ID){
+
+          $strSQL = "SELECT CLNT_TAG
+                      FROM Clients
+                      WHERE CLNT_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array()[0]['CLNT_TAG'];
+
+        }
+
         public function getTopBalancedClientsIDs($Percent){
 
           if(!is_numeric($Percent))return "invalidInput";
 
           $queryStr = "SELECT ROUND(COUNT(*) * ? / 100) AS percents FROM clients";
-          $query = $this->db->query($strSQ, array($Percent));
+          $query = $this->db->query($queryStr, array($Percent));
           $res = $query->result_array();
           $Count = $res[0]['percents'];
 
           $strSQL = "SELECT CLNT_ID FROM clients
-                     ORDER BY CLNT_BLNC LIMIT ?";
-          $query = $this->db->query($strSQ, array($Count));
+                     ORDER BY CLNT_BLNC LIMIT {$Count}";
+          $query = $this->db->query($strSQL);
           $res = $query->result_array();
           $ret = array();
           foreach($res as $row){
@@ -58,17 +68,17 @@ class Clients_model extends CI_Model{
           if(!is_numeric($Percent))return "invalidInput";
 
           $queryStr = "SELECT ROUND(COUNT(*) * ? / 100) AS percents FROM clients";
-          $query = $this->db->query($strSQ, array($Percent));
+          $query = $this->db->query($queryStr, array($Percent));
           $res = $query->result_array();
           $Count = $res[0]['percents'];
 
           $strSQL = "SELECT CLNT_TAG FROM clients
-                     ORDER BY CLNT_BLNC LIMIT ? ";
-          $query = $this->db->query($strSQ, array($Counts));
+                     ORDER BY CLNT_BLNC LIMIT {$Count} ";
+          $query = $this->db->query($strSQL);
           $res = $query->result_array();
           $ret = array();
           foreach($res as $row){
-            array_push($ret, $row['CLNT_ID']);
+            array_push($ret, $row['CLNT_TAG']);
           }
           return $ret;
         }

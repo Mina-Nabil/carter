@@ -45,6 +45,9 @@ class Push extends CI_Controller{
     $data['Clients'] = $this->Clients_model->getClients();
     $data['formURL'] = "push/sendMsg";
 
+    //Get Push Counts
+    // Route to Logs Table
+
     $this->load->view('templates/header', $header);
     $this->load->view('controlpages/push', $data);
     $this->load->view('templates/footer');
@@ -54,7 +57,9 @@ class Push extends CI_Controller{
   public function initiateMsg(){
     $messageText = $this->input->post('messageText');
     $messageTitle = $this->input->post('messageTitle');
-    $messageTarget = $this->input->post('messageClient');
+    $value = split('##', $this->input->post('messageClient'));
+    $clientID = $value[0];
+    $messageTarget = $value[1];
 
     $content = array(
       "en" => $messageText,
@@ -72,7 +77,9 @@ class Push extends CI_Controller{
      'included_segments' => array('All'),
      'contents' => $content,
      'headings' => $title
-   );
+      );
+      $this->Pushlogs_model->insertPushlog($messageTitle, $messageText, $this->session->userdata['USRID'], 1, NULL);
+
     }
     else if($messageTarget =='Top'){
 
@@ -85,6 +92,8 @@ class Push extends CI_Controller{
         'contents' => $content,
         'headings' => $title
       );
+      $this->Pushlogs_model->insertPushlog($messageTitle, $messageText, $this->session->userdata['USRID'], 2, NULL);
+
     }
 
     else{
@@ -94,6 +103,8 @@ class Push extends CI_Controller{
         'contents' => $content,
         'headings' => $title
       );
+
+      $this->Pushlogs_model->insertPushlog($messageTitle, $messageText, $this->session->userdata['USRID'], 3, $clientID);
     }
 
     $this->sendData($fields);

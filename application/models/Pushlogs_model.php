@@ -40,6 +40,15 @@ class Pushlogs_model extends CI_Model{
           return $query->result_array();
 
         }
+// TYPE 1 => ALL USERS / TYPE 2 => TopUsers /Type 3 => Specific Users
+        public function getPushlogCount_byType($Type){
+
+          $strSQL = "SELECT COUNT(*) AS TT
+                    FROM Pushlogs WHERE PSHL_TARGET = {$Type}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
 
 
         public function getPushlog_byID($ID){

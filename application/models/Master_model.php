@@ -234,7 +234,7 @@ class Master_model extends CI_Model{
   }
 
     public function user_login($userName, $passWord, $userType){
-      $strSQL = "SELECT COUNT(*) AS EXP FROM users
+      $strSQL = "SELECT COUNT(*) AS EXP, USR_ID FROM users
                 WHERE USR_NAME = '{$userName}' AND USR_TYPE='{$userType}'
                 AND USR_PASS = '{$passWord}'";
 
@@ -243,7 +243,8 @@ class Master_model extends CI_Model{
       if($result[0]['EXP'] == 1){
         $SESSArr = array (
           'USRNAME' => $userName,
-          'USRTYPE' => $userType
+          'USRTYPE' => $userType,
+          'USRID'   => $result[0]['USR_ID']
         );
         $this->session->set_userdata($SESSArr);
         return true;

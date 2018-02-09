@@ -101,7 +101,7 @@
                                             <option value='All' required>AllClients</option>
                                             <option value='Top' required>TopUsers</option>
                                             <?foreach($Clients as $client){?>
-                                                <option value=<?=$client['CLNT_TAG']?> required><?=$client['CLNT_NAME'].' - '. $client['CLNT_TEL']?></option>
+                                                <option value=<?=$client['CLNT_ID'] . '##' . $client['CLNT_TAG']?> required><?=$client['CLNT_NAME'].' - '. $client['CLNT_TEL']?></option>
                                             <?}?>
                                           </select>
                                       </div>
