@@ -28,8 +28,8 @@
                                         if($data['PSHL_TARGET'] == 3) echo 'Specific User';
                                         ?></td>
                                         <td><?=$data['USR_NAME']?></td>
-                                        <td><?=if(isset($data['CLNT_NAME'])) echo $data['CLNT_NAME']?></td>
-                                        <td><?=if(isset($data['CLNT_TEL'])) echo $data['CLNT_TEL']?></td>
+                                        <td><?if(isset($data['CLNT_NAME'])) echo $data['CLNT_NAME']?></td>
+                                        <td><?if(isset($data['CLNT_TEL'])) echo $data['CLNT_TEL']?></td>
                                     </tr>
                                    <?}?>
                                 </tbody>
