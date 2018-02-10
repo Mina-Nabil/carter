@@ -71,7 +71,7 @@ class Push extends CI_Controller{
       $header['ArrURL'] = $result;
     }
 
-    $data['PushLogs'] = $this->Pushlogs_model->getLogs($Type);
+    $data['PushLogs'] = $this->Pushlogs_model->getPushlogsByType($Type);
 
     $data['TableHeaders'] = array(
       'Title',
