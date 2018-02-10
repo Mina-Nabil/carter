@@ -106,7 +106,7 @@ class Push extends CI_Controller{
       );
 
 
-    if($messageTarget == 'All'){
+    if(strcmp($messageTarget, 'All') == 0){
       $fields = array(
      'app_id' => "dadb20f9-3370-4e4d-a44f-d9f844034f0c",
      'included_segments' => array('All'),
@@ -116,7 +116,7 @@ class Push extends CI_Controller{
       $this->Pushlogs_model->insertPushlog($messageTitle, $messageText, $this->session->userdata['USRID'], 1, NULL);
 
     }
-    else if($messageTarget =='Top'){
+    else if(strcmp($messageTarget, 'Top') == 0){
 
 
       $ClientTags = $this->Clients_model->getTopBalancedClientsTags(20);
