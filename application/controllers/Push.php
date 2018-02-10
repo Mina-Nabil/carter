@@ -56,7 +56,7 @@ class Push extends CI_Controller{
   }
 
   public function getLogs($Type){
-echo $Type;
+
     $result = $this->CheckUser('HOME');
     if($result == false){
       // User not logged in
