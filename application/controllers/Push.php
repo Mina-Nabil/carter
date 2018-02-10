@@ -72,6 +72,7 @@ class Push extends CI_Controller{
     }
 
     $data['TableData'] = $this->Pushlogs_model->getPushlogsByType($Type);
+    print_r($data['TableData']);
     $data['Table_Name'] = 'Push History';
 
     $data['TableHeaders'] = array(
