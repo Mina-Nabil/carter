@@ -92,7 +92,7 @@ class Push extends CI_Controller{
   public function initiateMsg(){
     $messageText = $this->input->post('messageText');
     $messageTitle = $this->input->post('messageTitle');
-    $value = split('##', $this->input->post('messageClient'));
+    $value = preg_split('##', $this->input->post('messageClient'));
     $clientID = $value[0];
     $messageTarget = $value[1];
 
