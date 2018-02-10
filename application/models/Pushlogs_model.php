@@ -27,7 +27,7 @@ class Pushlogs_model extends CI_Model{
                         WHERE PSHL_USR_ID = USR_ID AND PSHL_CLNT_ID = CLNT_ID AND PSHL_TARGET = {$Type}";
           }else {
 
-          $strSQL = "SELECT PSHL_ID, PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, USR_NAME, CLNT_TEL, CLNT_NAME
+          $strSQL = "SELECT PSHL_ID, PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, USR_NAME
                       FROM Pushlogs, users
                       WHERE PSHL_USR_ID = USR_ID AND PSHL_TARGET = {$Type}";
           }
