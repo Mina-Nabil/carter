@@ -98,10 +98,10 @@
                                           <label>Client Name</label>
                                           <select class="form-control" name='messageClient' required>
 
-                                            <option value='0##All'>AllClients</option>
-                                            <option value='0##Top'>TopUsers</option>
+                                            <option value='0#%#All'>AllClients</option>
+                                            <option value='0#%#Top'>TopUsers</option>
                                             <?foreach($Clients as $client){?>
-                                                <option value=<?=$client['CLNT_ID'] . '##' . $client['CLNT_TAG']?> required><?=$client['CLNT_NAME'].' - '. $client['CLNT_TEL']?></option>
+                                                <option value=<?=$client['CLNT_ID'] . '#%#' . $client['CLNT_TAG']?> required><?=$client['CLNT_NAME'].' - '. $client['CLNT_TEL']?></option>
                                             <?}?>
                                           </select>
                                       </div>
