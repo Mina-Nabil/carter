@@ -72,7 +72,7 @@ class Push extends CI_Controller{
     }
 
     $data['TableData'] = $this->Pushlogs_model->getPushlogsByType($Type);
-    $data['TableName'] = 'Push History';
+    $data['Table_Name'] = 'Push History';
 
     $data['TableHeaders'] = array(
       'Title',
@@ -93,7 +93,7 @@ class Push extends CI_Controller{
   public function initiateMsg(){
     $messageText = $this->input->post('messageText');
     $messageTitle = $this->input->post('messageTitle');
-    $value = preg_split('#%', $this->input->post('messageClient'));
+    $value = explode('#%', $this->input->post('messageClient'));
     $clientID = $value[0];
     $messageTarget = $value[1];
     print_r($value);
