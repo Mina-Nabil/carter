@@ -56,7 +56,7 @@ class Push extends CI_Controller{
   }
 
   public function getLogs($Type){
-
+echo $Type;
     $result = $this->CheckUser('HOME');
     if($result == false){
       // User not logged in
@@ -96,7 +96,6 @@ class Push extends CI_Controller{
     $value = explode('#%', $this->input->post('messageClient'));
     $clientID = $value[0];
     $messageTarget = $value[1];
-    print_r($value);
     $content = array(
       "en" => $messageText,
 
@@ -105,7 +104,6 @@ class Push extends CI_Controller{
     $title = array(
       "en" => $messageTitle
       );
-      echo $messageTarget;
 
     if(strcmp($messageTarget, 'All') == 0){
       $fields = array(

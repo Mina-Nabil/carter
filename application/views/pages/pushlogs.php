@@ -25,7 +25,7 @@
                                         <td><?
                                         if($data['PSHL_TARGET'] == 1) echo 'All Users';
                                         if($data['PSHL_TARGET'] == 2) echo 'Top Users';
-                                        if($data['PSHL_TARGET'] == 1) echo 'Specific User';
+                                        if($data['PSHL_TARGET'] == 3) echo 'Specific User';
                                         ?></td>
                                         <td><?=$data['USR_NAME']?></td>
                                         <td><?=$data['CLNT_NAME']?></td>
@@ -35,7 +35,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="<?=base_url() . "push"?>" class="btn btn-submit">Back</button>
+                        <a href="<?=base_url() . "push"?>" class="btn btn-primary btn-lg" role="button">Back</a>
                         <!-- /.table-responsive -->
                         <div class="well">
                         </div>
