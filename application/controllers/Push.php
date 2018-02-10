@@ -46,11 +46,46 @@ class Push extends CI_Controller{
     $data['formURL'] = "push/sendMsg";
 
     //Get Push Counts
-    // Route to Logs Table
+    $data['AllUsersCount'] = $this->Pushlogs_model->getPushlogCount_byType(1);
+    $data['TopUsersCount'] = $this->Pushlogs_model->getPushlogCount_byType(2);
+    $data['SpcUsersCount'] = $this->Pushlogs_model->getPushlogCount_byType(3);
 
     $this->load->view('templates/header', $header);
     $this->load->view('controlpages/push', $data);
     $this->load->view('templates/footer');
+  }
+
+  public function getLogs($Type){
+
+    $result = $this->CheckUser('HOME');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 1){
+      // User not permitted
+      $this->load->view('controlpages/push_redirect');
+      return;
+    }
+    else {
+      $header['ArrURL'] = $result;
+    }
+
+    $data['PushLogs'] = $this->Pushlogs_model->getLogs($Type);
+
+    $data['TableHeaders'] = array(
+      'Title',
+      'Text',
+      'Target',
+      'User Name',
+      'Client Name',
+      'Client Telephone',
+    );
+
+    $this->load->view('templates/header', $header);
+    $this->load->view('pages/pushlogs', $data);
+    $this->load->view('templates/footer');
+
   }
 
 

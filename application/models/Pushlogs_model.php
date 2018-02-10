@@ -11,10 +11,20 @@ class Pushlogs_model extends CI_Model{
 
         public function getPushlogs(){
 
-          $strSQL = "SELECT PSHL_ID, PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET
+          $strSQL = "SELECT PSHL_ID, PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, USR_NAME, CLNT_TEL, CLNT_NAME
                       FROM Pushlogs, clients, users
                       WHERE PSHL_USR_ID = USR_ID AND PSHL_CLNT_ID = CLNT_ID";
           $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
+        public function getPushlogsByType($Type){
+
+          $strSQL = "SELECT PSHL_ID, PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, USR_NAME, CLNT_TEL, CLNT_NAME
+                      FROM Pushlogs, clients, users
+                      WHERE PSHL_USR_ID = USR_ID AND PSHL_CLNT_ID = CLNT_ID AND PSHL_TARGET = ?";
+          $query = $this->db->query($strSQL, array($Type));
           return $query->result_array();
 
         }
@@ -46,7 +56,7 @@ class Pushlogs_model extends CI_Model{
           $strSQL = "SELECT COUNT(*) AS TT
                     FROM Pushlogs WHERE PSHL_TARGET = {$Type}";
           $query = $this->db->query($strSQL);
-          return $query->result_array();
+          return $query->result_array()[0]['TT'];
 
         }
 
