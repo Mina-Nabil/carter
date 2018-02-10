@@ -15,7 +15,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-center">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?=$AllUsersCount?></div>
                                     <div>Total PN sent</div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-center">
-                                    <div class="huge">12</div>
+                                    <div class="huge"><?=$TopUsersCount?></div>
                                     <div>Top Users PN</div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-8 text-center">
-                                    <div class="huge">124</div>
+                                    <div class="huge"><?=$SpcUsersCount?></div>
                                     <div>Specific User PN</div>
                                 </div>
                             </div>
