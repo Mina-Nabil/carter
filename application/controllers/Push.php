@@ -96,6 +96,7 @@ class Push extends CI_Controller{
     $value = explode('#%', $this->input->post('messageClient'));
     $clientID = $value[0];
     $messageTarget = $value[1];
+    echo $messageTarget;
     $content = array(
       "en" => $messageText,
 
