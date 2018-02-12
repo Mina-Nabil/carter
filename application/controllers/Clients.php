@@ -165,7 +165,7 @@ class Clients extends CI_Controller{
     $data['CLNT_TEL']    = $Client['CLNT_TEL']   ;
     $data['CLNT_EMAIL']    = $Client['CLNT_EMAIL'] ;
     $data['CLNT_IMG']    = $Client['CLNT_IMG']   ;
-    $data['CLNT_PASS']    = $Client['CLNT_PASS']  ;
+    $data['CLNT_PASS']    = ''  ;
     $data['CLNT_BLNC']    = $Client['CLNT_BLNC']  ;
     $data['CLNT_TAG']    = $Client['CLNT_TAG']   ;
     $data['CLNT_DIST_ID']    = $Client['CLNT_DIST_ID'];
@@ -206,8 +206,12 @@ class Clients extends CI_Controller{
     $clientBalance = $this->input->post('clientBalance');
     $clientTag = $this->input->post('clientTag');
 
-    $this->Clients_model->editClient($ID, $clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
+    $this->Clients_model->editClient($ID, $clientName, $clientTel, $clientEmail, $clientImg,
                                          $clientBalance, $clientTag, $clientDistID);
+
+    if(!is_null($clientPass)){
+      $this-Clients_model->changePassbyID($ID, $clientPass);
+    }
 
     $this->load->view('pages/clients_redirect');
 

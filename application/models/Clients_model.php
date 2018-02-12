@@ -297,11 +297,11 @@ class Clients_model extends CI_Model{
 
         }
 
-        public function editClient($ID, $Name, $Tel, $Email, $Img, $Pass, $Blnc, $Tag, $DistID){
+        public function editClient($ID, $Name, $Tel, $Email, $Img, $Blnc, $Tag, $DistID){
             //NN Tel Email Name CityID
           $strSQL = "UPDATE Clients
                     SET CLNT_NAME = ?, CLNT_TEL = ?, CLNT_DIST_ID = ?, CLNT_EMAIL = ?,
-                        CLNT_IMG   = ?, CLNT_PASS = ?, CLNT_BLNC = ?, CLNT_TAG   = ?
+                        CLNT_IMG   = ?, CLNT_BLNC = ?, CLNT_TAG   = ?
                     WHERE
                         `CLNT_ID`=?";
 
