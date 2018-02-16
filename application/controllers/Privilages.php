@@ -1,7 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPRVG') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller{
+class Privilages extends CI_Controller{
 
   public function __construct()
   {
@@ -9,13 +9,13 @@ class Users extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  private function CheckUser($Function, $PageName = 'Users'){
+  private function CheckUser($Function, $PageUserID = 'Privilages'){
     //Returns header array if user is correct
 
     $userType = $this->session->userdata['USRTYPE'];
     $headerArr = $this->Master_model->getHeaderArr();
     if(!$headerArr[0])   return false;          // If a user is not logged in
-    if (!in_array($userType . '-' . $Function, $headerArr[$PageName]['Permissions'] )) {
+    if (!in_array($userType . '-' . $Function, $headerArr[$PageUserID]['Permissions'] )) {
       // If logged in And not permitted type
       return 1;
 
@@ -25,7 +25,7 @@ class Users extends CI_Controller{
 
   }
 
-  public function home($MSGErr = '', $MSGOK = '')
+  public function home($ID, $MSGErr = '', $MSGOK = '')
   {
 
     $result = $this->CheckUser('HOME');
@@ -35,7 +35,7 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
@@ -43,31 +43,30 @@ class Users extends CI_Controller{
     }
 
 
-    $data['TableData'] = $this->Users_model->getUsers();
+    $data['TableData'] = $this->Privilages_model->getPrivilages($ID);
+
+    $data['USR_ID']    = $ID         ;
 
     $data['TableHeaders'] = array(
-      'ID',
-      'Name',
-      'Type',
-      'Pass',
-      'Privilages',
-      'Edit',
-      'Delete'
+      'Index',
+      'User Name',
+      'Page Type',
+      'Page Name',
     );
 
-    $data['Table_Name'] = 'Users';
-    $data['Url_Name']   = 'users';
+    $data['Table_Name'] = 'Privilages';
+    $data['Url_Name']   = 'privilages';
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/users', $data);
+    $this->load->view('pages/privilages', $data);
     $this->load->view('templates/footer');
 
   }
 
-  public function addpage($MSGErr = '', $MSGOK = ''){
+  public function addpage($UserID, $MSGErr = '', $MSGOK = ''){
 
     $result = $this->CheckUser('ADD');
     if($result == false){
@@ -76,25 +75,28 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
       $header['ArrURL'] = $result;
     }
 
-    $data['USR_ID']      = ''              ;
-    $data['USR_NAME']    = ''              ;
-    $data['USR_TYPE']    = ''              ;
-    $data['USR_PASS']    = ''              ;
+    $data['Users'] = $this->Users_model->getUsers();
+    $data['Pages'] = $this->Pages_model->getPages();
 
-    $data['formURL']      = 'insertusers'  ;
+    $data['PRVG_ID']      = ''     ;
+    $data['PRVG_USR_ID']    = ''   ;
+    $data['PRVG_PAGE_ID']    = ''  ;
+    $data['USR_ID']    = $UserID   ;
+
+    $data['formURL']      = 'insertprivilages'  ;
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/adduser', $data);
+    $this->load->view('pages/addprivilage', $data);
     $this->load->view('templates/footer');
   }
 
@@ -107,20 +109,23 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
       $header['ArrURL'] = $result;
     }
 
-    $userName = $this->input->post('userName');
-    $userType = $this->input->post('userType');
-    $userPass = $this->input->post('userPass');
 
-    $this->Users_model->insertUser($userName, $userType, $userPass);
+    $this->Privilages_model->deletePrivilage($privilageUserID);
 
-    $this->load->view('pages/users_redirect');
+    $privilageUserID    =  $this->input->post('privilageUserID');
+    $privilagePageID  =  $this->input->post('privilagePageID');
+
+    $this->Privilages_model->insertPrivilage($privilageUserID, $privilagePageID);
+
+    $data['privilageUserID'] = $privilageUserID;
+    $this->load->view('pages/privilages_redirect', $data);
 
   }
 
@@ -134,27 +139,26 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
       $header['ArrURL'] = $result;
     }
 
-    $User = $this->Users_model->getUser_byID($ID)[0];
+    $data['Privilage'] = $this->Privilages_model->getPrivilage_byUserID($ID);
 
-    $data['USR_ID']      = $User['USR_ID']  ;
-    $data['USR_NAME']    = $User['USR_NAME']  ;
-    $data['USR_TYPE']    = $User['USR_TYPE']   ;
-    $data['USR_PASS']    = 'XXXXXX' ;
+    $data['Users']          = $this->Users_model->getUsers();
+    $data['Pages']       = $this->Pages_model->getPages();
+    $data['PRVG_USR_ID']   = $ID;
 
-    $data['formURL']      = 'editusers/' . $ID  ;
+    $data['formURL']      = 'editprivilages/' . $ID  ;
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/adduser', $data);
+    $this->load->view('pages/addprivilage', $data);
     $this->load->view('templates/footer');
 
   }
@@ -168,20 +172,28 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
       $header['ArrURL'] = $result;
     }
 
-    $userName = $this->input->post('userName');
-    $userType = $this->input->post('userType');
-    $userPass = $this->input->post('userPass');
 
-    $this->Users_model->editUser($ID, $userName, $userPass, $userType);
 
-    $this->load->view('pages/users_redirect');
+    $privilageUserID    =  $this->input->post('privilageUserID');
+    $privilagePages  =  $this->input->post('privilagePageID');
+    $privilageRelTime   =  $this->input->post('privilageRelTime');
+    $i = 0;
+
+      $this->Privilages_model->deletePrivilage($privilageUserID);
+    foreach ($privilagePages as $key => $value) {
+       $this->Privilages_model->insertPrivilage($privilageUserID, $i, $privilageRelTime[$key], $value);
+       $i++;
+    }
+    $data['privilageUserID'] = $privilageUserID;
+    $this->load->view('pages/privilages_redirect', $data);
+
 
   }
 
@@ -195,15 +207,15 @@ class Users extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/users_redirect');
+      $this->load->view('pages/privilages_redirect');
       return;
     }
     else {
       $header['ArrURL'] = $result;
     }
 
-    $this->Users_model->deleteUser($ID);
-    $this->load->view('pages/users_redirect');
+    $this->Privilages_model->deletePrivilage($ID);
+    $this->load->view('pages/privilages_redirect');
 
   }
 }

@@ -131,6 +131,14 @@ $route['paths/modify/(:num)'] = 'Paths/modifypage/$1';
 $route['editpaths/(:num)'] = 'Paths/edit/$1';
 $route['paths/delete/(:num)'] = 'Paths/delete/$1';
 
+
+//Privilages ROUTES
+$route['privilages'] = 'Privilages/home/1';
+$route['privilages/(:num)'] = 'Privilages/home/$1';
+$route['addprivilages/(:num)'] = 'Privilages/addpage/$1';
+$route['insertprivilages'] = 'Privilages/insert';
+$route['privilages/delete/(:num)'] = 'Privilages/delete/$1';
+
 //Articles ROUTES
 $route['articles'] = 'Articles/home';
 $route['addarticles'] = 'Articles/addpage';

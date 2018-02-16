@@ -41,11 +41,13 @@ class Faqs_model extends CI_Model{
         public function editFaqs($ID, $Title, $Text, $ArabicTitle, $ArbcText){
             //NN Text ArabicTitle Title DistrictID
           $strSQL = "UPDATE Faqs
-                    SET FAQS_TITLE = ?, FAQS_ARBC_TITLE = ?,
-                        FAQS_TEXT = ?, FAQS_ARBC_TEXT = ?
+                    SET FAQS_TITLE = ?,
+                        FAQS_TEXT = ?,
+                        FAQS_ARBC_TITLE = ?,
+                        FAQS_ARBC_TEXT = ?
                     WHERE
                         `FAQS_ID`= ? ";
-                        
+
           $inputs = array($Title, $Text, $ArabicTitle, $ArbcText, $ID);
           $query = $this->db->query($strSQL, $inputs);
 

@@ -49,8 +49,8 @@ class Buses extends CI_Controller{
       'ID',
       'Type',
       'Driver',
-      'Plate Number',
       'Seats Number',
+      'Plate Number',
       'Edit',
       'Delete'
     );

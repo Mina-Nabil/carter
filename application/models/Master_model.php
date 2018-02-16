@@ -252,4 +252,14 @@ class Master_model extends CI_Model{
         return false;
       }
     }
+
+
+    public function get_pages($UserID){
+
+    }
+
+
+
+
+    
   }

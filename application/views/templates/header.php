@@ -84,20 +84,185 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                            <a href="#">
-                              <i class="fa fa-edit fa-fw"></i> Admin Controls <span class="fa arrow"></span>
-                            </a>
-                              <ul class="nav nav-second-level">
-                                  <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                  foreach($ArrControlURL as $url){?>
-                                    <?if(isset($url['Name'])){?>
-                                    <li>
-                                      <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
-                                    </li>
-                                    <?}?>
-                                <?}?>
-                            </ul>
+                      <a href="#">
+                        <i class="fa fa-home fa-fw"></i> Home <span class="fa arrow"></span>
+                      </a>
+                        <ul class="nav nav-second-level">
+                          <li>
+                            <a href="home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="home"><i class="fa fa-globe fa-fw"></i> Push Notifications</a>
+                          </li>
+                        </ul>
                       </li>
+
+                      <li>
+                              <a href="#">
+                                <i class="fa fa-table fa-fw"></i> Database <span class="fa arrow"></span>
+                              </a>
+                                <ul class="nav nav-second-level">
+                                    <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                    foreach($ArrControlURL as $url){?>
+                                      <?if(isset($url['Name'])){?>
+                                      <li>
+                                        <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                      </li>
+                                      <?}?>
+                                  <?}?>
+                              </ul>
+                        </li>
+
+                        <li>
+                                <a href="#">
+                                  <i class="fa fa-tasks fa-fw"></i> Live Lines <span class="fa arrow"></span>
+                                </a>
+                                  <ul class="nav nav-second-level">
+                                      <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                      foreach($ArrControlURL as $url){?>
+                                        <?if(isset($url['Name'])){?>
+                                        <li>
+                                          <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                        </li>
+                                        <?}?>
+                                    <?}?>
+                                </ul>
+                          </li>
+
+                      <li>
+                              <a href="#">
+                                <i class="fa fa-barcode fa-fw"></i> Promo Codes <span class="fa arrow"></span>
+                              </a>
+                                <ul class="nav nav-second-level">
+                                    <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                    foreach($ArrControlURL as $url){?>
+                                      <?if(isset($url['Name'])){?>
+                                      <li>
+                                        <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                      </li>
+                                      <?}?>
+                                  <?}?>
+                              </ul>
+                        </li>
+                        <li>
+                                <a href="#">
+                                  <i class="fa fa-file-word-o fa-fw"></i> Articles <span class="fa arrow"></span>
+                                </a>
+                                  <ul class="nav nav-second-level">
+                                      <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                      foreach($ArrControlURL as $url){?>
+                                        <?if(isset($url['Name'])){?>
+                                        <li>
+                                          <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                        </li>
+                                        <?}?>
+                                    <?}?>
+                                </ul>
+                          </li>
+                          <li>
+                                  <a href="#">
+                                    <i class="fa fa-child fa-fw"></i> Clients <span class="fa arrow"></span>
+                                  </a>
+                                    <ul class="nav nav-second-level">
+                                        <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                        foreach($ArrControlURL as $url){?>
+                                          <?if(isset($url['Name'])){?>
+                                          <li>
+                                            <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                          </li>
+                                          <?}?>
+                                      <?}?>
+                                  </ul>
+                            </li>
+                            <li>
+                                    <a href="#">
+                                      <i class="fa fa-car fa-fw"></i> Drivers <span class="fa arrow"></span>
+                                    </a>
+                                      <ul class="nav nav-second-level">
+                                          <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                          foreach($ArrControlURL as $url){?>
+                                            <?if(isset($url['Name'])){?>
+                                            <li>
+                                              <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                            </li>
+                                            <?}?>
+                                        <?}?>
+                                    </ul>
+                              </li>
+                            <li>
+                                    <a href="#">
+                                      <i class="fa fa-life-saver fa-fw"></i> Customer Support <span class="fa arrow"></span>
+                                    </a>
+                                      <ul class="nav nav-second-level">
+                                          <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                          foreach($ArrControlURL as $url){?>
+                                            <?if(isset($url['Name'])){?>
+                                            <li>
+                                              <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                            </li>
+                                            <?}?>
+                                        <?}?>
+                                    </ul>
+                              </li>
+                              <li>
+                                      <a href="#">
+                                        <i class="fa fa-money fa-fw"></i> Finance <span class="fa arrow"></span>
+                                      </a>
+                                        <ul class="nav nav-second-level">
+                                            <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                            foreach($ArrControlURL as $url){?>
+                                              <?if(isset($url['Name'])){?>
+                                              <li>
+                                                <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                              </li>
+                                              <?}?>
+                                          <?}?>
+                                      </ul>
+                                </li>
+                                <li>
+                                        <a href="#">
+                                          <i class="fa fa-line-chart fa-fw"></i> Reports <span class="fa arrow"></span>
+                                        </a>
+                                          <ul class="nav nav-second-level">
+                                              <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                              foreach($ArrControlURL as $url){?>
+                                                <?if(isset($url['Name'])){?>
+                                                <li>
+                                                  <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                </li>
+                                                <?}?>
+                                            <?}?>
+                                        </ul>
+                                  </li>
+                                  <li>
+                                          <a href="#">
+                                            <i class="fa fa-cc fa-fw"></i> About Us <span class="fa arrow"></span>
+                                          </a>
+                                            <ul class="nav nav-second-level">
+                                                <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                                foreach($ArrControlURL as $url){?>
+                                                  <?if(isset($url['Name'])){?>
+                                                  <li>
+                                                    <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                  </li>
+                                                  <?}?>
+                                              <?}?>
+                                          </ul>
+                                    </li>
+                                    <li>
+                                      <a href="#">
+                                              <i class="fa fa-group fa-fw"></i> Users <span class="fa arrow"></span>
+                                            </a>
+                                              <ul class="nav nav-second-level">
+                                                  <?$ArrControlURL = $ArrURL['AdminControllers'];
+                                                  foreach($ArrControlURL as $url){?>
+                                                    <?if(isset($url['Name'])){?>
+                                                    <li>
+                                                      <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                    </li>
+                                                    <?}?>
+                                                <?}?>
+                                            </ul>
+                                      </li>
+
                     <li>
                       <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                      </li>

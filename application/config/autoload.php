@@ -136,4 +136,4 @@ $autoload['model'] = array('Cities_model', 'Districts_model', 'Master_model', 'C
                           'Users_model', 'Stations_model', 'Lines_model', 'Paths_model', 'Articles_model', 'Aboutus_model',
                           'Drivers_model', 'Buses_model', 'Faqs_model', 'Messages_model', 'LiveLines_model',
                           'Favourite_lines_model', 'Traveltickets_model', 'Linerequests_model',  'Notifications_model'
-                        ,  'Pushlogs_model');
+                        ,  'Pushlogs_model', 'Privilages_model');
