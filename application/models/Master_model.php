@@ -201,6 +201,18 @@ class Master_model extends CI_Model{
       );
 
 
+      $tmp['Privilages'] = array(
+        'HomeLink' => 'privilages',
+        'AddLink' => 'addprivilages',
+        'Type' => 'table',
+        'Name' => 'Privilages',
+        'Permissions' => array(
+          'ADMIN-HOME', 'ADMIN-ADD', 'ADMIN-EDIT', 'ADMIN-DEL',
+          'USER-HOME', 'USER-ADD'
+        )
+      );
+
+
       if($this->session->userdata['USRNAME'] == 'admin'){
         $tmp['Users'] = array(
           'HomeLink' => 'users',
@@ -261,5 +273,5 @@ class Master_model extends CI_Model{
 
 
 
-    
+
   }

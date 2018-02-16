@@ -20,18 +20,15 @@
                                 <tbody>
                                   <?foreach($TableData as $data){?>
                                     <tr class="odd gradeX">
-                                        <td><?=$data['USR_ID']?></td>
-                                        <td><?=$data['USR_NAME']?></td>
-                                        <td><?=$data['USR_TYPE']?></td>
-                                        <td>XXXXXX</td>
-                                        <td class="center"><a href='<?=base_url() . 'privilages/' . $data['USR_ID']?>'><img src=<?=base_url() . 'images/pages.png'?> style='width:30px;height:30px;'></a></td>
-                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['USR_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
-                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['USR_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
+                                      <td><?=$data['PAGE_TYPE']?></td>
+                                      <td><?=$data['PAGE_NAME']?></td>
+                                      <td><?=$data['USR_NAME']?></td>
                                     </tr>
                                    <?}?>
                                 </tbody>
                             </table>
                         </div>
+                        <a href="<?=base_url() . "users"?>" class="btn btn-primary btn-lg" role="button">Back</a>
                         <!-- /.table-responsive -->
                         <div class="well">
                         </div>

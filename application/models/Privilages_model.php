@@ -11,7 +11,7 @@ class Privilages_model extends CI_Model{
 
         public function getPrivilage_Pages(){
 
-          $strSQL = "SELECT PRVG_ID, PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
+          $strSQL = "SELECT PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
                       FROM privilages, karter.pages, users
                       WHERE PRVG_PAGE_ID = PAGE_ID
                       AND PRVG_USR_ID = USR_ID ";
@@ -20,9 +20,9 @@ class Privilages_model extends CI_Model{
 
         }
 
-        public function getPrivilage_Page_byUserID($ID){
+        public function getPrivilage_byUserID($ID){
 
-          $strSQL = "SELECT PRVG_ID, PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
+          $strSQL = "SELECT PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
                     FROM privilages, karter.pages, users
                     WHERE PRVG_PAGE_ID = PAGE_ID AND PRVG_USR_ID = USR_ID
                     AND  PRVG_USR_ID = {$ID}";
@@ -33,7 +33,7 @@ class Privilages_model extends CI_Model{
 
         public function getPrivilagesByPage_byUserID($ID, $Type){
 
-          $strSQL = "SELECT PRVG_ID, PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
+          $strSQL = "SELECT PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
                     FROM privilages, karter.pages, users
                     WHERE PRVG_PAGE_ID = PAGE_ID AND PRVG_USR_ID = USR_ID AND PAGE_TYPE = ?
                     AND  PRVG_USR_ID = ?";
@@ -71,11 +71,6 @@ class Privilages_model extends CI_Model{
           $inputs = array($PageID, $UserID);
           $query = $this->db->query($strSQL, $inputs);
           return $query;
-        }
-
-        public function deletePrivilage_Page($ID){
-          $strSQL = "DELETE FROM privilages WHERE PRVG_ID = {$ID}";
-          $query = $this->db->query($strSQL);
         }
 
         public function deletePrivilage_PageByPageAndUser($UserID, $PageID){

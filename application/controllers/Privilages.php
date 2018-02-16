@@ -1,5 +1,5 @@
 <?php
-defined('BASEPRVG') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Privilages extends CI_Controller{
 
@@ -43,15 +43,14 @@ class Privilages extends CI_Controller{
     }
 
 
-    $data['TableData'] = $this->Privilages_model->getPrivilages($ID);
+    $data['TableData'] = $this->Privilages_model->getPrivilage_byUserID($ID);
 
     $data['USR_ID']    = $ID         ;
 
     $data['TableHeaders'] = array(
-      'Index',
-      'User Name',
       'Page Type',
       'Page Name',
+      'User Name',
     );
 
     $data['Table_Name'] = 'Privilages';
@@ -116,9 +115,6 @@ class Privilages extends CI_Controller{
       $header['ArrURL'] = $result;
     }
 
-
-    $this->Privilages_model->deletePrivilage($privilageUserID);
-
     $privilageUserID    =  $this->input->post('privilageUserID');
     $privilagePageID  =  $this->input->post('privilagePageID');
 
@@ -130,75 +126,7 @@ class Privilages extends CI_Controller{
   }
 
 
-  public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
-
-    $result = $this->CheckUser('EDIT');
-    if($result == false){
-      // User not logged in
-      $this->load->view("login_redirect");
-      return;
-    }else if($result == 1){
-      // User not permitted
-      $this->load->view('pages/privilages_redirect');
-      return;
-    }
-    else {
-      $header['ArrURL'] = $result;
-    }
-
-    $data['Privilage'] = $this->Privilages_model->getPrivilage_byUserID($ID);
-
-    $data['Users']          = $this->Users_model->getUsers();
-    $data['Pages']       = $this->Pages_model->getPages();
-    $data['PRVG_USR_ID']   = $ID;
-
-    $data['formURL']      = 'editprivilages/' . $ID  ;
-
-    $data['MSGOK']      = $MSGOK  ;
-    $data['MSGErr']     = $MSGErr ;
-
-    $this->load->view('templates/header', $header);
-    $this->load->view('pages/addprivilage', $data);
-    $this->load->view('templates/footer');
-
-  }
-
-  public function edit($ID){
-
-    $result = $this->CheckUser('EDIT');
-    if($result == false){
-      // User not logged in
-      $this->load->view("login_redirect");
-      return;
-    }else if($result == 1){
-      // User not permitted
-      $this->load->view('pages/privilages_redirect');
-      return;
-    }
-    else {
-      $header['ArrURL'] = $result;
-    }
-
-
-
-    $privilageUserID    =  $this->input->post('privilageUserID');
-    $privilagePages  =  $this->input->post('privilagePageID');
-    $privilageRelTime   =  $this->input->post('privilageRelTime');
-    $i = 0;
-
-      $this->Privilages_model->deletePrivilage($privilageUserID);
-    foreach ($privilagePages as $key => $value) {
-       $this->Privilages_model->insertPrivilage($privilageUserID, $i, $privilageRelTime[$key], $value);
-       $i++;
-    }
-    $data['privilageUserID'] = $privilageUserID;
-    $this->load->view('pages/privilages_redirect', $data);
-
-
-  }
-
-
-  public function delete($ID){
+  public function delete($PageID, $UserID){
 
     $result = $this->CheckUser('DEL');
     if($result == false){
@@ -214,7 +142,7 @@ class Privilages extends CI_Controller{
       $header['ArrURL'] = $result;
     }
 
-    $this->Privilages_model->deletePrivilage($ID);
+    $this->Privilages_model->deletePrivilage_PageByPageAndUser($PageID, $UserID);
     $this->load->view('pages/privilages_redirect');
 
   }

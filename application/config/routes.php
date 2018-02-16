@@ -137,7 +137,7 @@ $route['privilages'] = 'Privilages/home/1';
 $route['privilages/(:num)'] = 'Privilages/home/$1';
 $route['addprivilages/(:num)'] = 'Privilages/addpage/$1';
 $route['insertprivilages'] = 'Privilages/insert';
-$route['privilages/delete/(:num)'] = 'Privilages/delete/$1';
+$route['privilages/delete/(:num)/(:num)'] = 'Privilages/delete/$1/$2';
 
 //Articles ROUTES
 $route['articles'] = 'Articles/home';
