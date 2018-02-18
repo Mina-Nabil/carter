@@ -25,6 +25,35 @@ class Paths extends CI_Controller{
 
   }
 
+  public function pickline(){
+    $result = $this->CheckUser('HOME');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 1){
+      // User not permitted
+      $this->load->view('pages/paths_redirect');
+      return;
+    }
+    else {
+      $header['ArrURL'] = $result;
+    }
+
+    $data['Lines'] = $this->Lines_model->getLines();
+
+    $this->load->view('templates/header', $header);
+    $this->load->view('controlpages/pickLine', $data);
+    $this->load->view('templates/footer');
+
+
+  }
+
+  public function pathredirect(){
+    $this->home($this->input->post('ID'));
+    return;
+  }
+
   public function home($ID, $MSGErr = '', $MSGOK = '')
   {
 

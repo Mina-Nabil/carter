@@ -20,6 +20,15 @@ class Privilages_model extends CI_Model{
 
         }
 
+        public function getAllPageIDs(){
+
+          $strSQL = "SELECT PAGE_ID
+                      FROM karter.pages";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
         public function getPrivilage_byUserID($ID){
 
           $strSQL = "SELECT PRVG_PAGE_ID, PRVG_USR_ID, PAGE_NAME, USR_NAME, PAGE_URL, PAGE_TYPE
@@ -54,6 +63,20 @@ class Privilages_model extends CI_Model{
 
         }
 
+        public function getPrivilageNames_PageURL_byUserID($ID){
+
+          $strSQL = "SELECT PAGE_URL
+                    FROM privilages, karter.pages, users
+                    WHERE PRVG_PAGE_ID = PAGE_ID AND PRVG_USR_ID = USR_ID
+                    AND  PRVG_USR_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          $result = $query->result_array();
+          $ret = array();
+          foreach ($result as $row) array_push($ret, $row['PAGE_URL']);
+          return $ret;
+
+        }
+
 
         public function isPrivilage($UserID, $PageID){
           $strSQL = "SELECT Count(*) as res FROM privilages
@@ -62,8 +85,16 @@ class Privilages_model extends CI_Model{
                      return $query->result_array()[0]['res'];
         }
 
+        public function addAllPrivilages($User_ID){
+          $IDs = $this->getAllPageIDs();
+          foreach($IDs as $id){
+            $this->insertPrivilage($User_ID, $id['PAGE_ID']);
+          }
+          return 1;
+        }
 
-        public function insertPrivilage_Page($UserID, $PageID){
+
+        public function insertPrivilage($UserID, $PageID){
             //NN Time BusID Name PageID
           $strSQL = "INSERT INTO privilages (PRVG_PAGE_ID, PRVG_USR_ID)
                      VALUES (?, ?)";

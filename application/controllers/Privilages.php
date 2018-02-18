@@ -95,7 +95,7 @@ class Privilages extends CI_Controller{
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addprivilage', $data);
+    $this->load->view('pages/addprivilages', $data);
     $this->load->view('templates/footer');
   }
 
@@ -117,8 +117,16 @@ class Privilages extends CI_Controller{
 
     $privilageUserID    =  $this->input->post('privilageUserID');
     $privilagePageID  =  $this->input->post('privilagePageID');
+    $AllPriv          = $this->input->post('allPriv');
 
-    $this->Privilages_model->insertPrivilage($privilageUserID, $privilagePageID);
+    if($AllPriv == 1){
+      $this->Privilages_model->deletePrivilage_User($privilageUserID);
+      $this->Privilages_model->addAllPrivilages($privilageUserID);
+    }
+    else {
+      $this->Privilages_model->insertPrivilage($privilageUserID, $privilagePageID);  
+    }
+
 
     $data['privilageUserID'] = $privilageUserID;
     $this->load->view('pages/privilages_redirect', $data);

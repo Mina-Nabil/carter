@@ -16,6 +16,7 @@
         return;
       }
       $header['ArrURL'] = $this->Master_model->getHeaderArr();
+
       $data["MSGErr"] = $MSGErr;
 
       $this->load->view('pages/login', $data);
@@ -34,6 +35,7 @@
         return;
       }
       $header['ArrURL'] = $this->Master_model->getHeaderArr();
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
 
       $this->load->view('templates/header', $header);
       $this->load->view('pages/home');

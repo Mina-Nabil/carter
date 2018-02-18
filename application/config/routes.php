@@ -123,7 +123,8 @@ $route['editlivelines/(:num)'] = 'LiveLines/edit/$1';
 $route['livelines/delete/(:num)'] = 'LiveLines/delete/$1';
 
 //Paths ROUTES
-$route['paths'] = 'Paths/home/1';
+$route['paths'] = 'Paths/pickline';
+$route['paths/redirect'] = 'Paths/pathredirect';
 $route['paths/(:num)'] = 'Paths/home/$1';
 $route['addpaths/(:num)'] = 'Paths/addpage/$1';
 $route['insertpaths'] = 'Paths/insert';

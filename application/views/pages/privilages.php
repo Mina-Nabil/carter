@@ -29,6 +29,7 @@
                             </table>
                         </div>
                         <a href="<?=base_url() . "users"?>" class="btn btn-primary btn-lg" role="button">Back</a>
+                        <a href="<?=base_url() . "addprivilages/" . $USR_ID?>" class="btn btn-primary btn-lg" role="button">Add</a>
                         <!-- /.table-responsive -->
                         <div class="well">
                         </div>

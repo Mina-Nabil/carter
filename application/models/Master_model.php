@@ -245,6 +245,106 @@ class Master_model extends CI_Model{
     }
   }
 
+  public function checkPageByUrl($Pageurl){
+    return in_array($Pageurl, $this->session->userdata['USRPAGES']);
+  }
+
+  public function getPagesByType(){
+
+    $Pages = $this->Privilages_model->getPrivilage_byUserID($this->session->userdata['USRID']);
+
+    $OrganizedPages = array();
+
+    foreach ($Pages as $page){
+      switch ($page['PAGE_TYPE']) {
+
+        case 'customersupport':
+        if(isset($OrganizedPages['customersupport'])) {
+          array_push($OrganizedPages['customersupport'], $page);
+        }
+        else {
+          $OrganizedPages['customersupport'] = array($page);
+        }
+
+        if(isset($OrganizedPages['users'])) {
+          array_push($OrganizedPages['users'], $page);
+        }
+        else {
+          $OrganizedPages['users'] = array($page);
+        }
+
+        if(isset($OrganizedPages['articles'])) {
+          array_push($OrganizedPages['articles'], $page);
+        }
+        else {
+          $OrganizedPages['articles'] = array($page);
+        }
+
+        if(isset($OrganizedPages['livelines'])) {
+          array_push($OrganizedPages['livelines'], $page);
+        }
+        else {
+          $OrganizedPages['livelines'] = array($page);
+        }
+
+        if(isset($OrganizedPages['clients'])) {
+          array_push($OrganizedPages['clients'], $page);
+        }
+        else {
+          $OrganizedPages['clients'] = array($page);
+        }
+
+        if(isset($OrganizedPages['database'])) {
+          array_push($OrganizedPages['database'], $page);
+        }
+        else {
+          $OrganizedPages['database'] = array($page);
+        }
+
+        if(isset($OrganizedPages['promocodes'])) {
+          array_push($OrganizedPages['promocodes'], $page);
+        }
+        else {
+          $OrganizedPages['promocodes'] = array($page);
+        }
+
+        if(isset($OrganizedPages['drivers'])) {
+          array_push($OrganizedPages['drivers'], $page);
+        }
+        else {
+          $OrganizedPages['drivers'] = array($page);
+        }
+
+        if(isset($OrganizedPages['finance'])) {
+          array_push($OrganizedPages['finance'], $page);
+        }
+        else {
+          $OrganizedPages['finance'] = array($page);
+        }
+
+        if(isset($OrganizedPages['reports'])) {
+          array_push($OrganizedPages['reports'], $page);
+        }
+        else {
+          $OrganizedPages['reports'] = array($page);
+        }
+
+        if(isset($OrganizedPages['aboutus'])) {
+          array_push($OrganizedPages['aboutus'], $page);
+        }
+        else {
+          $OrganizedPages['aboutus'] = array($page);
+        }
+
+        default:
+          # code...
+          break;
+      }
+    }
+
+    return $OrganizedPages;
+  }
+
     public function user_login($userName, $passWord, $userType){
       $strSQL = "SELECT COUNT(*) AS EXP, USR_ID FROM users
                 WHERE USR_NAME = '{$userName}' AND USR_TYPE='{$userType}'
@@ -254,20 +354,16 @@ class Master_model extends CI_Model{
       $result = $query->result_array();
       if($result[0]['EXP'] == 1){
         $SESSArr = array (
-          'USRNAME' => $userName,
-          'USRTYPE' => $userType,
-          'USRID'   => $result[0]['USR_ID']
+          'USRNAME'  => $userName,
+          'USRTYPE'  => $userType,
+          'USRID'    => $result[0]['USR_ID'],
+          'USRPAGES' => $this->Privilages_model->getPrivilageNames_PageURL_byUserID($result[0]['USR_ID'])
         );
         $this->session->set_userdata($SESSArr);
         return true;
       }else {
         return false;
       }
-    }
-
-
-    public function get_pages($UserID){
-
     }
 
 

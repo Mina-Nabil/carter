@@ -100,13 +100,14 @@
                                 <i class="fa fa-table fa-fw"></i> Database <span class="fa arrow"></span>
                               </a>
                                 <ul class="nav nav-second-level">
-                                    <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                    foreach($ArrControlURL as $url){?>
-                                      <?if(isset($url['Name'])){?>
+                                  <?if(isset($OrgArr['database']) ) {
+                                    foreach($OrgArr['database'] as $url){?>
+                                      <?if(isset($url['PAGE_NAME'])){?>
                                       <li>
-                                        <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                        <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                       </li>
                                       <?}?>
+                                    <?}?>
                                   <?}?>
                               </ul>
                         </li>
@@ -116,13 +117,14 @@
                                   <i class="fa fa-tasks fa-fw"></i> Live Lines <span class="fa arrow"></span>
                                 </a>
                                   <ul class="nav nav-second-level">
-                                      <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                      foreach($ArrControlURL as $url){?>
-                                        <?if(isset($url['Name'])){?>
+                                    <?if(isset($OrgArr['livelines']) ) {
+                                      foreach($OrgArr['livelines'] as $url){?>
+                                        <?if(isset($url['PAGE_NAME'])){?>
                                         <li>
-                                          <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                          <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                         </li>
                                         <?}?>
+                                      <?}?>
                                     <?}?>
                                 </ul>
                           </li>
@@ -132,13 +134,14 @@
                                 <i class="fa fa-barcode fa-fw"></i> Promo Codes <span class="fa arrow"></span>
                               </a>
                                 <ul class="nav nav-second-level">
-                                    <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                    foreach($ArrControlURL as $url){?>
-                                      <?if(isset($url['Name'])){?>
+                                  <?if(isset($OrgArr['promocode']) ) {
+                                    foreach($OrgArr['promocodes'] as $url){?>
+                                      <?if(isset($url['PAGE_NAME'])){?>
                                       <li>
-                                        <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                        <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                       </li>
                                       <?}?>
+                                    <?}?>
                                   <?}?>
                               </ul>
                         </li>
@@ -147,13 +150,14 @@
                                   <i class="fa fa-file-word-o fa-fw"></i> Articles <span class="fa arrow"></span>
                                 </a>
                                   <ul class="nav nav-second-level">
-                                      <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                      foreach($ArrControlURL as $url){?>
-                                        <?if(isset($url['Name'])){?>
+                                    <?if(isset($OrgArr['articles']) ) {
+                                      foreach($OrgArr['articles'] as $url){?>
+                                        <?if(isset($url['PAGE_NAME'])){?>
                                         <li>
-                                          <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                          <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                         </li>
                                         <?}?>
+                                      <?}?>
                                     <?}?>
                                 </ul>
                           </li>
@@ -162,13 +166,14 @@
                                     <i class="fa fa-child fa-fw"></i> Clients <span class="fa arrow"></span>
                                   </a>
                                     <ul class="nav nav-second-level">
-                                        <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                        foreach($ArrControlURL as $url){?>
-                                          <?if(isset($url['Name'])){?>
+                                      <?if(isset($OrgArr['clients']) ) {
+                                        foreach($OrgArr['clients'] as $url){?>
+                                          <?if(isset($url['PAGE_NAME'])){?>
                                           <li>
-                                            <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                            <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                           </li>
                                           <?}?>
+                                        <?}?>
                                       <?}?>
                                   </ul>
                             </li>
@@ -177,13 +182,14 @@
                                       <i class="fa fa-car fa-fw"></i> Drivers <span class="fa arrow"></span>
                                     </a>
                                       <ul class="nav nav-second-level">
-                                          <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                          foreach($ArrControlURL as $url){?>
-                                            <?if(isset($url['Name'])){?>
+                                        <?if(isset($OrgArr['drivers']) ) {
+                                          foreach($OrgArr['drivers'] as $url){?>
+                                            <?if(isset($url['PAGE_NAME'])){?>
                                             <li>
-                                              <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                              <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                             </li>
                                             <?}?>
+                                          <?}?>
                                         <?}?>
                                     </ul>
                               </li>
@@ -192,13 +198,14 @@
                                       <i class="fa fa-life-saver fa-fw"></i> Customer Support <span class="fa arrow"></span>
                                     </a>
                                       <ul class="nav nav-second-level">
-                                          <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                          foreach($ArrControlURL as $url){?>
-                                            <?if(isset($url['Name'])){?>
+                                        <?if(isset($OrgArr['customersupport']) ) {
+                                          foreach($OrgArr['customersupport'] as $url){?>
+                                            <?if(isset($url['PAGE_NAME'])){?>
                                             <li>
-                                              <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                              <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                             </li>
                                             <?}?>
+                                          <?}?>
                                         <?}?>
                                     </ul>
                               </li>
@@ -207,13 +214,14 @@
                                         <i class="fa fa-money fa-fw"></i> Finance <span class="fa arrow"></span>
                                       </a>
                                         <ul class="nav nav-second-level">
-                                            <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                            foreach($ArrControlURL as $url){?>
-                                              <?if(isset($url['Name'])){?>
+                                          <?if(isset($OrgArr['finance']) ) {
+                                            foreach($OrgArr['finance'] as $url){?>
+                                              <?if(isset($url['PAGE_NAME'])){?>
                                               <li>
-                                                <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                               </li>
                                               <?}?>
+                                            <?}?>
                                           <?}?>
                                       </ul>
                                 </li>
@@ -222,13 +230,14 @@
                                           <i class="fa fa-line-chart fa-fw"></i> Reports <span class="fa arrow"></span>
                                         </a>
                                           <ul class="nav nav-second-level">
-                                              <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                              foreach($ArrControlURL as $url){?>
-                                                <?if(isset($url['Name'])){?>
+                                            <?if(isset($OrgArr['reports']) ) {
+                                              foreach($OrgArr['reports'] as $url){?>
+                                                <?if(isset($url['PAGE_NAME'])){?>
                                                 <li>
-                                                  <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                  <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                                 </li>
                                                 <?}?>
+                                              <?}?>
                                             <?}?>
                                         </ul>
                                   </li>
@@ -237,13 +246,14 @@
                                             <i class="fa fa-cc fa-fw"></i> About Us <span class="fa arrow"></span>
                                           </a>
                                             <ul class="nav nav-second-level">
-                                                <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                                foreach($ArrControlURL as $url){?>
-                                                  <?if(isset($url['Name'])){?>
+                                              <?if(isset($OrgArr['aboutus']) ) {
+                                                foreach($OrgArr['aboutus'] as $url){?>
+                                                  <?if(isset($url['PAGE_NAME'])){?>
                                                   <li>
-                                                    <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                    <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                                   </li>
                                                   <?}?>
+                                                <?}?>
                                               <?}?>
                                           </ul>
                                     </li>
@@ -252,13 +262,14 @@
                                               <i class="fa fa-group fa-fw"></i> Users <span class="fa arrow"></span>
                                             </a>
                                               <ul class="nav nav-second-level">
-                                                  <?$ArrControlURL = $ArrURL['AdminControllers'];
-                                                  foreach($ArrControlURL as $url){?>
-                                                    <?if(isset($url['Name'])){?>
+                                                <?if(isset($OrgArr['users']) ) {
+                                                  foreach($OrgArr['users'] as $url){?>
+                                                    <?if(isset($url['PAGE_NAME'])){?>
                                                     <li>
-                                                      <a href="<?=base_url() . $url['HomeLink']?>"><?=$url['Name']?></a>
+                                                      <a href="<?=base_url() . $url['PAGE_URL']?>"><?=$url['PAGE_NAME']?></a>
                                                     </li>
                                                     <?}?>
+                                                  <?}?>
                                                 <?}?>
                                             </ul>
                                       </li>

@@ -21,7 +21,7 @@
                                           <label>User Name</label>
                                           <select class="form-control" name='privilageUserID' required>
                                             <?foreach($Users as $users){?>
-                                                <option value=<?=$users['USR_ID']?> <?if($PRVG_USR_ID == $users['USR_ID'])  echo 'selected'; else echo 'disabled';?> required><?=$users['USR_NAME']?></option>
+                                                <option value=<?=$users['USR_ID']?>  required><?=$users['USR_NAME']?></option>
                                             <?}?>
                                           </select>
                                       </div>
@@ -29,9 +29,15 @@
                                             <label>Page Name</label>
                                             <select class="form-control" name='privilageUserID' required>
                                               <?foreach($Pages as $pages){?>
-                                                  <option value=<?=$pages['USR_ID']?> <?if($PRVG_PAGE_ID == $pages['PAGE_ID'])  echo 'selected'; else echo 'disabled';?> required><?=$pages['PAGE_NAME']?></option>
+                                                  <option value=<?=$pages['PAGE_ID']?> required><?=$pages['PAGE_NAME']?></option>
                                               <?}?>
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                          <label>All Privilages</label> <br>
+                                          <label class="checkbox-inline">
+                                              <input type="checkbox" name="allPriv" value="1"   >Give All Privilages
+                                          </label>
                                         </div>
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
