@@ -40,6 +40,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +80,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Cities'] = $this->Cities_model->getCities();
@@ -111,6 +113,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $districtName = $this->input->post('districtName');
@@ -136,6 +139,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $District = $this->Districts_model->getDistrict_byID($ID)[0];
@@ -171,6 +175,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $districtName = $this->input->post('districtName');
@@ -196,6 +201,7 @@ class Districts extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Districts_model->deleteDistrict($ID);

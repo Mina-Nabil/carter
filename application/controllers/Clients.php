@@ -40,6 +40,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -83,6 +84,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Districts'] = $this->Districts_model->getDistricts();
@@ -121,6 +123,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $clientName = $this->input->post('clientName');
@@ -154,6 +157,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Client = $this->Clients_model->getClient_byID($ID)[0];
@@ -195,6 +199,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $clientName = $this->input->post('clientName');
@@ -232,6 +237,7 @@ class Clients extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Clients_model->deleteClient($ID);

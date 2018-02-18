@@ -40,6 +40,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -83,6 +84,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Cities'] = $this->Cities_model->getCities();
@@ -121,6 +123,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -174,6 +177,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Driver = $this->Drivers_model->getDriver_byID($ID)[0];
@@ -215,6 +219,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -268,6 +273,7 @@ class Drivers extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Drivers_model->deleteDriver($ID);

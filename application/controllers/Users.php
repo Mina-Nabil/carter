@@ -40,6 +40,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -81,6 +82,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['USR_ID']      = ''              ;
@@ -112,6 +114,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $userName = $this->input->post('userName');
@@ -139,6 +142,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $User = $this->Users_model->getUser_byID($ID)[0];
@@ -173,6 +177,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $userName = $this->input->post('userName');
@@ -200,6 +205,7 @@ class Users extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Users_model->deleteUser($ID);

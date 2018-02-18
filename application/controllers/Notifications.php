@@ -40,6 +40,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -81,6 +82,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -117,6 +119,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $notificationTitle = $this->input->post('notificationTitle');
@@ -149,6 +152,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Notification = $this->Notifications_model->getNotification_byID($ID)[0];
@@ -189,6 +193,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $notificationTitle = $this->input->post('notificationTitle');
@@ -221,6 +226,7 @@ class Notifications extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Notifications_model->deleteNotification($ID);

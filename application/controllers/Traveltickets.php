@@ -39,6 +39,7 @@ class Traveltickets extends CI_Controller{
       }
       else {
         $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
       }
 
       $data['Clients'] = $this->Clients_model->getClients();
@@ -64,6 +65,7 @@ class Traveltickets extends CI_Controller{
       }
       else {
         $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
       }
 
       $data['Clients'] = $this->Clients_model->getClients();
@@ -96,6 +98,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -148,6 +151,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Clients'] = $this->Clients_model->getClients();
@@ -187,6 +191,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $travelticketLivelineID = $this->input->post('travelticketLivelineID');
@@ -222,6 +227,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Travelticket = $this->Traveltickets_model->getTravelticket_byID($ID)[0];
@@ -264,6 +270,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $travelticketLivelineID = $this->input->post('travelticketLivelineID');
@@ -298,6 +305,7 @@ class Traveltickets extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Traveltickets_model->deleteTravelticket($ID);

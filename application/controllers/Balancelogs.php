@@ -40,6 +40,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -81,6 +82,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Clients'] = $this->Clients_model->getClients();
@@ -117,6 +119,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $balancelogChange = $this->input->post('balancelogChange');
@@ -145,6 +148,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Balancelog = $this->Balancelogs_model->getBalancelog_byID($ID)[0];
@@ -185,6 +189,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $balancelogChange = $this->input->post('balancelogChange');
@@ -213,6 +218,7 @@ class Balancelogs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Balancelogs_model->deleteBalancelog($ID);

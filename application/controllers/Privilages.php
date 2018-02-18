@@ -40,6 +40,7 @@ class Privilages extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +80,7 @@ class Privilages extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Users'] = $this->Users_model->getUsers();
@@ -113,6 +115,7 @@ class Privilages extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $privilageUserID    =  $this->input->post('privilageUserID');
@@ -124,7 +127,7 @@ class Privilages extends CI_Controller{
       $this->Privilages_model->addAllPrivilages($privilageUserID);
     }
     else {
-      $this->Privilages_model->insertPrivilage($privilageUserID, $privilagePageID);  
+      $this->Privilages_model->insertPrivilage($privilageUserID, $privilagePageID);
     }
 
 
@@ -148,6 +151,7 @@ class Privilages extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Privilages_model->deletePrivilage_PageByPageAndUser($PageID, $UserID);

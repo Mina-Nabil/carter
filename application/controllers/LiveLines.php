@@ -40,6 +40,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -85,6 +86,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
@@ -124,6 +126,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $livelineID = $this->input->post('livelineLineID');
@@ -250,6 +253,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $LiveLine = $this->LiveLines_model->getLiveLine_byID($ID)[0];
@@ -294,6 +298,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $livelineID = $this->input->post('livelineLineID');
@@ -328,6 +333,7 @@ class LiveLines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->LiveLines_model->deleteLiveLine($ID);

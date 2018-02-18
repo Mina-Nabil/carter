@@ -40,6 +40,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +80,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -112,6 +114,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $articleTitle = $this->input->post('articleTitle');
@@ -140,6 +143,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Article = $this->Articles_model->getArticle_byID($ID)[0];
@@ -177,6 +181,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $articleName = $this->input->post('articleName');
@@ -205,6 +210,7 @@ class Articles extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Articles_model->deleteArticle($ID);

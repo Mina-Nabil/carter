@@ -40,6 +40,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +80,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Clients'] = $this->Clients_model->getClients();
@@ -116,6 +118,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $favourite_lineLineID = $this->input->post('favourite_lineLineID');
@@ -142,6 +145,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Favourite_line = $this->Favourite_lines_model->getFavourite_line_byID($ID)[0];
@@ -178,6 +182,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $favourite_lineLineID = $this->input->post('favourite_lineLineID');
@@ -205,6 +210,7 @@ class Favourite_lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Favourite_lines_model->deleteFavourite_line($ID);

@@ -31,7 +31,7 @@ class Lines extends CI_Controller{
     foreach($array as $row){
       array_push($result, $row['LINE_ID']);
     }
-  
+
     return $result;
   }
 
@@ -50,6 +50,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -118,6 +119,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Districts'] = $this->Districts_model->getDistricts();
@@ -151,6 +153,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $lineName = $this->input->post('lineName');
@@ -178,6 +181,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Line = $this->Lines_model->getLine_byID($ID)[0];
@@ -214,6 +218,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $lineName = $this->input->post('lineName');
@@ -241,6 +246,7 @@ class Lines extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Lines_model->deleteLine($ID);

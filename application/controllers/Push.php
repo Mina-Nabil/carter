@@ -40,6 +40,7 @@ class Push extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Clients'] = $this->Clients_model->getClients();
@@ -69,6 +70,7 @@ class Push extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['TableData'] = $this->Pushlogs_model->getPushlogsByType($Type);

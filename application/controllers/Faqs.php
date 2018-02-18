@@ -40,6 +40,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +80,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -112,6 +114,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $faqsTitle = $this->input->post('faqsTitle');
@@ -140,6 +143,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Faqs = $this->Faqs_model->getFaqs_byID($ID)[0];
@@ -175,6 +179,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $faqsTitle = $this->input->post('faqsTitle');
@@ -203,6 +208,7 @@ class Faqs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Faqs_model->deleteFaqs($ID);

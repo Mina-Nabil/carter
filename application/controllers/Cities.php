@@ -40,6 +40,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -78,6 +79,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['CITY_ID']      = ''              ;
@@ -107,6 +109,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $cityName = $this->input->post('cityName');
@@ -131,6 +134,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $City = $this->Cities_model->getCity_byID($ID)[0];
@@ -163,6 +167,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $cityName = $this->input->post('cityName');
@@ -187,6 +192,7 @@ class Cities extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Cities_model->deleteCity($ID);

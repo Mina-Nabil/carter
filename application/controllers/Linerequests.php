@@ -40,6 +40,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -83,6 +84,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Clients']  = $this->Clients_model->getClients();
@@ -124,6 +126,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Seats = $this->input->post('linerequestSeats');
@@ -156,6 +159,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Linerequest = $this->Linerequests_model->getLinerequest_byID($ID)[0];
@@ -202,6 +206,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Seats = $this->input->post('linerequestSeats');
@@ -234,6 +239,7 @@ class Linerequests extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Linerequests_model->deleteLinerequest($ID);

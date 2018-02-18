@@ -40,6 +40,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -81,6 +82,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Districts'] = $this->Districts_model->getDistricts();
@@ -119,6 +121,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $stationName = $this->input->post('stationName');
@@ -151,6 +154,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Station = $this->Stations_model->getStation_byID($ID)[0];
@@ -192,6 +196,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $stationName = $this->input->post('stationName');
@@ -224,6 +229,7 @@ class Stations extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Stations_model->deleteStation($ID);

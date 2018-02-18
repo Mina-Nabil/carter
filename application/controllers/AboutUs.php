@@ -40,6 +40,8 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -79,6 +81,7 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -112,6 +115,7 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $aboutusTitle = $this->input->post('aboutusTitle');
@@ -140,6 +144,7 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $AboutUs = $this->Aboutus_model->getAboutUs_byID($ID)[0];
@@ -175,6 +180,7 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $aboutusTitle = $this->input->post('aboutusTitle');
@@ -203,6 +209,7 @@ class AboutUs extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Aboutus_model->deleteAboutUs($ID);

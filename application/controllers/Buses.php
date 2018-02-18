@@ -40,6 +40,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
 
@@ -81,6 +82,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
@@ -115,6 +117,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $busType = $this->input->post('busType');
@@ -143,6 +146,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $Bus = $this->Buses_model->getBus_byID($ID)[0];
@@ -180,6 +184,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $busType = $this->input->post('busType');
@@ -208,6 +213,7 @@ class Buses extends CI_Controller{
     }
     else {
       $header['ArrURL'] = $result;
+     $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
     $this->Buses_model->deleteBus($ID);
