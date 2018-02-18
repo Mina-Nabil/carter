@@ -265,70 +265,80 @@ class Master_model extends CI_Model{
         else {
           $OrganizedPages['customersupport'] = array($page);
         }
-
+        break;
+        case 'users' :
         if(isset($OrganizedPages['users'])) {
           array_push($OrganizedPages['users'], $page);
         }
         else {
           $OrganizedPages['users'] = array($page);
         }
-
+        break;
+        case 'articles' :
         if(isset($OrganizedPages['articles'])) {
           array_push($OrganizedPages['articles'], $page);
         }
         else {
           $OrganizedPages['articles'] = array($page);
         }
-
+        break;
+        case 'livelines' :
         if(isset($OrganizedPages['livelines'])) {
           array_push($OrganizedPages['livelines'], $page);
         }
         else {
           $OrganizedPages['livelines'] = array($page);
         }
-
+        break;
+        case 'clients' :
         if(isset($OrganizedPages['clients'])) {
           array_push($OrganizedPages['clients'], $page);
         }
         else {
           $OrganizedPages['clients'] = array($page);
         }
-
+        break;
+        case 'database' :
         if(isset($OrganizedPages['database'])) {
           array_push($OrganizedPages['database'], $page);
         }
         else {
           $OrganizedPages['database'] = array($page);
         }
-
+        break;
+        case 'promocodes' :
         if(isset($OrganizedPages['promocodes'])) {
           array_push($OrganizedPages['promocodes'], $page);
         }
         else {
           $OrganizedPages['promocodes'] = array($page);
         }
-
+        break;
+        case 'drivers' :
         if(isset($OrganizedPages['drivers'])) {
           array_push($OrganizedPages['drivers'], $page);
         }
         else {
           $OrganizedPages['drivers'] = array($page);
         }
-
+        break;
+        case 'finance' :
         if(isset($OrganizedPages['finance'])) {
           array_push($OrganizedPages['finance'], $page);
         }
         else {
           $OrganizedPages['finance'] = array($page);
         }
-
+        break;
+        case 'reports' :
         if(isset($OrganizedPages['reports'])) {
           array_push($OrganizedPages['reports'], $page);
         }
         else {
           $OrganizedPages['reports'] = array($page);
         }
-
+        break;
+        case 'aboutus' :
         if(isset($OrganizedPages['aboutus'])) {
           array_push($OrganizedPages['aboutus'], $page);
         }
