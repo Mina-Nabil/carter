@@ -81,14 +81,16 @@ class Pushlogs_model extends CI_Model{
 
         public function insertPushlog($Title, $Text, $UserID, $Target, $ClientID){
             //NN Text ArabicTitle Title DistrictID
-            if(!is_null($ClientID))
-          $strSQL = "INSERT INTO Pushlogs (PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, PSHL_CLNT_ID)
-                     VALUES (?,?,?,?,?)";
+            if(!is_null($ClientID)){
+              $strSQL = "INSERT INTO Pushlogs (PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET, PSHL_CLNT_ID)
+                         VALUES (?,?,?,?,?)";
+               $query = $this->db->query($strSQL, array($Title, $Text, $UserID, $Target, $ClientID));
+            }
           else {
             $strSQL = "INSERT INTO Pushlogs (PSHL_TITLE, PSHL_TEXT, PSHL_USR_ID, PSHL_TARGET)
                        VALUES (?,?,?,?)";
+                       $query = $this->db->query($strSQL, array($Title, $Text, $UserID, $Target));
           }
-          $query = $this->db->query($strSQL, array($Title, $Text, $UserID, $Target, $ClientID));
 
         }
 

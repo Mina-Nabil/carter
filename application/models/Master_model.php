@@ -246,7 +246,12 @@ class Master_model extends CI_Model{
   }
 
   public function checkPageByUrl($Pageurl){
+    if(isset($this->session->userdata['USRPAGES'])){
     return in_array($Pageurl, $this->session->userdata['USRPAGES']);
+    }
+    else {
+      return false;
+    }
   }
 
   public function getPagesByType(){

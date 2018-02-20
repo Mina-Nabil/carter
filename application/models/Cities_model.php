@@ -11,7 +11,7 @@ class Cities_model extends CI_Model{
 
   public function getCities(){
 
-    $strSQL = "SELECT CITY_ID, CITY_NAME
+    $strSQL = "SELECT CITY_ID, CITY_NAME, CITY_ARBC_NAME
                 FROM Cities";
     $query = $this->db->query($strSQL);
     return $query->result_array();
@@ -20,7 +20,7 @@ class Cities_model extends CI_Model{
 
   public function getCity_byID($ID){
 
-    $strSQL = "SELECT CITY_ID, CITY_NAME
+    $strSQL = "SELECT CITY_ID, CITY_NAME, CITY_ARBC_NAME
               FROM Cities WHERE CITY_ID = {$ID}";
     $query = $this->db->query($strSQL);
     return $query->result_array();
@@ -28,20 +28,23 @@ class Cities_model extends CI_Model{
   }
 
 
-  public function insertCity($Name){
+  public function insertCity($Name, $ArbcName){
 
-    $strSQL = "INSERT INTO `Cities` (`CITY_NAME`)
-               VALUES ('{$Name}')";
-    $query = $this->db->query($strSQL);
+    $strSQL = "INSERT INTO `Cities` (`CITY_NAME`, `CITY_ARBC_NAME`)
+               VALUES (?, ?)";
+    $inputs = array ($Name, $ArbcName);
+    $query = $this->db->query($strSQL, $inputs);
 
   }
 
-  public function editCity($ID, $Name){
+  public function editCity($ID, $Name, $ArbcName){
 
     $strSQL = "UPDATE `Cities`
-              SET `CITY_NAME`='{$Name}' WHERE
-                  `CITY_ID`='{$ID}'";
-    $query = $this->db->query($strSQL);
+              SET `CITY_NAME`     = ?, 
+                  `CITY_ARBC_NAME`= ? WHERE
+                  `CITY_ID`= ? ";
+
+    $query = $this->db->query($strSQL, array ($Name, $ArbcName, $ID));
 
   }
 

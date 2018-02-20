@@ -22,6 +22,11 @@
                                             <input class="form-control" name=cityName value='<?=$CITY_NAME?>'>
                                             <p class="help-block">Enter City Name, Example: Cairo, Alexandria.</p>
                                         </div>
+                                        <div class="form-group">
+                                            <label>City Arabic Name</label>
+                                            <input class="form-control" name=cityArbcName value='<?=$CITY_ARBC_NAME?>'>
+                                            <p class="help-block"></p>
+                                        </div>
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
                                     </form>

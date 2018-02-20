@@ -48,8 +48,9 @@ class Districts extends CI_Controller{
 
     $data['TableHeaders'] = array(
       'ID',
-      'Name',
       'District Name',
+      'Arabic Name',
+      'City Name',
       'Edit',
       'Delete'
     );
@@ -117,8 +118,9 @@ class Districts extends CI_Controller{
     }
 
     $districtName = $this->input->post('districtName');
+    $districtArbcName = $this->input->post('districtArbcName');
     $districtCityID = $this->input->post('districtCityID');
-    $this->Districts_model->insertDistrict($districtName, $districtCityID);
+    $this->Districts_model->insertDistrict($districtName, $districtArbcName, $districtCityID);
 
     $this->load->view('pages/districts_redirect');
 
@@ -148,6 +150,7 @@ class Districts extends CI_Controller{
 
     $data['DIST_ID']      = $District['DIST_ID']  ;
     $data['DIST_NAME']    = $District['DIST_NAME'];
+    $data['DIST_ARBC_NAME']    = $District['DIST_ARBC_NAME'];
     $data['DIST_CITY_ID']    = $District['DIST_CITY_ID'];
 
     $data['formURL']      = 'editdistricts/' . $ID  ;
@@ -180,7 +183,8 @@ class Districts extends CI_Controller{
 
     $districtName = $this->input->post('districtName');
     $districtCityID = $this->input->post('districtCityID');
-    $this->Districts_model->editDistrict($ID, $districtName, $districtCityID);
+    $districtArbcName = $this->input->post('districtArbcName');
+    $this->Districts_model->editDistrict($ID, $districtName, $districtArbcName, $districtCityID);
 
     $this->load->view('pages/districts_redirect');
 

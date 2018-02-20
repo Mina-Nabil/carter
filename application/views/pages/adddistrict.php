@@ -23,6 +23,11 @@
                                             <p class="help-block">Enter District Name, Example: Nasr City, El Rehab.</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>District Arabic Name</label>
+                                            <input class="form-control" name='districtArbcName' value='<?=$DIST_ARBC_NAME?>'>
+                                            <p class="help-block"></p>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Cities</label>
                                             <select class="form-control" name='districtCityID'>
                                               <?foreach($Cities as $city){?>

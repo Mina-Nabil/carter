@@ -55,6 +55,7 @@
                   <li>
                     <a href="home"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                    </li>
+                   <?if(isset($ArrURL)){?>
                     <li>
                         <a href="#">
                           <i class="fa fa-table fa-fw"></i> Tables
@@ -83,6 +84,7 @@
                           </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    <?}?>
                     <li>
                       <a href="#">
                         <i class="fa fa-home fa-fw"></i> Home <span class="fa arrow"></span>

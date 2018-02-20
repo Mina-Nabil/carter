@@ -25,6 +25,19 @@ class Articles extends CI_Controller{
 
   }
 
+  private function CheckUser2($PageURL){
+
+    if(!isset($this->session->userdata['USRNAME'])) return false;
+
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+    if($result) return true;
+    else {
+      $this->load->view("home_redirect");
+      return 1;
+    }
+
+  }
+
   public function home($MSGErr = '', $MSGOK = '')
   {
 
@@ -35,7 +48,6 @@ class Articles extends CI_Controller{
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {

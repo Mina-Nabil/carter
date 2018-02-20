@@ -49,6 +49,7 @@ class Cities extends CI_Controller{
     $data['TableHeaders'] = array(
       'ID',
       'Name',
+      'Arabic Name',
       'Edit',
       'Delete'
     );
@@ -84,6 +85,7 @@ class Cities extends CI_Controller{
 
     $data['CITY_ID']      = ''              ;
     $data['CITY_NAME']    = ''              ;
+    $data['CITY_ARBC_NAME']    = ''              ;
 
     $data['formURL']      = 'insertcities'  ;
 
@@ -113,7 +115,8 @@ class Cities extends CI_Controller{
     }
 
     $cityName = $this->input->post('cityName');
-    $this->Cities_model->insertCity($cityName);
+    $cityArbcName = $this->input->post('cityArbcName');
+    $this->Cities_model->insertCity($cityName, $cityArbcName);
 
     $this->load->view('pages/cities_redirect');
 
@@ -141,6 +144,7 @@ class Cities extends CI_Controller{
 
     $data['CITY_ID']      = $City['CITY_ID']  ;
     $data['CITY_NAME']    = $City['CITY_NAME'];
+    $data['CITY_ARBC_NAME']    = $City['CITY_ARBC_NAME'];
 
     $data['formURL']      = 'editcities/' . $ID  ;
 
@@ -171,7 +175,8 @@ class Cities extends CI_Controller{
     }
 
     $cityName = $this->input->post('cityName');
-    $this->Cities_model->editCity($ID, $cityName);
+    $cityArbcName = $this->input->post('cityArbcName');
+    $this->Cities_model->editCity($ID, $cityName, $cityArbcName);
 
     $this->load->view('pages/cities_redirect');
 

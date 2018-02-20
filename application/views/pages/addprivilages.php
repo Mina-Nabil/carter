@@ -27,7 +27,7 @@
                                       </div>
                                         <div class="form-group">
                                             <label>Page Name</label>
-                                            <select class="form-control" name='privilageUserID' required>
+                                            <select class="form-control" name='privilagePageID' required>
                                               <?foreach($Pages as $pages){?>
                                                   <option value=<?=$pages['PAGE_ID']?> required><?=$pages['PAGE_NAME']?></option>
                                               <?}?>
