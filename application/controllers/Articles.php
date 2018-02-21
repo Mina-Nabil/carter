@@ -24,7 +24,7 @@ class Articles extends CI_Controller{
     }
 
   }
-
+//CHeck at each function if user is permitter or no, if no send him to the home page
   private function CheckUser2($PageURL){
 
     if(!isset($this->session->userdata['USRNAME'])) return false;
@@ -41,7 +41,7 @@ class Articles extends CI_Controller{
   public function home($MSGErr = '', $MSGOK = '')
   {
 
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('articles');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -51,6 +51,7 @@ class Articles extends CI_Controller{
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -80,17 +81,17 @@ class Articles extends CI_Controller{
 
   public function addpage($MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addarticles');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -114,17 +115,17 @@ class Articles extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser('addarticles');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -143,17 +144,17 @@ class Articles extends CI_Controller{
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('articles/modify');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -181,17 +182,17 @@ class Articles extends CI_Controller{
 
   public function edit($ID){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('articles/modify');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -210,14 +211,13 @@ class Articles extends CI_Controller{
 
   public function delete($ID){
 
-    $result = $this->CheckUser('DEL');
+    $result = $this->CheckUser2('articles/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
     }else if($result == 1){
       // User not permitted
-      $this->load->view('pages/articles_redirect');
       return;
     }
     else {
