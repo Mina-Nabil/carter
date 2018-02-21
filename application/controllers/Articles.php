@@ -212,7 +212,6 @@ class Articles extends CI_Controller{
   public function delete($ID){
 
     $result = $this->CheckUser2('articles/delete');
-    echo $result;
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
