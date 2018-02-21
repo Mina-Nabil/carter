@@ -28,10 +28,12 @@ class Articles extends CI_Controller{
   private function CheckUser2($PageURL){
 
     if(!isset($this->session->userdata['USRNAME'])) return false;
-
+    echo 'logged';
     $result = $this->Master_model->checkPageByUrl($PageURL);
+    echo '/n result ' .$result ;
     if($result) return true;
     else {
+      echo 'redirecting';
       $this->load->view("home_redirect");
       return 1;
     }
