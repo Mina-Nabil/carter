@@ -31,9 +31,9 @@ class Articles extends CI_Controller{
 
     $result = $this->Master_model->checkPageByUrl($PageURL);
 
-    if($result) return true;
+    if($result) return 1;
     else {
-      echo 'redirecting';
+
       $this->load->view("home_redirect");
       return 2;
     }
