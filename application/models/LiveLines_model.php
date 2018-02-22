@@ -12,12 +12,13 @@ class LiveLines_model extends CI_Model{
         public function getLiveLines(){
 
           $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_TCKT_PRICE,
-                            LVLN_COMP, LVLN_REVN, BUS_NUMBER, BUS_TYPE, DRVR_NAME
-                      FROM live_lines, karter.lines, drivers, buses
+                            LVLN_COMP, LVLN_REVN, BUS_NUMBER, BSTP_NAME, DRVR_NAME
+                      FROM live_lines, karter.lines, drivers, buses, bustypes
                       WHERE LVLN_LINE_ID = LINE_ID
                       AND LVLN_DRVR_ID = DRVR_ID
-                      AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 20 DAY)
-                      AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -10 DAY)
+                      AND BUS_BSTP_ID = BSTP_ID
+                      AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 2 DAY)
+                      AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -1 DAY)
                       AND LVLN_BUS_ID = BUS_ID
                       ORDER BY LVLN_TIME ";
           $query = $this->db->query($strSQL);

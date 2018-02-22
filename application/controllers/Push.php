@@ -25,20 +25,33 @@ class Push extends CI_Controller{
 
   }
 
+  private function CheckUser2($PageURL){
+
+    if(!isset($this->session->userdata['USRNAME'])) return false;
+
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+
+    if($result) return 1;
+    else {
+
+      $this->load->view("home_redirect");
+      return 2;
+    }
+
 
   function home()
   {
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('Push/home');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('controlpages/push_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -58,17 +71,17 @@ class Push extends CI_Controller{
 
   public function getLogs($Type){
 
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('Push/home');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('controlpages/push_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -93,6 +106,22 @@ class Push extends CI_Controller{
 
 
   public function initiateMsg(){
+
+    $result = $this->CheckUser2('Push/home');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
+    }
+
     $messageText = $this->input->post('messageText');
     $messageTitle = $this->input->post('messageTitle');
     $value = explode('#%', $this->input->post('messageClient'));
@@ -150,7 +179,7 @@ class Push extends CI_Controller{
   }
 
 
-  function sendData($fields){
+  private function sendData($fields){
 		 $fields = json_encode($fields);
 
     $ch = curl_init();

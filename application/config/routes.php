@@ -65,6 +65,14 @@ $route['cities/modify/(:num)'] = 'Cities/modifypage/$1';
 $route['editcities/(:num)'] = 'Cities/edit/$1';
 $route['cities/delete/(:num)'] = 'Cities/delete/$1';
 
+//Bustypes ROUTES
+$route['bustypes'] = 'Bustypes/home';
+$route['addbustypes'] = 'Bustypes/addpage';
+$route['insertbustypes'] = 'Bustypes/insert';
+$route['bustypes/modify/(:num)'] = 'Bustypes/modifypage/$1';
+$route['editbustypes/(:num)'] = 'Bustypes/edit/$1';
+$route['bustypes/delete/(:num)'] = 'Bustypes/delete/$1';
+
 //Districts ROUTES
 $route['districts'] = 'Districts/home';
 $route['adddistricts'] = 'Districts/addpage';

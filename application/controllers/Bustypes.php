@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Balancelogs extends CI_Controller{
+class Bustypes extends CI_Controller{
 
   public function __construct()
   {
@@ -9,7 +9,7 @@ class Balancelogs extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  private function CheckUser($Function, $PageName = 'Balancelogs'){
+  private function CheckUser($Function, $PageName = 'Bustypes'){
     //Returns header array if user is correct
 
     $userType = $this->session->userdata['USRTYPE'];
@@ -43,7 +43,7 @@ class Balancelogs extends CI_Controller{
   public function home($MSGErr = '', $MSGOK = '')
   {
 
-    $result = $this->CheckUser2('balancelogs');
+    $result = $this->CheckUser2('bustypes');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -59,33 +59,31 @@ class Balancelogs extends CI_Controller{
     }
 
 
-    $data['TableData'] = $this->Balancelogs_model->getBalancelogs();
+    $data['TableData'] = $this->Bustypes_model->getBustypes();
 
     $data['TableHeaders'] = array(
       'ID',
-      'Client Name',
-      'Change',
-      'Date',
-      'Comment',
+      'Name',
+      'Arabic Name',
       'Edit',
       'Delete'
     );
 
-    $data['Table_Name'] = 'Balancelogs';
-    $data['Url_Name']   = 'balancelogs';
+    $data['Table_Name'] = 'Bustypes';
+    $data['Url_Name']   = 'bustypes';
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/balancelogs', $data);
+    $this->load->view('pages/bustypes', $data);
     $this->load->view('templates/footer');
 
   }
 
   public function addpage($MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser2('addbalancelogs');
+    $result = $this->CheckUser2('addbustypes');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -100,29 +98,23 @@ class Balancelogs extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['Clients'] = $this->Clients_model->getClients();
+    $data['CITY_ID']      = ''              ;
+    $data['CITY_NAME']    = ''              ;
+    $data['CITY_ARBC_NAME']    = ''              ;
 
-    $data['BLOG_ID']      = ''              ;
-    $data['BLOG_CHNG']    = ''              ;
-    $data['BLOG_DATE']    = ''              ;
-    $data['BLOG_CMMT']    = ''              ;
-    $data['BLOG_CLNT_ID']    = ''              ;
-
-    $data['DropdownDisabled'] = false;
-
-    $data['formURL']      = 'insertbalancelogs'  ;
+    $data['formURL']      = 'insertbustypes'  ;
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addbalancelog', $data);
+    $this->load->view('pages/addbustype', $data);
     $this->load->view('templates/footer');
   }
 
   public function insert(){
 
-    $result = $this->CheckUser2('addbalancelogs');
+    $result = $this->CheckUser2('addbustypes');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -137,21 +129,18 @@ class Balancelogs extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $balancelogChange = $this->input->post('balancelogChange');
-    $balancelogDate = $this->input->post('balancelogDate');
-    $balancelogComment = $this->input->post('balancelogComment') . ' - ' . 'Added by ' .  $this->session->userdata['USRNAME'];
-    $balancelogClientID = $this->input->post('balancelogClientID');
+    $bustypeName = $this->input->post('bustypeName');
+    $bustypeArbcName = $this->input->post('bustypeArbcName');
+    $this->Bustypes_model->insertBustype($bustypeName, $bustypeArbcName);
 
-    $this->Balancelogs_model->insertBalancelog($balancelogChange, $balancelogClientID, $balancelogDate, $balancelogComment);
-
-    $this->load->view('pages/balancelogs_redirect');
+    $this->load->view('pages/bustypes_redirect');
 
   }
 
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser2('addbalancelogs');
+    $result = $this->CheckUser2('addbustypes');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -166,33 +155,26 @@ class Balancelogs extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $Balancelog = $this->Balancelogs_model->getBalancelog_byID($ID)[0];
+    $Bustype = $this->Bustypes_model->getBustype_byID($ID)[0];
 
-    $data['Clients'] = $this->Clients_model->getClients();
+    $data['CITY_ID']      = $Bustype['CITY_ID']  ;
+    $data['CITY_NAME']    = $Bustype['CITY_NAME'];
+    $data['CITY_ARBC_NAME']    = $Bustype['CITY_ARBC_NAME'];
 
-    $data['BLOG_ID']      = $Balancelog['BLOG_ID']  ;
-    $data['BLOG_CHNG']    = $Balancelog['BLOG_CHNG']  ;
-    $data['BLOG_DATE']    = $Balancelog['BLOG_DATE']   ;
-    $data['Timestamp']    = strtotime($data['BLOG_DATE']);
-    $data['BLOG_CMMT']    = $Balancelog['BLOG_CMMT'] ;
-    $data['BLOG_CLNT_ID']    = $Balancelog['BLOG_CLNT_ID'];
-
-    $data['DropdownDisabled'] = true;
-
-    $data['formURL']      = 'editbalancelogs/' . $ID  ;
+    $data['formURL']      = 'editbustypes/' . $ID  ;
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addbalancelog', $data);
+    $this->load->view('pages/addbustype', $data);
     $this->load->view('templates/footer');
 
   }
 
   public function edit($ID){
 
-    $result = $this->CheckUser2('addbalancelogs');
+    $result = $this->CheckUser2('addbustypes');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -207,21 +189,18 @@ class Balancelogs extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $balancelogChange = $this->input->post('balancelogChange');
-    $balancelogDate = $this->input->post('balancelogDate');
-    $balancelogComment = $this->input->post('balancelogComment') . ' - ' . 'Modified by ' .  $this->session->userdata['USRNAME'];
-    $balancelogClientID = $this->input->post('balancelogClientID');
+    $bustypeName = $this->input->post('bustypeName');
+    $bustypeArbcName = $this->input->post('bustypeArbcName');
+    $this->Bustypes_model->editBustype($ID, $bustypeName, $bustypeArbcName);
 
-    $this->Balancelogs_model->editBalancelog($ID, $balancelogChange, $balancelogClientID, $balancelogDate, $balancelogComment);
-
-    $this->load->view('pages/balancelogs_redirect');
+    $this->load->view('pages/bustypes_redirect');
 
   }
 
 
   public function delete($ID){
 
-    $result = $this->CheckUser2('balancelogs/delete');
+    $result = $this->CheckUser2('bustypes/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -236,8 +215,16 @@ class Balancelogs extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $this->Balancelogs_model->deleteBalancelog($ID);
-    $this->load->view('pages/balancelogs_redirect');
+    $this->Bustypes_model->deleteBustype($ID);
+    $this->load->view('pages/bustypes_redirect');
 
   }
+
+
+
+
+
+
+
+
 }

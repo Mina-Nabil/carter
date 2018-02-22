@@ -9,18 +9,17 @@ class Districts extends CI_Controller{
     //Codeigniter : Write Less Do More
   }
 
-  private function CheckUser($Function, $PageName = 'Districts'){
-    //Returns header array if user is correct
+  private function CheckUser2($PageURL){
 
-    $userType = $this->session->userdata['USRTYPE'];
-    $headerArr = $this->Master_model->getHeaderArr();
-    if(!$headerArr[0])   return false;          // If a user is not logged in
-    if (!in_array($userType . '-' . $Function, $headerArr[$PageName]['Permissions'] )) {
-      // If logged in And not permitted type
-      return 1;
+    if(!isset($this->session->userdata['USRNAME'])) return false;
 
-    }else {
-      return $headerArr;
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+
+    if($result) return 1;
+    else {
+
+      $this->load->view("home_redirect");
+      return 2;
     }
 
   }
@@ -28,17 +27,17 @@ class Districts extends CI_Controller{
   public function home($MSGErr = '', $MSGOK = '')
   {
 
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('districts');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -69,17 +68,17 @@ class Districts extends CI_Controller{
 
   public function addpage($MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('adddistricts');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -102,17 +101,17 @@ class Districts extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('adddistricts');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -129,17 +128,17 @@ class Districts extends CI_Controller{
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('adddistricts');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -166,17 +165,17 @@ class Districts extends CI_Controller{
 
   public function edit($ID){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('adddistricts');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -193,17 +192,17 @@ class Districts extends CI_Controller{
 
   public function delete($ID){
 
-    $result = $this->CheckUser('DEL');
+    $result = $this->CheckUser2('districts/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/districts_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }

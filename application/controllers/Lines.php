@@ -25,6 +25,21 @@ class Lines extends CI_Controller{
 
   }
 
+  private function CheckUser2($PageURL){
+
+    if(!isset($this->session->userdata['USRNAME'])) return false;
+
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+
+    if($result) return 1;
+    else {
+
+      $this->load->view("home_redirect");
+      return 2;
+    }
+
+  }
+
   private function getLineIDs($array){
     $result = array();
     $result[0] = 'ID';
@@ -38,17 +53,17 @@ class Lines extends CI_Controller{
   public function home($MSGErr = '', $MSGOK = '')
   {
 
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('lines');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -107,17 +122,17 @@ class Lines extends CI_Controller{
 
   public function addpage($MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addlines');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -141,17 +156,17 @@ class Lines extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addlines');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -169,17 +184,17 @@ class Lines extends CI_Controller{
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addlines');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -206,17 +221,17 @@ class Lines extends CI_Controller{
 
   public function edit($ID){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addlines');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -234,17 +249,17 @@ class Lines extends CI_Controller{
 
   public function delete($ID){
 
-    $result = $this->CheckUser('DEL');
+    $result = $this->CheckUser2('lines/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/lines_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }

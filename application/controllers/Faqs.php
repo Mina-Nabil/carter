@@ -25,20 +25,35 @@ class Faqs extends CI_Controller{
 
   }
 
+  private function CheckUser2($PageURL){
+
+    if(!isset($this->session->userdata['USRNAME'])) return false;
+
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+
+    if($result) return 1;
+    else {
+
+      $this->load->view("home_redirect");
+      return 2;
+    }
+
+  }
+
   public function home($MSGErr = '', $MSGOK = '')
   {
 
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('faqs');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -68,17 +83,17 @@ class Faqs extends CI_Controller{
 
   public function addpage($MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addfaqs');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -102,17 +117,17 @@ class Faqs extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addfaqs');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -131,17 +146,17 @@ class Faqs extends CI_Controller{
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addfaqs');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -167,17 +182,17 @@ class Faqs extends CI_Controller{
 
   public function edit($ID){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addfaqs');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -196,17 +211,17 @@ class Faqs extends CI_Controller{
 
   public function delete($ID){
 
-    $result = $this->CheckUser('DEL');
+    $result = $this->CheckUser2('faqs/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/faqs_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }

@@ -19,7 +19,7 @@
                                     <form role="form" action='<?=base_url() . 'traveltickets/home'?>' method="get">
 
                                       <div class="form-group">
-                                          <label>Line Name</label>
+                                          <label>Client Name</label>
                                           <select class="form-control" name='ClientID'>
                                             <?foreach($Clients as $client){?>
                                                 <option value=<?=$client['CLNT_ID']?> required><?=$client['CLNT_NAME']?></option>

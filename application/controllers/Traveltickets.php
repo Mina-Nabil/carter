@@ -25,22 +25,35 @@ class Traveltickets extends CI_Controller{
 
   }
 
+  private function CheckUser2($PageURL){
+
+    if(!isset($this->session->userdata['USRNAME'])) return false;
+
+    $result = $this->Master_model->checkPageByUrl($PageURL);
+
+    if($result) return 1;
+    else {
+
+      $this->load->view("home_redirect");
+      return 2;
+    }
+
   public function defaultPage(){
 
-      $result = $this->CheckUser('HOME');
-      if($result == false){
-        // User not logged in
-        $this->load->view("login_redirect");
-        return;
-      }else if($result == 1){
-        // User not permitted
-        $this->load->view('pages/traveltickets_redirect');
-        return;
-      }
-      else {
-        $header['ArrURL'] = $result;
+    $result = $this->CheckUser2('traveltickets');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
-      }
+    }
 
       $data['Clients'] = $this->Clients_model->getClients();
       $data['Table_Name'] = 'Traveltickets';
@@ -53,20 +66,20 @@ class Traveltickets extends CI_Controller{
 
   public function defaultaddPage(){
 
-      $result = $this->CheckUser('HOME');
-      if($result == false){
-        // User not logged in
-        $this->load->view("login_redirect");
-        return;
-      }else if($result == 1){
-        // User not permitted
-        $this->load->view('pages/traveltickets_redirect');
-        return;
-      }
-      else {
-        $header['ArrURL'] = $result;
+    $result = $this->CheckUser2('addtraveltickets');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
-      }
+    }
 
       $data['Clients'] = $this->Clients_model->getClients();
       $data['Table_Name'] = 'Traveltickets';
@@ -80,23 +93,17 @@ class Traveltickets extends CI_Controller{
   public function home($ClientID = '', $MSGErr = '', $MSGOK = '')
   {
 
-    $ClientID = $this->input->get('ClientID');
-    if($ClientID == ''){
-      $this->load->view('pages/traveltickets_redirect');
-      return;
-    }
-
-    $result = $this->CheckUser('HOME');
+    $result = $this->CheckUser2('traveltickets');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -133,25 +140,24 @@ class Traveltickets extends CI_Controller{
 
   public function addpage($ClientID = '', $MSGErr = '', $MSGOK = ''){
 
-    $ClientID = $this->input->get('ClientID');
-    if($ClientID == ''){
-      $this->load->view('pages/traveltickets_redirect');
-      return;
-    }
-
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addtraveltickets');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
+    }
+
+    if($ClientID == ''){
+      $this->load->view('pages/traveltickets_redirect');
+      return;
     }
 
     $data['Clients'] = $this->Clients_model->getClients();
@@ -179,17 +185,17 @@ class Traveltickets extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('ADD');
+    $result = $this->CheckUser2('addtraveltickets');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -215,17 +221,17 @@ class Traveltickets extends CI_Controller{
 
   public function modifypage($ID, $MSGErr = '', $MSGOK = ''){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addtraveltickets');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -258,17 +264,17 @@ class Traveltickets extends CI_Controller{
 
   public function edit($ID){
 
-    $result = $this->CheckUser('EDIT');
+    $result = $this->CheckUser2('addtraveltickets');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
@@ -293,17 +299,17 @@ class Traveltickets extends CI_Controller{
 
   public function delete($ID){
 
-    $result = $this->CheckUser('DEL');
+    $result = $this->CheckUser2('tickets/delete');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
       return;
-    }else if($result == 1){
+    }else if($result == 2){
       // User not permitted
-      $this->load->view('pages/traveltickets_redirect');
       return;
     }
     else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
       $header['ArrURL'] = $result;
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }

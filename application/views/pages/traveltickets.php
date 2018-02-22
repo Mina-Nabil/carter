@@ -27,8 +27,9 @@
                                         <td><?=$data['TRTK_REG_DATE']?></td>
                                         <td><?=$data['PATH_REL_TIME']?></td>
                                         <td><?=$data['TRTK_CANC']?></td>
-                                        <td><?=$data['TRTK_COMP']?></td>
-                                        <td><?=$data['TRTK_REVN']?></td>
+                                        <td><?=$data['TRTK_ISHAND']?></td>
+                                        <td><?=$data['TRTK_PAID']?></td>
+                                        <td><?=$data['TRTK_PRICE']?></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['TRTK_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['TRTK_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
                                     </tr>

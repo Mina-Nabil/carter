@@ -11,8 +11,8 @@ class Buses_model extends CI_Model{
 
         public function getBuses(){
 
-          $strSQL = "SELECT BUS_ID, BUS_TYPE, BUS_DRVR_ID, DRVR_NAME, BUS_NUMBER, BUS_SEATS
-                      FROM Buses, drivers WHERE BUS_DRVR_ID = DRVR_ID";
+          $strSQL = "SELECT BUS_ID, BUS_DRVR_ID, DRVR_NAME, BUS_NUMBER, BUS_SEATS, BUS_BSTP_ID, BSTP_NAME, BSTP_ARBC_NAME
+                      FROM Buses, drivers, bustypes WHERE BUS_DRVR_ID = DRVR_ID AND BUS_BSTP_ID = BSTP_ID";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
@@ -20,8 +20,8 @@ class Buses_model extends CI_Model{
 
         public function getBus_byID($ID){
 
-          $strSQL = "SELECT BUS_ID, BUS_TYPE, BUS_DRVR_ID, BUS_NUMBER, BUS_SEATS
-                    FROM Buses, drivers WHERE BUS_DRVR_ID = DRVR_ID AND BUS_ID = {$ID}";
+          $strSQL = "SELECT BUS_ID, BUS_DRVR_ID, BUS_NUMBER, BUS_SEATS, BUS_BSTP_ID, BSTP_NAME, BSTP_ARBC_NAME
+                    FROM Buses, drivers, bustypes WHERE BUS_DRVR_ID = DRVR_ID AND BUS_BSTP_ID = BSTP_ID AND BUS_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
@@ -30,22 +30,22 @@ class Buses_model extends CI_Model{
 
         public function insertBus($Type, $DriverID, $Number, $seatsNo){
             //NN Number Longitude Type DriverID
-          $strSQL = "INSERT INTO Buses (BUS_TYPE, BUS_DRVR_ID, BUS_NUMBER, BUS_SEATS)
-                     VALUES ('{$Type}', '{$DriverID}', '{$Number}', '{$seatsNo}')";
-          $query = $this->db->query($strSQL);
+          $strSQL = "INSERT INTO Buses (BUS_BSTP_ID, BUS_DRVR_ID, BUS_NUMBER, BUS_SEATS)
+                     VALUES (?, ?, ?, ?)";
+          $query = $this->db->query($strSQL, array($Type, $DriverID, $Number, $seatsNo));
 
         }
 
         public function editBus($ID, $Type, $DriverID, $Number, $seatsNo){
             //NN Number Longitude Type DriverID
           $strSQL = "UPDATE Buses
-                    SET BUS_TYPE   = '{$Type}',
-                        BUS_NUMBER    = '{$Number}',
-                        BUS_SEATS   = '{$seatsNo}',
-                        BUS_DRVR_ID ='{$DriverID}'
+                    SET BUS_TYPE   = ?,
+                        BUS_NUMBER    = ?,
+                        BUS_SEATS   = ?,
+                        BUS_DRVR_ID =?
                     WHERE
-                        `BUS_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+                        `BUS_ID`=?";
+          $query = $this->db->query($strSQL, array($Type, $DriverID, $Number, $seatsNo, $ID));
 
         }
 
