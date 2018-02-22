@@ -277,7 +277,7 @@
                                       </li>
 
                     <li>
-                      <a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                      <a href="<?=base_url() . 'home'?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                      </li>
                 </ul>
             </div>

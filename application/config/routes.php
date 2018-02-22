@@ -201,6 +201,7 @@ $route['insertdrivers'] = 'Drivers/insert';
 $route['drivers/modify/(:num)'] = 'Drivers/modifypage/$1';
 $route['editdrivers/(:num)'] = 'Drivers/edit/$1';
 $route['drivers/delete/(:num)'] = 'Drivers/delete/$1';
+$route['blckactvdrvr'] = 'Drivers/blockActivateDriverPage';
 
 //Buses ROUTES
 $route['buses'] = 'Buses/home';

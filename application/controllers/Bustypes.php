@@ -98,9 +98,9 @@ class Bustypes extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['CITY_ID']      = ''              ;
-    $data['CITY_NAME']    = ''              ;
-    $data['CITY_ARBC_NAME']    = ''              ;
+    $data['BSTP_ID']      = ''              ;
+    $data['BSTP_NAME']    = ''              ;
+    $data['BSTP_ARBC_NAME']    = ''              ;
 
     $data['formURL']      = 'insertbustypes'  ;
 
@@ -108,7 +108,7 @@ class Bustypes extends CI_Controller{
     $data['MSGErr']     = $MSGErr ;
 
     $this->load->view('templates/header', $header);
-    $this->load->view('pages/addbustype', $data);
+    $this->load->view('pages/addbustypes', $data);
     $this->load->view('templates/footer');
   }
 
@@ -157,9 +157,9 @@ class Bustypes extends CI_Controller{
 
     $Bustype = $this->Bustypes_model->getBustype_byID($ID)[0];
 
-    $data['CITY_ID']      = $Bustype['CITY_ID']  ;
-    $data['CITY_NAME']    = $Bustype['CITY_NAME'];
-    $data['CITY_ARBC_NAME']    = $Bustype['CITY_ARBC_NAME'];
+    $data['BSTP_ID']      = $Bustype['BSTP_ID']  ;
+    $data['BSTP_NAME']    = $Bustype['BSTP_NAME'];
+    $data['BSTP_ARBC_NAME']    = $Bustype['BSTP_ARBC_NAME'];
 
     $data['formURL']      = 'editbustypes/' . $ID  ;
 

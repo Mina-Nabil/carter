@@ -62,13 +62,13 @@ class Drivers extends CI_Controller{
     $data['TableData'] = $this->Drivers_model->getDrivers();
 
     $data['TableHeaders'] = array(
-      'ID',
+      'License Number',
       'Name',
+      'Driver Type',
       'LicenseNo',
       'Mobile',
       'Address',
       'Balance',
-      'License Number',
       'Edit',
       'Delete'
     );
@@ -103,6 +103,7 @@ class Drivers extends CI_Controller{
     }
 
     $data['Cities'] = $this->Cities_model->getCities();
+    $data['Bustypes'] = $this->Bustypes_model->getBustypes();
 
     $data['DRVR_ID']      = ''              ;
     $data['DRVR_NAME']    = ''              ;
@@ -112,6 +113,7 @@ class Drivers extends CI_Controller{
     $data['DRVR_PASS']    = ''              ;
     $data['DRVR_BLNC']    = ''              ;
     $data['DRVR_ADRS']    = ''              ;
+    $data['DRVR_BSTP_ID']    = ''              ;
     $data['DRVR_UNAME']    = ''              ;
 
     $data['formURL']      = 'insertdrivers'  ;
@@ -168,10 +170,11 @@ class Drivers extends CI_Controller{
     $driverPass = $this->input->post('driverPass');
     $driverBalance = $this->input->post('driverBalance');
     $driverAddress = $this->input->post('driverAddress');
+    $driverBustype = $this->input->post('driverBustypeID');
     $driverUsername = $this->input->post('driverUsername');
 
-    $this->Drivers_model->insertDriver($driverName, $driverLicenseNo, $driverMobile, $driverUsername, $driverImg, $driverPass,
-                                         $driverBalance, $driverAddress);
+    $this->Drivers_model->insertDriver($driverName, $driverLicenseNo, $driverMobile, $driverBustype, $driverUsername,
+                                       $driverImg, $driverPass, $driverBalance, $driverAddress);
 
     $this->load->view('pages/drivers_redirect');
 
@@ -198,6 +201,7 @@ class Drivers extends CI_Controller{
     $Driver = $this->Drivers_model->getDriver_byID($ID)[0];
 
     $data['Cities'] = $this->Cities_model->getCities();
+    $data['Bustypes'] = $this->Bustypes_model->getBustypes();
 
     $data['DRVR_ID']      = $Driver['DRVR_ID']  ;
     $data['DRVR_NAME']    = $Driver['DRVR_NAME']  ;
@@ -206,6 +210,7 @@ class Drivers extends CI_Controller{
     $data['DRVR_IMG']    = $Driver['DRVR_IMG']   ;
     $data['DRVR_PASS']    = $Driver['DRVR_PASS']  ;
     $data['DRVR_BLNC']    = $Driver['DRVR_BLNC']  ;
+    $data['DRVR_BSTP_ID']    = $Driver['DRVR_BSTP_ID']  ;
     $data['DRVR_ADRS']    = $Driver['DRVR_ADRS']   ;
     $data['DRVR_UNAME']    = $Driver['DRVR_UNAME']   ;
 
@@ -213,6 +218,7 @@ class Drivers extends CI_Controller{
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
+
 
     $this->load->view('templates/header', $header);
     $this->load->view('pages/adddriver', $data);
@@ -265,10 +271,83 @@ class Drivers extends CI_Controller{
     $driverPass = $this->input->post('driverPass');
     $driverBalance = $this->input->post('driverBalance');
     $driverAddress = $this->input->post('driverAddress');
+    $driverBustype = $this->input->post('driverBustypeID');
 
-    $this->Drivers_model->editDriver($ID, $driverName, $driverUsername, $driverMobile, $driverLicenseNo, $driverImg, $driverPass,
-                                         $driverBalance, $driverAddress);
+    $this->Drivers_model->editDriver($ID, $driverName, $driverUsername, $driverMobile, $driverLicenseNo,$driverBustype,
+                                    $driverImg, $driverPass, $driverBalance, $driverAddress);
 
+    $this->load->view('pages/drivers_redirect');
+
+  }
+
+  public function blockActivateDriverPage(){
+
+    $result = $this->CheckUser2('blckactvdrvr');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
+    }
+
+    $data['Active'] = $this->Drivers_model->getActiveDrivers();
+    $data['Blocked'] = $this->Drivers_model->getBlockedDrivers();
+
+    $this->load->view('templates/header', $header);
+    $this->load->view('controlpages/blockActivateDrivers', $data);
+    $this->load->view('templates/footer');
+
+  }
+
+  public function ActivateDriver(){
+
+    $result = $this->CheckUser2('blckactvdrvr');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
+    }
+
+    $driverID = $this->input->post('driverID');
+    $this->Drivers_model->activateDriver($driverID);
+    $this->load->view('pages/drivers_redirect');
+
+  }
+
+  public function BlockDriver(){
+
+    $result = $this->CheckUser2('blckactvdrvr');
+    if($result == false){
+      // User not logged in
+      $this->load->view("login_redirect");
+      return;
+    }else if($result == 2){
+      // User not permitted
+      return;
+    }
+    else {
+      if(strcmp($this->session->user['USRNAME'], 'admin') == 0)
+      $header['ArrURL'] = $result;
+      $header['OrgArr'] = $this->Master_model->getPagesByType();
+    }
+
+    $driverID = $this->input->post('driverID');
+    $this->Drivers_model->blockDriver($driverID);
     $this->load->view('pages/drivers_redirect');
 
   }

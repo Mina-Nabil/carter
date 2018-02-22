@@ -20,15 +20,11 @@
                                 <tbody>
                                   <?foreach($TableData as $data){?>
                                     <tr class="odd gradeX">
-                                      <td><?=$data['DRVR_LICENSE_NO']?></td>
-                                      <td><?=$data['DRVR_NAME']?></td>
+                                        <td><?=$data['BSTP_ID']?></td>
                                         <td><?=$data['BSTP_NAME']?></td>
-                                        <td><?=$data['DRVR_UNAME']?></td>
-                                        <td><?=$data['DRVR_MOB']?></td>
-                                        <td><?=$data['DRVR_ADRS']?></td>
-                                        <td><?=$data['DRVR_BLNC']?></td>
-                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['DRVR_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
-                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['DRVR_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
+                                        <td><?=$data['BSTP_ARBC_NAME']?></td>
+                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['BSTP_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
+                                        <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['BSTP_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
                                     </tr>
                                    <?}?>
                                 </tbody>

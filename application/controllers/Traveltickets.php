@@ -110,7 +110,7 @@ class Traveltickets extends CI_Controller{
     }
 
 
-    $data['TableData'] = $this->Traveltickets_model->getTraveltickets($ClientID);
+    $data['TableData'] = $this->Traveltickets_model->getOldTravelTicketsByClient($ClientID);
 
     $data['TableHeaders'] = array(
       'Line Name',

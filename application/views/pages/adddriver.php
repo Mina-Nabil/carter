@@ -38,6 +38,14 @@
                                             <p class="help-block">Enter Driver Full Name, Example: Ahmed Kamel.</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>Bus Type</label>
+                                            <select class="form-control" name='driverBustypeID'>
+                                              <?foreach($Bustypes as $bustype){?>
+                                                  <option value=<?=$bustype['BSTP_ID']?> <?if($DRVR_BSTP_ID == $bustype['BSTP_ID'])  echo 'selected';?> ><?=$bustype['BSTP_NAME']?></option>
+                                              <?}?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Driver Mobile</label>
                                             <input class="form-control" name='driverMobile' value='<?=$DRVR_MOB?>' required>
                                             <p class="help-block">Enter Driver Mobile Number, Example: 0115214036.</p>
