@@ -37,6 +37,7 @@ class Messages extends CI_Controller{
       $this->load->view("home_redirect");
       return 2;
     }
+  }
 
   public function home($MSGErr = '', $MSGOK = '')
   {

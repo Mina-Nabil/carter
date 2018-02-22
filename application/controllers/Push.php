@@ -37,6 +37,7 @@ class Push extends CI_Controller{
       $this->load->view("home_redirect");
       return 2;
     }
+  }
 
 
   function home()
