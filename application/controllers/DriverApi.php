@@ -72,6 +72,7 @@ class DriverApi extends CI_Controller{
 
     $driverID = $this->input->post('driverID');
     $Trips = $this->Drivers_model->getActiveLines_ByDriver($driverID);
+    echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
     foreach($Trips as $key => $trip){
       $Lines = $this->Paths_model->getDriverPaths($trip['LVLN_LINE_ID']);
       foreach($Lines as $key => $line){
@@ -81,7 +82,6 @@ class DriverApi extends CI_Controller{
       $Trips[$key]['Stations'] = $Lines;
     }
 
-    echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
 
   }
 
