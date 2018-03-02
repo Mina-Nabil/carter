@@ -17,11 +17,15 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <form role="form" action='<?=base_url() . $formURL?>' method="post">
-                                  
+
                                         <div class="form-group">
                                             <label>Line Name</label>
                                             <input class="form-control" name='lineName' type="text" value='<?=$LINE_NAME?>' required>
                                             <p class="help-block">Enter Line Name, Example: Rehab - EL Giza 1 </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Line Arabic Name</label>
+                                            <input class="form-control" name='lineArbcName' type="text" value='<?=$LINE_ARBC_NAME?>' required>
                                         </div>
                                         <div class="form-group">
                                             <label>Line Description</label>

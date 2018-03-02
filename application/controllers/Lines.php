@@ -79,6 +79,7 @@ class Lines extends CI_Controller{
         $temp = array(
           'LINE_ID' => $row['LINE_ID'],
           'LINE_NAME' => $row['LINE_NAME'],
+          'LINE_ARBC_NAME' => $row['LINE_ARBC_NAME'],
           'LINE_DESC' => $row['LINE_DESC'],
           'LINE_TAGS' => $row['LINE_TAGS'],
           'START_DIST_NAME' => 'Line not set',
@@ -141,6 +142,7 @@ class Lines extends CI_Controller{
 
     $data['LINE_ID']      = ''              ;
     $data['LINE_NAME']    = ''              ;
+    $data['LINE_ARBC_NAME']    = ''              ;
     $data['LINE_DESC']    = ''              ;
     $data['LINE_TAGS']    = ''              ;
 
@@ -172,10 +174,11 @@ class Lines extends CI_Controller{
     }
 
     $lineName = $this->input->post('lineName');
+    $lineArbcName = $this->input->post('lineArbcName');
     $lineDesc = $this->input->post('lineDesc');
     $lineTags = $this->input->post('lineTags');
 
-    $this->Lines_model->insertLine($lineName, $lineDesc, $lineTags);
+    $this->Lines_model->insertLine($lineName, $lineArbcName, $lineDesc, $lineTags);
 
     $this->load->view('pages/lines_redirect');
 
@@ -205,6 +208,7 @@ class Lines extends CI_Controller{
 
     $data['LINE_ID']      = $Line['LINE_ID']  ;
     $data['LINE_NAME']    = $Line['LINE_NAME']  ;
+    $data['LINE_ARBC_NAME']    = $Line['LINE_ARBC_NAME']  ;
     $data['LINE_DESC']    = $Line['LINE_DESC']   ;
     $data['LINE_TAGS']    = $Line['LINE_TAGS'] ;
 
@@ -237,10 +241,11 @@ class Lines extends CI_Controller{
     }
 
     $lineName = $this->input->post('lineName');
+    $lineArbcName = $this->input->post('lineArbcName');
     $lineDesc = $this->input->post('lineDesc');
     $lineTags = $this->input->post('lineTags');
 
-    $this->Lines_model->editLine($ID, $lineName, $lineDesc,  $lineTags);
+    $this->Lines_model->editLine($ID, $lineName, $lineArbcName, $lineDesc,  $lineTags);
 
     $this->load->view('pages/lines_redirect');
 

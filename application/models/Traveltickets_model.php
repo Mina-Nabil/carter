@@ -151,6 +151,32 @@ class TravelTickets_model extends CI_Model{
           return $res2;
         }
 
+        public function getInTicketsByStations($LiveLineID, $StationID){
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
+                      FROM  clients, traveltickets, live_lines
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = {$LiveLineID}
+                      AND TRTK_START_STTN = {$StationID}";
+          $query = $this->db->query($strSQL);
+          $res1  = $query->result_array();
+
+        }
+
+        public function getOutTicketsByStations($LiveLineID, $StationID){
+
+          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
+                      FROM  clients, traveltickets, live_lines
+                      WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = {$LiveLineID}
+                      AND TRTK_END_STTN = {$StationID}";
+          $query = $this->db->query($strSQL);
+          $res1  = $query->result_array();
+
+        }
+
         public function getTravelTicket_byID($ID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
@@ -200,7 +226,7 @@ class TravelTickets_model extends CI_Model{
         }
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
-                                           $isPaid, $Price, $isHandi, $NoofTickets){
+                                           $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation){
 
 
           $this->db->trans_start();
@@ -208,8 +234,8 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL2);
 
           $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                                                  TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS)
-                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+                                                  TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, TRTK_START_STTN, TRTK_END_STTN)
+                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
 
 
 

@@ -165,6 +165,39 @@ class Drivers_model extends CI_Model{
           $query = $this->db->query($strSQL);
         }
 
+        public function getActiveLines_ByDriver($DriverID){
+          $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LINE_ARBC_NAME, LVLN_TIME,
+                            LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, DRVR_NAME
+                            FROM live_lines, karter.lines, drivers
+                            WHERE LVLN_LINE_ID = LINE_ID
+                            AND LVLN_DRVR_ID = DRVR_ID
+                            AND LVLN_COMP = 0
+                            AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -1 DAY)
+                            AND DRVR_ID = {$DriverID}
+                            ORDER BY LVLN_TIME ";
+
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
+        public function getOldLines_ByDriver($DriverID){
+          $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LINE_ARBC_NAME, LVLN_TIME,
+                            LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, DRVR_NAME
+                            FROM live_lines, karter.lines, drivers
+                            WHERE LVLN_LINE_ID = LINE_ID
+                            AND LVLN_DRVR_ID = DRVR_ID
+                            AND LVLN_COMP = 1
+                            AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL -14 DAY)
+                            AND DRVR_ID = {$DriverID}
+                            ORDER BY LVLN_TIME ";
+
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+
+        }
+
         public function deleteDriver($ID){
           $strSQL = "DELETE FROM Drivers WHERE DRVR_ID = {$ID}";
           $query = $this->db->query($strSQL);

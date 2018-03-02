@@ -327,6 +327,8 @@ class Api extends CI_Controller{
     $LiveLineID  = $this->input->post('LiveLineID');
     $StartIndex  = $this->input->post('StartIndex');
     $EndIndex  = $this->input->post('EndIndex');
+    $StartStation  = $this->input->post('StartStation');
+    $EndStation  = $this->input->post('EndStation');
     $NoofTickets = $this->input->post('NoofTickets');
     $isHandi     = $this->input->post('isHandi');
     $ClientID    = $this->input->post('ClientID');
@@ -334,8 +336,8 @@ class Api extends CI_Controller{
 
     if($this->Traveltickets_model->isAvailable($LiveLineID, $StartIndex, $EndIndex, $NoofTickets)){
 
-    $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,
-                                                   $EndIndex, 0, 0, $Price, $isHandi, $NoofTickets);
+    $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,$EndIndex, 0, 0,
+                                                          $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
 
     if($res) $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
     echo $res['ID'];

@@ -37,8 +37,8 @@ class DriverApi extends CI_Controller{
 
   public function setTag(){
 
-    $driverID = $this->input->post('DriverID');
-    $driverTag = $this->input->post('DriverTag');
+    $driverID = $this->input->post('driverID');
+    $driverTag = $this->input->post('driverTag');
 
     echo $this->Drivers_model->setTag($driverID, $driverTag);
     return ;
@@ -46,8 +46,8 @@ class DriverApi extends CI_Controller{
 
   public function setTracker(){
 
-    $driverID = $this->input->post('DriverID');
-    $driverTracker = $this->input->post('DriverTracker');
+    $driverID = $this->input->post('driverID');
+    $driverTracker = $this->input->post('driverTracker');
 
     echo $this->Drivers_model->setTracker($driverID, $driverTracker);
     return ;
@@ -66,6 +66,30 @@ class DriverApi extends CI_Controller{
     }
     else echo "WrongPass ";
 
+  }
+
+  public function getActiveTrips(){
+
+    $driverID = $this->input->post('driverID');
+    $Trips = $this->Drivers_model->getActiveLines_ByDriver($driverID);
+    foreach($Trips as $key => $trip){
+      $Lines = $this->$this->Paths_model->getDriverPaths($trip['LVLN_LINE_ID']);
+      foreach($Lines as $key => $line){
+        $Lines[$key]['In_Array'] = $this->Traveltickets_model->getInTicketsByStations();
+        $Lines[$key]['Out_Array'] = $this->Traveltickets_model->getOutTicketsByStations();
+      }
+      $Trips[$key]['Stations'] = $Lines;
+    }
+    return $Trips;
+  }
+
+  public function getOldTrips(){
+    $driverID = $this->input->post('driverID');
+    $Trips = $this->Drivers_model->getOldLines_ByDriver($driverID);
+    foreach ($Trips as $key => $line) {
+      $Trips[$key] = $this->LiveLines_model->getFullLinesByID($line['LVLN_LINE_ID'])
+    }
+    return $Trips;
   }
 
 }
