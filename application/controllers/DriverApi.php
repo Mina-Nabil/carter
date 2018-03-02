@@ -80,16 +80,19 @@ class DriverApi extends CI_Controller{
       }
       $Trips[$key]['Stations'] = $Lines;
     }
-    return $Trips;
+
+    echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
+
   }
 
   public function getOldTrips(){
     $driverID = $this->input->post('driverID');
     $Trips = $this->Drivers_model->getOldLines_ByDriver($driverID);
+
     foreach ($Trips as $key => $line) {
       $Trips[$key] = $this->Lines_model->getFullLinesByID($line['LVLN_LINE_ID']);
     }
-    return $Trips;
+    echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
   }
 
 }
