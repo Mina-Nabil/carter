@@ -46,7 +46,7 @@ class Drivers_model extends CI_Model{
 
           $strSQL = "SELECT DRVR_ID, DRVR_NAME, DRVR_LICENSE_NO, DRVR_MOB, BSTP_NAME, DRVR_ACTV,
                             DRVR_UNAME, DRVR_IMG, DRVR_PASS, DRVR_BLNC, DRVR_ADRS, DRVR_BSTP_ID, DRVR_TAG, DRVR_TRKR,
-                    FROM Driversbustypes
+                    FROM Drivers, bustypes
                     WHERE BSTP_ID = DRVR_BSTP_ID AND DRVR_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
@@ -70,14 +70,14 @@ class Drivers_model extends CI_Model{
 
         public function changePass($Email, $Pass){
 
-          $strSQL = "UPDATE drivers SET DRVR_PASS = ? WHERE `DRVR_LICENSE_NO`= ? ";
+          $strSQL = "UPDATE drivers SET DRVR_PASS = ? WHERE DRVR_LICENSE_NO= ? ";
           $query = $this->db->query($strSQL, array($Pass, $Email));
           if($query) return 1;
         }
 
         public function changePassbyID($ID, $Pass){
 
-          $strSQL = "UPDATE drivers SET DRVR_PASS = ? WHERE `DRVR_ID`= ? ";
+          $strSQL = "UPDATE drivers SET DRVR_PASS = ? WHERE DRVR_ID = ? ";
           $query = $this->db->query($strSQL, array($Pass, $ID));
           if($query) return 1;
         }

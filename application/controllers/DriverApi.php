@@ -35,6 +35,11 @@ class DriverApi extends CI_Controller{
 
   }
 
+  public function getDriverProfile(){
+    $driverID = $this->input->post('driverID');
+    echo json_encode($this->Drivers_model->checkDriverbyID($driverID), JSON_UNESCAPED_UNICODE);
+  }
+
   public function setTag(){
 
     $driverID = $this->input->post('driverID');
