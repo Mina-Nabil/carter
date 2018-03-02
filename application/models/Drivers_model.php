@@ -109,7 +109,7 @@ class Drivers_model extends CI_Model{
         }
 
         public function checkDriverbyID($ID, $Pass){
-          $strSQL = "SELECT DRVR_ID from clients where DRVR_ID = ? AND DRVR_PASS = ?" ;
+          $strSQL = "SELECT DRVR_ID from drivers where DRVR_ID = ? AND DRVR_PASS = ?" ;
 
           $query = $this->db->query($strSQL, array($ID, $Pass));
           $result = $query->result_array();
