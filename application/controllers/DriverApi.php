@@ -75,8 +75,8 @@ class DriverApi extends CI_Controller{
     foreach($Trips as $key => $trip){
       $Lines = $this->Paths_model->getDriverPaths($trip['LVLN_LINE_ID']);
       foreach($Lines as $key => $line){
-        $Lines[$key]['In_Array'] = $this->Traveltickets_model->getInTicketsByStations();
-        $Lines[$key]['Out_Array'] = $this->Traveltickets_model->getOutTicketsByStations();
+        $Lines[$key]['In_Array'] = $this->Traveltickets_model->getInTicketsByStations($trip['LVLN_LINE_ID'], $line['PATH_STTN_ID']);
+        $Lines[$key]['Out_Array'] = $this->Traveltickets_model->getOutTicketsByStations($trip['LVLN_LINE_ID'], $line['PATH_STTN_ID']);
       }
       $Trips[$key]['Stations'] = $Lines;
     }
