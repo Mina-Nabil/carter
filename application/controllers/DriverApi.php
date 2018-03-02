@@ -87,7 +87,7 @@ class DriverApi extends CI_Controller{
     $driverID = $this->input->post('driverID');
     $Trips = $this->Drivers_model->getOldLines_ByDriver($driverID);
     foreach ($Trips as $key => $line) {
-      $Trips[$key] = $this->LiveLines_model->getFullLinesByID($line['LVLN_LINE_ID'])
+      $Trips[$key] = $this->LiveLines_model->getFullLinesByID($line['LVLN_LINE_ID']);
     }
     return $Trips;
   }
