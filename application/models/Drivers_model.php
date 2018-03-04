@@ -84,7 +84,7 @@ class Drivers_model extends CI_Model{
 
         public function setTag($ID, $Tag){
 
-          $strSQL = "UPDATE drivers SET DRVR_TAG = ? WHERE `DRVR_ID`= ? ";
+          $strSQL = "UPDATE drivers SET DRVR_TAG = ? WHERE DRVR_ID = ? ";
           return $this->db->query($strSQL, array($Tag, $ID));
 
         }
