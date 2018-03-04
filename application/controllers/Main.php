@@ -36,7 +36,7 @@
       }
       $header['ArrURL'] = $this->Master_model->getHeaderArr();
       $header['OrgArr'] = $this->Master_model->getPagesByType();
-
+      $header['HERE'] = 'HERE';
       $this->load->view('templates/header', $header);
       $this->load->view('pages/home');
       $this->load->view('templates/footer');
