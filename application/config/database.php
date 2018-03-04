@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '52.41.123.105',
+	'hostname' => '35.177.165.229',
 	'username' => 'root',
 	'port' 		 => '3306',
-	'password' => 'onepush@011',
+	'password' => 'fokch5bbOsaJ',
 	'database' => 'karter',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
