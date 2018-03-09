@@ -45,9 +45,11 @@ class Drivers_model extends CI_Model{
         public function getDriver_byID($ID){
 
           $strSQL = "SELECT DRVR_ID, DRVR_NAME, DRVR_LICENSE_NO, DRVR_MOB, BSTP_NAME, DRVR_ACTV,
-                            DRVR_UNAME, DRVR_IMG, DRVR_PASS, DRVR_BLNC, DRVR_ADRS, DRVR_BSTP_ID, DRVR_TAG, DRVR_TRKR 
-                    FROM Drivers, bustypes
-                    WHERE BSTP_ID = DRVR_BSTP_ID AND DRVR_ID = {$ID}";
+                            DRVR_UNAME, DRVR_IMG, DRVR_BLNC, DRVR_ADRS, DRVR_BSTP_ID, DRVR_TAG, BUS_NUMBER, BUS_SEATS
+                    FROM Drivers, bustypes, buses
+                    WHERE BSTP_ID = DRVR_BSTP_ID
+                    AND BUS_DRVR_ID = DRVR_ID
+                    AND DRVR_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
@@ -55,8 +57,8 @@ class Drivers_model extends CI_Model{
 
         public function setImage($ID, $Image){
 
-          $strSQL = "UPDATE Drivers SET DRVR_IMG = '{$Image}' WHERE `DRVR_ID`='{$ID}'";
-          $query = $this->db->query($strSQL);
+          $strSQL = "UPDATE Drivers SET DRVR_IMG = ? WHERE `DRVR_ID`='{$ID}'";
+          $query = $this->db->query($strSQL, array($Image));
         }
 
         public function isLicenseExist($License){
