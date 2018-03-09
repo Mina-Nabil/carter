@@ -100,4 +100,9 @@ class DriverApi extends CI_Controller{
     echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
   }
 
+  public function clientArrived(){
+    $ClientID = $this->input->post('ClientID');
+    $DriverID = $this->input->post('DriverID');
+  }
+
 }
