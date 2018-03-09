@@ -95,7 +95,7 @@ class DriverApi extends CI_Controller{
     $Trips = $this->Drivers_model->getOldLines_ByDriver($driverID);
 
     foreach ($Trips as $key => $line) {
-      $Trips[$key] = $this->Lines_model->getFullLinesByID($line['LVLN_LINE_ID']);
+      $Trips[$key]['FullLine'] = $this->Lines_model->getFullLinesByID($line['LVLN_LINE_ID']);
     }
     echo json_encode($Trips, JSON_UNESCAPED_UNICODE);
   }
