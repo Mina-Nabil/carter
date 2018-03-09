@@ -157,6 +157,7 @@ class TravelTickets_model extends CI_Model{
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_CANC = 0
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_START_STTN = {$StationID}";
           $query = $this->db->query($strSQL);
@@ -223,6 +224,24 @@ class TravelTickets_model extends CI_Model{
 
           return $MaxSeats - $Seats;
           //Test this function
+        }
+
+        public function setClientPaid($TravelticketID){
+          $strSQL = "UPDATE traveltickets SET
+                      TRTK_PAID = 1, TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Cash'
+                      WHERE  `TRTK_ID`= {$TravelticketID}";
+
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+        }
+
+        public function setClientPaidbyVisa($TravelticketID){
+          $strSQL = "UPDATE traveltickets SET
+                      TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Visa'
+                      WHERE  `TRTK_ID`= {$TravelticketID}";
+
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
         }
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
