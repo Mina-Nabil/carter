@@ -186,7 +186,7 @@ class Drivers_model extends CI_Model{
 
         public function getOldLines_ByDriver($DriverID){
           $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LINE_ARBC_NAME, LVLN_TIME,
-                            LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, DRVR_NAME
+                            LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, DRVR_NAME, LVLN_REVN
                             FROM live_lines, karter.lines, drivers
                             WHERE LVLN_LINE_ID = LINE_ID
                             AND LVLN_DRVR_ID = DRVR_ID
