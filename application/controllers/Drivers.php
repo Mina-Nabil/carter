@@ -208,7 +208,7 @@ class Drivers extends CI_Controller{
     $data['DRVR_MOB']    = $Driver['DRVR_MOB']   ;
     $data['DRVR_LICENSE_NO']    = $Driver['DRVR_LICENSE_NO'] ;
     $data['DRVR_IMG']    = $Driver['DRVR_IMG']   ;
-    $data['DRVR_PASS']    = $Driver['DRVR_PASS']  ;
+    $data['DRVR_PASS']    = 'Test'  ;
     $data['DRVR_BLNC']    = $Driver['DRVR_BLNC']  ;
     $data['DRVR_BSTP_ID']    = $Driver['DRVR_BSTP_ID']  ;
     $data['DRVR_ADRS']    = $Driver['DRVR_ADRS']   ;

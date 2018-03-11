@@ -45,7 +45,7 @@ class Drivers_model extends CI_Model{
         public function getDriver_byID($ID){
 
           $strSQL = "SELECT DRVR_ID, DRVR_NAME, DRVR_LICENSE_NO, DRVR_MOB, BSTP_NAME, DRVR_ACTV, DRVR_UNAME,
-                         DRVR_IMG, DRVR_BLNC, DRVR_ADRS, DRVR_BSTP_ID, DRVR_TAG, BUS_NUMBER, BUS_SEATS, DRVR_PASS
+                         DRVR_IMG, DRVR_BLNC, DRVR_ADRS, DRVR_BSTP_ID, DRVR_TAG, BUS_NUMBER, BUS_SEATS
                     FROM Drivers, bustypes, buses
                     WHERE BSTP_ID = DRVR_BSTP_ID
                     AND DRVR_ID = BUS_DRVR_ID
