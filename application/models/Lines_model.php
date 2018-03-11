@@ -95,7 +95,7 @@ class Lines_model extends CI_Model{
 
         public function getFullLinesByID($LineID){
 
-          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_ARBC_NAME, LINE_DESC, 
+          $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_ARBC_NAME, LINE_DESC,
                             DIST_NAME AS START_DIST_NAME, CITY_NAME AS START_CITY_NAME,
                             STTN_NAME AS START_STTN_NAME, STTN_ADRS as START_STTN_ADRS
                       FROM karter.lines, districts, cities, paths, stations
@@ -148,6 +148,10 @@ class Lines_model extends CI_Model{
 
           foreach($LinesArray as $row){
             array_push($IDs, $row['LINE_ID']);
+          }
+
+          if(sizeof($IDs) == 0){
+            return array();
           }
 
           $strSQL = "SELECT LINE_ID, LINE_NAME, LINE_ARBC_NAME, LINE_DESC, LINE_TAGS,
