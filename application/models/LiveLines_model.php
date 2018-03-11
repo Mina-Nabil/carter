@@ -29,10 +29,11 @@ class LiveLines_model extends CI_Model{
         public function getLiveLine_byID($ID){
 
           $strSQL = "SELECT LVLN_ID, LVLN_LINE_ID, LVLN_DRVR_ID, LINE_NAME, LVLN_TIME, LVLN_BUS_ID, LVLN_CANC, LVLN_COMP, LVLN_REVN,
-                            BUS_NUMBER, BUS_TYPE, DRVR_NAME, LVLN_TCKT_PRICE
-                    FROM live_lines, karter.lines, drivers, buses
+                            BUS_NUMBER, DRVR_NAME, LVLN_TCKT_PRICE, BSTP_NAME
+                    FROM live_lines, karter.lines, drivers, buses, bustypes
                     WHERE LVLN_LINE_ID = LINE_ID
                     AND LVLN_DRVR_ID = DRVR_ID
+                    AND DRVR_BSTP_ID = BSTP_ID
                     AND LVLN_BUS_ID = BUS_ID AND LVLN_ID = {$ID}";
           $query = $this->db->query($strSQL);
           return $query->result_array();
@@ -83,8 +84,8 @@ class LiveLines_model extends CI_Model{
 
         public function getAvailableLines($LineID, $StartSttn, $EndSttn){
           $strSQL = "SELECT LVLN_ID, LVLN_TIME, LVLN_LINE_ID as LineID, PATH_REL_TIME, PATH_INDX, STTN_NAME,
-                            LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER, BUS_TYPE, DRVR_MOB
-                     FROM live_lines, karter.lines, paths, stations, drivers, buses
+                            LVLN_TCKT_PRICE, LVLN_DRVR_ID, DRVR_NAME, DRVR_IMG, BUS_NUMBER, BSTP_NAME, DRVR_MOB
+                     FROM live_lines, karter.lines, paths, stations, drivers, buses, bustypes
                      WHERE LVLN_LINE_ID = {$LineID}
                      AND LVLN_TIME > NOW()
                      AND LVLN_CANC = 0
@@ -94,6 +95,7 @@ class LiveLines_model extends CI_Model{
                      AND LVLN_BUS_ID = BUS_ID
                      AND PATH_STTN_ID = STTN_ID
                      AND LINE_ID = PATH_LINE_ID
+                     AND DRVR_BSTP_ID = BSTP_ID
                      AND PATH_INDX >= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$StartSttn})
                      AND PATH_INDX <= (SELECT PATH_INDX FROM paths WHERE PATH_LINE_ID = {$LineID} AND PATH_STTN_ID = {$EndSttn})
                      AND LVLN_COMP = 0
