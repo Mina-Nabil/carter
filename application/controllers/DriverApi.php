@@ -102,11 +102,7 @@ class DriverApi extends CI_Controller{
 
   public function clientArrived(){
     $TicketID = $this->input->post('TicketID');
-    $PaymentType = $this->input->post('PaymentType');
-    if($PaymentType == 1){ //Visa
-      $this->Traveltickets_model->setClientPaidbyVisa($TicketID);
-    } elseif($PaymentType == 0) //Cash
-      $this->Traveltickets_model->setClientPaid($TicketID);
+    $this->Traveltickets_model->setClientPaid($TicketID);
 
       echo 1;
   }
