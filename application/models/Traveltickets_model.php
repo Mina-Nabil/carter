@@ -258,7 +258,7 @@ class TravelTickets_model extends CI_Model{
 
 
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets);
+          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
           $query = $this->db->query($strSQL2, $inputs);
 
           $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
