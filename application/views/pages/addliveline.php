@@ -1,7 +1,7 @@
 
 <script type='text/javascript'>
 
-  var max = 1;
+  var max = 0;
 
   function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
@@ -179,7 +179,7 @@
                                         <div class="form-group" id=time1>
                                             <label>Line Start Time</label>
                                             <input
-                                            class=form-control name=livelineTime[1]
+                                            class=form-control name=livelineTime[0]
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
                                             <br>
