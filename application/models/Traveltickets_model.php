@@ -152,7 +152,7 @@ class TravelTickets_model extends CI_Model{
         }
 
         public function getInTicketsByStations($LiveLineID, $StationID){
-
+          echo "live {$LiveLineID} - Station {$StationID}";
           $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines
