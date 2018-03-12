@@ -157,6 +157,7 @@ class TravelTickets_model extends CI_Model{
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
                       AND TRTK_CANC = 0
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_START_STTN = {$StationID}";
@@ -171,6 +172,7 @@ class TravelTickets_model extends CI_Model{
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
+                      AND TRTK_LVLN_ID = LVLN_ID
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_END_STTN = {$StationID}";
           $query = $this->db->query($strSQL);

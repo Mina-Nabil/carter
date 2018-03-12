@@ -120,7 +120,9 @@ class LiveLines_model extends CI_Model{
               'StartTime' => $row['LVLN_TIME'],
               'DriverName' => $row['DRVR_NAME'],
               'DriverImg' => $row['DRVR_IMG'],
-              'BusBumber' => $row['BUS_NUMBER'],
+              'BusNumber' => $row['BUS_NUMBER'],
+              'DriverMob' => $row['DRVR_MOB'],
+              'BusType' => $row['BSTP_NAME'],
               'Price' => $row['LVLN_TCKT_PRICE'],
               'Stations' =>  array()  ,
             );
