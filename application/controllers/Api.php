@@ -364,4 +364,28 @@ class Api extends CI_Controller{
 
   }
 
+  public function cancelTrip(){
+    $ClientID   = $this->input->post('ClientID');
+    $LiveLineID = $this->input->post('LiveLineID');
+    $TicketID   = $this->input->post('TicketID');
+    $Change = null;
+
+    if(!is_numeric($TicketPrice)){
+      echo 'Invalid Data';
+    }
+
+    $Change = $TicketPrice * -1;
+    $TicketInfo = $this->Traveltickets_model->getTravelTicket_byID($TicketID);
+    $TicketPrice = $TicketInfo['TRTK_PRICE'];
+
+    if((time()-(60*60*24)) < strtotime($TicketInfo['LVLN_TIME'])){
+      $this->Balancelogs_model->insertBalancelog($Change, $ClientID, date(), 'Trip Cancelled by User');
+      $this->Clients_model->decrementBalance($ClientID, $TicketPrice);
+    }
+    $this->Traveltickets_model->cancelTicket($TicketID);
+
+    echo '1';
+
+  }
+
 }

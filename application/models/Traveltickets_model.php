@@ -173,6 +173,7 @@ class TravelTickets_model extends CI_Model{
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
+                      AND TRTK_CANC = 0
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_END_STTN = {$StationID}";
           $query = $this->db->query($strSQL);
@@ -183,7 +184,7 @@ class TravelTickets_model extends CI_Model{
         public function getTravelTicket_byID($ID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, LVLN_TIME
                     FROM traveltickets, live_lines, karter.lines, clients
                     WHERE TRTK_LVLN_ID = LVLN_ID
                     AND TRTK_CLNT_ID = CLNT_ID
@@ -207,7 +208,8 @@ class TravelTickets_model extends CI_Model{
                     FROM (
                     SELECT TRTK_SEATS as p1 FROM karter.stationtickets, traveltickets, live_lines
                     WHERE STTK_LVLN_ID = LVLN_ID
-                     AND TRTK_LVLN_ID = LVLN_ID
+                    AND TRTK_LVLN_ID = LVLN_ID
+                    AND TRTK_CANC = 0
                       AND TRTK_LVLN_ID = ?
                       AND   STTK_INDX IN ?
                      GROUP BY TRTK_ID
@@ -244,6 +246,15 @@ class TravelTickets_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
+        }
+
+        public function cancelTicket($TicketID){
+          $strSQL = "UPDATE traveltickets
+                    SET TRTK_CANC   = 1
+                    WHERE  `TRTK_ID`= ?";
+
+          $inputs = array($TicketID);
+          $query = $this->db->query($strSQL, $inputs);
         }
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
