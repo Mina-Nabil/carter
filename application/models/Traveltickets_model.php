@@ -158,7 +158,7 @@ class TravelTickets_model extends CI_Model{
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
-                      AND TRTK_CANC = 0
+                      AND TRTK_CANC != 1
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_START_STTN = {$StationID}";
           $query = $this->db->query($strSQL);
@@ -173,7 +173,7 @@ class TravelTickets_model extends CI_Model{
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
-                      AND TRTK_CANC = 0
+                      AND TRTK_CANC != 1
                       AND TRTK_LVLN_ID = {$LiveLineID}
                       AND TRTK_END_STTN = {$StationID}";
           $query = $this->db->query($strSQL);
@@ -246,6 +246,15 @@ class TravelTickets_model extends CI_Model{
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
+        }
+
+        public function cancelTicketbyDriver($TicketID){
+          $strSQL = "UPDATE traveltickets
+                    SET TRTK_CANC   = 2
+                    WHERE  `TRTK_ID`= ?";
+
+          $inputs = array($TicketID);
+          $query = $this->db->query($strSQL, $inputs);
         }
 
         public function cancelTicket($TicketID){

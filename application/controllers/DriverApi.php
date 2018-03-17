@@ -104,7 +104,12 @@ class DriverApi extends CI_Controller{
   public function clientArrived(){
     $TicketID = $this->input->post('TicketID');
     $this->Traveltickets_model->setClientPaid($TicketID);
+      echo 1;
+  }
 
+  public function clientUnavailable(){
+    $TicketID = $this->input->post('TicketID');
+    $this->Traveltickets_model->cancelTicketbyDriver($TicketID);
       echo 1;
   }
 
