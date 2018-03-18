@@ -237,6 +237,7 @@ class TravelTickets_model extends CI_Model{
 
           return $this->db->query($strSQL, array($TravelticketID));
         }
+        
 
         public function setClientPaidbyVisa($TravelticketID){
           $strSQL = "UPDATE traveltickets SET
