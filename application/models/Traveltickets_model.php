@@ -233,9 +233,9 @@ class TravelTickets_model extends CI_Model{
         public function setClientPaid($TravelticketID){
           $strSQL = "UPDATE traveltickets SET
                       TRTK_PAID = 1, TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Cash'
-                      WHERE  `TRTK_ID`= {$TravelticketID}";
+                      WHERE  `TRTK_ID`= ?";
 
-          $query = $this->db->query($strSQL);
+          $query = $this->db->query($strSQL, array($TravelticketID));
           return $query->result_array();
         }
 
