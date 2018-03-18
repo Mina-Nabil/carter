@@ -188,8 +188,8 @@ class TravelTickets_model extends CI_Model{
                     FROM traveltickets, live_lines, karter.lines, clients
                     WHERE TRTK_LVLN_ID = LVLN_ID
                     AND TRTK_CLNT_ID = CLNT_ID
-                    AND LVLN_LINE_ID = LINE_ID AND TRTK_ID = {$ID}";
-          $query = $this->db->query($strSQL);
+                    AND LVLN_LINE_ID = LINE_ID AND TRTK_ID = ?";
+          $query = $this->db->query($strSQL, array($ID));
           return $query->result_array();
 
         }
