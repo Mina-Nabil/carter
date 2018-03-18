@@ -235,8 +235,7 @@ class TravelTickets_model extends CI_Model{
                       TRTK_PAID = 1, TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Cash'
                       WHERE  `TRTK_ID`= ?";
 
-          $query = $this->db->query($strSQL, array($TravelticketID));
-          return $query->result_array();
+          return $this->db->query($strSQL, array($TravelticketID));
         }
 
         public function setClientPaidbyVisa($TravelticketID){
