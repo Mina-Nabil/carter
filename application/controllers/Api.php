@@ -364,8 +364,8 @@ class Api extends CI_Controller{
     $LiveLineID = $this->input->post('LiveLineID');
     $TicketID   = $this->input->post('TicketID');
     $Change = null;
-    $TicketInfo = $this->Traveltickets_model->getTravelTicket_byID($TicketID);
-    $TicketPrice = $TicketInfo[0]['TRTK_PRICE'];
+    $TicketInfo = $this->Traveltickets_model->getTravelTicket_byID($TicketID)[0];
+    $TicketPrice = $TicketInfo['TRTK_PRICE'];
 
     if(!is_numeric($TicketPrice)){
       echo 'Invalid Data';
