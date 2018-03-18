@@ -242,10 +242,10 @@ class TravelTickets_model extends CI_Model{
         public function setClientPaidbyVisa($TravelticketID){
           $strSQL = "UPDATE traveltickets SET
                       TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Visa'
-                      WHERE  `TRTK_ID`= {$TravelticketID}";
+                      WHERE  `TRTK_ID`= ?";
 
-          $query = $this->db->query($strSQL);
-          return $query->result_array();
+          return $this->db->query($strSQL, array($TravelticketID));
+
         }
 
         public function cancelTicketbyDriver($TicketID){
@@ -254,7 +254,7 @@ class TravelTickets_model extends CI_Model{
                     WHERE  `TRTK_ID`= ?";
 
           $inputs = array($TicketID);
-          $query = $this->db->query($strSQL, $inputs);
+        return $this->db->query($strSQL, $inputs);
         }
 
         public function cancelTicket($TicketID){
