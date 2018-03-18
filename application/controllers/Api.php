@@ -375,7 +375,7 @@ class Api extends CI_Controller{
 
 
     if((time()-(60*60*24)) < strtotime($TicketInfo['LVLN_TIME'])){
-      $this->Balancelogs_model->insertBalancelog($Change, $ClientID, date(), 'Trip Cancelled by User');
+      $this->Balancelogs_model->insertBalancelog($Change, $ClientID, date("Y-m-d H:i:s"), 'Trip Cancelled by User');
       $this->Clients_model->decrementBalance($ClientID, $TicketPrice);
     }
     $this->Traveltickets_model->cancelTicket($TicketID);
