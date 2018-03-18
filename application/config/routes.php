@@ -271,6 +271,7 @@ $route['api/subscribeTicket'] = 'Api/subscribeTicket';
 $route['api/getOldTrips'] = 'Api/getOldTrips';
 $route['api/getNewTrips'] = 'Api/getNewTrips';
 $route['api/resetUser'] = 'Api/resetUser';
+$route['api/cancelTrip'] = 'Api/cancelTrip';
 $route['api/get_path/(:num)'] = 'Api/get_path/$1';
 $route['api/(:any)'] = 'Api/DefaultError/$1';
 

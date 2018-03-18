@@ -364,14 +364,15 @@ class Api extends CI_Controller{
     $LiveLineID = $this->input->post('LiveLineID');
     $TicketID   = $this->input->post('TicketID');
     $Change = null;
+    $TicketInfo = $this->Traveltickets_model->getTravelTicket_byID($TicketID);
+    $TicketPrice = $TicketInfo['TRTK_PRICE'];
 
     if(!is_numeric($TicketPrice)){
       echo 'Invalid Data';
     }
 
     $Change = $TicketPrice * -1;
-    $TicketInfo = $this->Traveltickets_model->getTravelTicket_byID($TicketID);
-    $TicketPrice = $TicketInfo['TRTK_PRICE'];
+
 
     if((time()-(60*60*24)) < strtotime($TicketInfo['LVLN_TIME'])){
       $this->Balancelogs_model->insertBalancelog($Change, $ClientID, date(), 'Trip Cancelled by User');
