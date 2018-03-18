@@ -122,6 +122,7 @@ class LiveLines_model extends CI_Model{
               'DriverImg' => $row['DRVR_IMG'],
               'BusNumber' => $row['BUS_NUMBER'],
               'DriverMob' => $row['DRVR_MOB'],
+              'DriverID' => $row['LVLN_DRVR_ID'],
               'BusType' => $row['BSTP_NAME'],
               'Price' => $row['LVLN_TCKT_PRICE'],
               'Stations' =>  array()  ,
