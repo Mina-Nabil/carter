@@ -60,6 +60,28 @@
 
     div1.appendChild(input)
 
+    var label = document.createElement('label');
+    label.innerHTML = 'Driver Name'
+
+    div1.appendChild(label);
+
+    var input = document.createElement('input');
+    input.className = 'form-control';
+    input.name = 'livelineDriverID[' + (max+1) + ']';
+    input.type = 'select'
+    input.required = true
+
+    <?php foreach($Drivers as $driver){?>
+
+      var option = document.createElement('option')
+      option.value=<?=$driver['DRVR_ID']?>
+      option.required = true
+      option.innerHTML = <?=$driver['DRVR_NAME']?>
+      input.appendChild(option)
+      <?}?>
+
+    div1.appendChild(input)
+
     insertAfter(div1, oldInput)
 
     var br = document.createElement('br');

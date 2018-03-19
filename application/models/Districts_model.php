@@ -20,8 +20,8 @@ class Districts_model extends CI_Model{
 
         public function getDistrictsOnly(){
 
-          $strSQL = "SELECT DIST_ID, DIST_NAME, DIST_CITY_ID, DIST_ARBC_NAME
-                      FROM districts ";
+          $strSQL = "SELECT DIST_ID, DIST_NAME, DIST_CITY_ID, CITY_NAME, DIST_ARBC_NAME
+                      FROM districts, cities WHERE DIST_CITY_ID = CITY_ID";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 

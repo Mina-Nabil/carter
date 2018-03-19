@@ -232,16 +232,16 @@ class TravelTickets_model extends CI_Model{
 
         public function setClientPaid($TravelticketID){
           $strSQL = "UPDATE traveltickets SET
-                      TRTK_PAID = 1, TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Cash'
+                      TRTK_PAID = 1, TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Cash', TRTK_CANC = 0
                       WHERE  `TRTK_ID`= ?";
 
           return $this->db->query($strSQL, array($TravelticketID));
         }
-        
+
 
         public function setClientPaidbyVisa($TravelticketID){
           $strSQL = "UPDATE traveltickets SET
-                      TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Visa'
+                      TRTK_isARRV = 1, TRTK_PYMNTTYPE = 'Visa', TRTK_CANC = 0
                       WHERE  `TRTK_ID`= ?";
 
           return $this->db->query($strSQL, array($TravelticketID));
@@ -250,7 +250,7 @@ class TravelTickets_model extends CI_Model{
 
         public function cancelTicketbyDriver($TicketID){
           $strSQL = "UPDATE traveltickets
-                    SET TRTK_CANC   = 2
+                    SET TRTK_CANC   = 2, TRTK_PAID = 0 
                     WHERE  `TRTK_ID`= ?";
 
           $inputs = array($TicketID);
