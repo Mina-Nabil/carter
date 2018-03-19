@@ -72,7 +72,7 @@
     input.required = true
 
     <?
-        foreach($Drivers as $driver){
+      foreach($Drivers as $driver){
 
 
 
@@ -84,7 +84,6 @@
 
     }
     ?>
-
     div1.appendChild(input)
 
     insertAfter(div1, oldInput)
