@@ -71,14 +71,22 @@
     input.type = 'select'
     input.required = true
 
-    <?php foreach($Drivers as $driver){?>
+    <?
+        foreach($Drivers as $driver){
+    ?>
 
-      var option = document.createElement('option')
-      option.value=<?=$driver['DRVR_ID']?>
+
+      var option = document.createElement('option');
+
+      <?
+       echo ' option.value = ' $driver['DRVR_ID']
+       ?>
       option.required = true
-      option.innerHTML = <?=$driver['DRVR_NAME']?>
+      <?
+      echo 'option.innerHTML' = $driver['DRVR_NAME']?>
       input.appendChild(option)
-      <?}?>
+      <?
+    }?>
 
     div1.appendChild(input)
 
