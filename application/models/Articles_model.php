@@ -56,8 +56,8 @@ class Articles_model extends CI_Model{
                         RTCL_ARBC_TITLE  = ?,
                         RTCL_ARBC_TEXT   = ?
                     WHERE
-                        `RTCL_ID`=?";
-          $query = $this->db->query($strSQL, array($Title, $Text, $ArabicTitle, $ArbcText));
+                        `RTCL_ID`= ?";
+          $query = $this->db->query($strSQL, array($Title, $Text, $ArabicTitle, $ArbcText, $ID));
 
         }
 
