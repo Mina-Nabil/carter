@@ -1,5 +1,5 @@
 
-<script type='text/javascript'>
+<script type='text/javascript' defer="defer">
 
   var max = 0;
 
