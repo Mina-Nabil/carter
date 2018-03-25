@@ -32,7 +32,7 @@ function makeid() {
                                         <div class="form-group">
                                             <label>Promo Code</label>
                                             <input id=1 class="form-control" name='promoCode' value='<?=$PRMO_CODE?>' required>
-                                            <button onclick="makeid" class="btn btn-success">Generate</button>
+                                            <a onclick="makeid" class="btn btn-success">Generate</button>
                                             <p class="help-block">Generate Promo Code</p>
                                         </div>
                                         <div class="form-group">
