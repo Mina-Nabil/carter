@@ -136,7 +136,7 @@
                                 <i class="fa fa-barcode fa-fw"></i> Promo Codes <span class="fa arrow"></span>
                               </a>
                                 <ul class="nav nav-second-level">
-                                  <?if(isset($OrgArr['promocode']) ) {
+                                  <?if(isset($OrgArr['promocodes']) ) {
                                     foreach($OrgArr['promocodes'] as $url){?>
                                       <?if(isset($url['PAGE_NAME'])){?>
                                       <li>

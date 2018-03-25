@@ -156,6 +156,14 @@ $route['articles/modify/(:num)'] = 'Articles/modifypage/$1';
 $route['editarticles/(:num)'] = 'Articles/edit/$1';
 $route['articles/delete/(:num)'] = 'Articles/delete/$1';
 
+//Promos ROUTES
+$route['promos'] = 'Promos/home';
+$route['addpromos'] = 'Promos/addpage';
+$route['insertpromos'] = 'Promos/insert';
+$route['promos/modify/(:num)'] = 'Promos/modifypage/$1';
+$route['editpromos/(:num)'] = 'Promos/edit/$1';
+$route['promos/delete/(:num)'] = 'Promos/delete/$1';
+
 //Faqs ROUTES
 $route['faqs'] = 'Faqs/home';
 $route['addfaqs'] = 'Faqs/addpage';
