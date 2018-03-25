@@ -1,13 +1,14 @@
 <script type='text/javascript' defer="defer">
 
 function makeid() {
+  echo 'heeh';
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&^%$#@-=+-";
 
   for (var i = 0; i < 9; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  idocument.getElementById(1).value = text;
+  idocument.getElementById('A1').value = text;
 }
 
 </script>
@@ -31,7 +32,7 @@ function makeid() {
                                     <form role="form" action='<?=base_url() . $formURL?>' method="post">
                                         <div class="form-group">
                                             <label>Promo Code</label>
-                                            <input id=1 class="form-control" name='promoCode' value='<?=$PRMO_CODE?>' required>
+                                            <input id=A1 class="form-control" name='promoCode' value='<?=$PRMO_CODE?>' required>
                                             <a onclick="makeid" class="btn btn-success">Generate</a>
                                             <p class="help-block">Generate Promo Code</p>
                                         </div>
