@@ -117,7 +117,7 @@ class Articles extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('addarticles');
+    $result = $this->CheckUser2('addarticles');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");

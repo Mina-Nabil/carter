@@ -120,7 +120,7 @@ class Promos extends CI_Controller{
 
   public function insert(){
 
-    $result = $this->CheckUser('addpromos');
+    $result = $this->CheckUser2('addpromos');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
