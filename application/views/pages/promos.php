@@ -22,7 +22,7 @@
                                     <tr class="odd gradeX">
                                         <td><?=$data['PRMO_CODE']?></td>
                                         <td><?=$data['PRMO_TYPE']?></td>
-                                        <td><?=$data['PRMO_DISCOUNT']?></td>
+                                        <td><?=$data['PRMO_PRCNT']?></td>
                                         <td><?=$data['PRMO_EXPIRE']?></td>
                                         <td><?=$data['PRMO_CNT']?></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['PRMO_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
