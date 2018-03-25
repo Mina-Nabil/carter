@@ -20,7 +20,7 @@
                                         <div class="form-group">
                                             <label>Promo Code</label>
                                             <input id='A1' class="form-control" name='promoCode' value='<?=$PRMO_CODE?>' required>
-                                            <a onclick="makeid" class="btn btn-success">Generate</a>
+                                            <a onclick="makeid()" class="btn btn-success">Generate</a>
                                             <p class="help-block">Generate Promo Code</p>
                                         </div>
                                         <div class="form-group">
@@ -70,19 +70,3 @@
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-        <script type='text/javascript' defer="defer">
-
-        function makeid() {
-
-          var text = "";
-          var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-          console.log('ID: ');
-
-          for (var i = 0; i < 9; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-            console.log(text);
-            var input = document.getElementById('A1')
-            input.value = text;
-        }
-
-        </script>
