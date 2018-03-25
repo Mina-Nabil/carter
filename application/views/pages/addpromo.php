@@ -8,7 +8,8 @@ function makeid() {
   for (var i = 0; i < 9; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  document.getElementById('A1').value = text;
+    var input = document.getElementById('A1')
+    input.value = text;
 }
 
 </script>
