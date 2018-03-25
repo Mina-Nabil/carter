@@ -32,7 +32,7 @@ class Promos_model extends CI_Model{
         public function insertPromo($Code, $Expire, $Percent, $Type, $Count){
             //NN Expire Percent Code DistrictID
           $strSQL = "INSERT INTO Promos (PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT)
-                     VALUES (?,?,?,?)";
+                     VALUES (?,?,?,?,?)";
           $query = $this->db->query($strSQL, array($Code, $Expire, $Percent, $Type, $Count));
 
         }
