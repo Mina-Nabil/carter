@@ -1,7 +1,7 @@
 <script type='text/javascript' defer="defer">
 
 function makeid() {
-  echo 'heeh';
+
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&^%$#@-=+-";
 
