@@ -185,13 +185,14 @@
              list.className = 'form-control';
              list.name  = 'pathStationID[' + number + ']';
              <? $i=0;
+             if (isset($Stations)){
               foreach($Stations as $station){?>
                var option<?=$i?> = document.createElement('option');
                option<?=$i?>.value = <?=$station['STTN_ID']?>;
                option<?=$i?>.innerHTML = '<?=$station['DIST_NAME'] . ' - ' . $station['STTN_NAME']?>';
                list.appendChild(option<?=$i?>);
 
-             <?  $i++; }?>
+             <?  $i++; } }?>
 
 
              var label2 = document.createElement('label')
