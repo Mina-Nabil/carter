@@ -242,4 +242,21 @@
 
 </body>
 
+      <script type='text/javascript' defer="defer">
+
+      function makeid() {
+
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        console.log('ID: ');
+
+        for (var i = 0; i < 9; i++)
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+          console.log(text);
+          var input = document.getElementById('A1')
+          input.value = text;
+      }
+
+      </script>
+
 </html>
