@@ -104,6 +104,7 @@ class Promos extends CI_Controller{
     $data['PRMO_ID']      = ''              ;
     $data['PRMO_CODE']    = ''              ;
     $data['PRMO_EXPIRE']    = ''              ;
+    $data['PRMO_CNT']    = ''              ;
     $data['PRMO_PRCNT']    = ''           ;
     $data['PRMO_TYPE']    = ''         ;
 
