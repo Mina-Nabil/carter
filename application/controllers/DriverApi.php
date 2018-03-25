@@ -119,4 +119,10 @@ class DriverApi extends CI_Controller{
     echo 1;
   }
 
+  public function startTrip(){
+    $LiveLineID = $this->input->post('LivelineID');
+    $this->LiveLineID->setTripStarted($LiveLineID);
+    echo 1;
+  }
+
 }

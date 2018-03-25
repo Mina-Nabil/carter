@@ -50,6 +50,24 @@ class LiveLines_model extends CI_Model{
           return $query->result_array();
         }
 
+        public function setTripStarted($LiveLineID){
+          $strSQL = "UPDATE live_lines SET
+                      LVLN_COMP = 2
+                      WHERE  `TRTK_ID`= {$LiveLineID}";
+
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+        }
+
+        public function getTripStatus($ID){
+
+          $strSQL = "SELECT LVLN_COMP
+                    FROM live_lines
+                    WHERE LVLN_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array()[0];
+
+        }
 
         public function getTicketPricebyID($ID){
 

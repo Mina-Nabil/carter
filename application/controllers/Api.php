@@ -384,6 +384,11 @@ class Api extends CI_Controller{
 
   }
 
+  public function getTripStatus(){
+    $LiveLineID = $this->input->post('LivelineID');
+    echo json_encode($this->LiveLines_model->getTripStatus($LiveLineID), JSON_UNESCAPED_UNICODE);
+  }
+
   public function DefaultError(){
     echo json_encode(array('Message' => 'Api Not Found'), JSON_UNESCAPED_UNICODE);
 
