@@ -332,13 +332,14 @@ class Api extends CI_Controller{
     $NoofTickets = $this->input->post('NoofTickets');
     $isHandi     = $this->input->post('isHandi');
     $ClientID    = $this->input->post('ClientID');
-    $OrigPrice   = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
+    $Price   = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
+    $OrigPrice   = $Price;
     $PromoCode   = $this->input->post('PromoCode');
 
     if(isset($PromoCode)){
       $PromoArr = $this->Promos_model->getPromo_byCode($PromoCode)[0];
       $Percent  = $PromoArr['PRMO_PRCNT'];
-      $Price    = round($OrigPrice - (($OrigPrice * $Percent) / 100));
+      $Price    = round($Price - (($Price * $Percent) / 100));
     }
 
 
