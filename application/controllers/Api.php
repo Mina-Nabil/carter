@@ -397,7 +397,8 @@ class Api extends CI_Controller{
 
   public function checkPromocode(){
     $PromoCode = $this->input->post('PromoCode');
-    echo json_encode($this->Promos_model->checkValidity($PromoCode), JSON_UNESCAPED_UNICODE);
+    $ClientID = $this->input->post('ClientID');
+    echo json_encode($this->Promos_model->checkValidity($PromoCode, $ClientID), JSON_UNESCAPED_UNICODE);
   }
 
   public function DefaultError(){

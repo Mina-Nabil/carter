@@ -37,14 +37,14 @@ class Promos_model extends CI_Model{
 
         }
 
-        public function PromoUsageCount($ID){
-          $strSQL = "SELECT COUNT(*) as cnt FROM promouses WHERE PRUS_PROMO_ID = {$ID}";
+        public function PromoUsageCount($ID, $ClntID){
+          $strSQL = "SELECT COUNT(*) as cnt FROM promouses WHERE PRUS_PROMO_ID = {$ID} AND PRUS_CLNT_ID = {$ClntID}";
           $query = $this->db->query($strSQL);
           return $query->result_array()[0]['cnt'];
         }
 
 
-        public function checkValidity($PromoCode){
+        public function checkValidity($PromoCode, $ClientID){
 
           if(!isset($this->getPromo_byCode($PromoCode)[0])) return array('PromoStatus' => 0); //Wrong Code
           $PromoArr = $this->getPromo_byCode($PromoCode)[0];
@@ -53,7 +53,7 @@ class Promos_model extends CI_Model{
             $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
             if($Expiry > date("Y-m-d H:i:s")) return array('PromoStatus' => 2); //Code Expired
           }
-          $Used = $this->PromoUsageCount($PromoArr['PRMO_ID']);
+          $Used = $this->PromoUsageCount($PromoArr['PRMO_ID'], $ClientID);
           if(strcmp($ExpiryType, 'Count') == 0){ //Expires by Count
             if($Used >= $PromoArr['PRMO_CNT']) return array('PromoStatus' => 3); //Code Count Surpassed
           }
