@@ -352,9 +352,9 @@ class Api extends CI_Controller{
       $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
       if(isset($PromoCode)){
         $this->Promos_model->AddUsage($PromoArr['PRMO_ID'], $ClientID, $res['ID'], $LiveLineID, $OrigPrice - $Price);
-        $this->Balancelog_model->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought By PromoCode');
+        $this->Balancelogs_model->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought By PromoCode');
       } else
-      $this->Balancelog_model->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought');
+      $this->Balancelogs_model->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought');
     }
     echo $res['ID'];
     }
