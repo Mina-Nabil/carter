@@ -46,8 +46,8 @@ class Promos_model extends CI_Model{
 
         public function checkValidity($PromoCode){
 
+          if(!isset($this->getPromo_byCode($PromoCode)[0])) return array('PromoStatus' => 0); //Wrong Code
           $PromoArr = $this->getPromo_byCode($PromoCode)[0];
-          if(!isset($PromoArr)) return array('PromoStatus' => 0); //Wrong Code
           $ExpiryType = $PromoArr['PRMO_TYPE'];
           if(strcmp($ExpiryType, 'Date') == 0){ //Expires by Date
             $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
