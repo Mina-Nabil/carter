@@ -47,7 +47,7 @@ class LiveLines_model extends CI_Model{
                       WHERE  `LVLN_ID`= {$LiveLineID}";
 
           $query = $this->db->query($strSQL);
-          return $query->result_array();
+          return ;
         }
 
         public function setTripStarted($LiveLineID){
@@ -56,7 +56,7 @@ class LiveLines_model extends CI_Model{
                       WHERE  `LVLN_ID`= {$LiveLineID}";
 
           $query = $this->db->query($strSQL);
-          return $query->result_array();
+          return;
         }
 
         public function getTripStatus($ID){
