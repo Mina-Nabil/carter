@@ -58,6 +58,7 @@ class Promos_model extends CI_Model{
             if($Used >= $PromoArr['PRMO_CNT']) return array('PromoStatus' => 3); //Code Count Surpassed
           }
           if(strcmp($ExpiryType, 'Both')){ //Expires by Both Count and Date
+            $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
             if($Expiry > date("Y-m-d H:i:s") || $Count >= $PromoArr['PRMO_CNT'] ) return array('PromoStatus' => 4); //Code Expired
           }
           return array('PromoStatus' => 1); //Correct Code
