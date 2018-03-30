@@ -282,6 +282,7 @@ $route['api/resetUser'] = 'Api/resetUser';
 $route['api/cancelTrip'] = 'Api/cancelTrip';
 $route['api/get_path/(:num)'] = 'Api/get_path/$1';
 $route['api/getTripStatus'] = 'Api/getTripStatus';
+$route['api/checkPromocode'] = 'Api/checkPromocode';
 $route['api/(:any)'] = 'Api/DefaultError/$1';
 
 

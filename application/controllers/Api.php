@@ -333,6 +333,12 @@ class Api extends CI_Controller{
     $isHandi     = $this->input->post('isHandi');
     $ClientID    = $this->input->post('ClientID');
     $Price       = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
+    $PromoCode   = $this->input->post('PromoCode');
+
+    if(isset($PromoCode)){
+
+    }
+
 
     if($this->Traveltickets_model->isAvailable($LiveLineID, $StartIndex, $EndIndex, $NoofTickets)){
 
@@ -387,6 +393,11 @@ class Api extends CI_Controller{
   public function getTripStatus(){
     $LiveLineID = $this->input->post('LivelineID');
     echo json_encode($this->LiveLines_model->getTripStatus($LiveLineID), JSON_UNESCAPED_UNICODE);
+  }
+
+  public function checkPromocode(){
+    $PromoCode = $this->input->post('PromoCode');
+    echo json_encode($this->Promos_model->checkValidity($PromoCode), JSON_UNESCAPED_UNICODE);
   }
 
   public function DefaultError(){
