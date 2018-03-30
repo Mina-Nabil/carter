@@ -177,7 +177,7 @@ class Drivers_model extends CI_Model{
                             AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)
                             AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -1 HOUR)
                             AND DRVR_ID = {$DriverID}
-                            ORDER BY LVLN_TIME ";
+                            ORDER BY LVLN_TIME ASC ";
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
@@ -193,7 +193,7 @@ class Drivers_model extends CI_Model{
                             AND LVLN_COMP = 1
                             AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -36 DAY)
                             AND DRVR_ID = {$DriverID}
-                            ORDER BY LVLN_TIME ";
+                            ORDER BY LVLN_TIME DESC ";
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
