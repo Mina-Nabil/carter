@@ -30,7 +30,7 @@ class Promos_model extends CI_Model{
 
         public function AddUsage($CodeID, $ClientID, $TicketID, $LiveLineID, $Value){
           $strSQL = "INSERT INTO promouses (PRUS_PRMO_ID, PRUS_CLNT_ID, PRUS_TCKT_ID, PRUS_LVLN_ID, PRUS_VALUE, PRUS_DATE)
-                     VALUES (?,?,?,?,?)";
+                     VALUES (?,?,?,?,?,?)";
           $query = $this->db->query($strSQL, array($CodeID, $ClientID, $TicketID, $LiveLineID, $Value, date("Y-m-d H:i:s")));
 
         }
