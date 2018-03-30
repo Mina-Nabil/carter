@@ -28,6 +28,13 @@ class Promos_model extends CI_Model{
 
         }
 
+        public function AddUsage($CodeID, $ClientID, $TicketID, $LiveLineID, $Value){
+          $strSQL = "INSERT INTO promouses (PRUS_PRMO_ID, PRUS_CLNT_ID, PRUS_TCKT_ID, PRUS_LVLN_ID, PRUS_VALUE, PRUS_DATE)
+                     VALUES (?,?,?,?,?)";
+          $query = $this->db->query($strSQL, array($CodeID, $ClientID, $TicketID, $LiveLineID, $Value, date("Y-m-d H:i:s")));
+
+        }
+
         public function getPromo_byCode($Code){
 
           $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT

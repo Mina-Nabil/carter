@@ -332,11 +332,13 @@ class Api extends CI_Controller{
     $NoofTickets = $this->input->post('NoofTickets');
     $isHandi     = $this->input->post('isHandi');
     $ClientID    = $this->input->post('ClientID');
-    $Price       = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
+    $OrigPrice   = $this->LiveLines_model->getTicketPricebyID($LiveLineID);
     $PromoCode   = $this->input->post('PromoCode');
 
     if(isset($PromoCode)){
-
+      $PromoArr = $this->Promos_model->getPromo_byCode($PromoCode)[0];
+      $Percent  = $PromoArr['PRMO_PRCNT'];
+      $Price    = round($OrigPrice - (($OrigPrice * $Percent) / 100));
     }
 
 
@@ -345,7 +347,14 @@ class Api extends CI_Controller{
     $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,$EndIndex, 0, 0,
                                                           $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
 
-    if($res) $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
+    if($res){
+      $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
+      if(isset($PromoCode)){
+        $this->Promos_model->AddUsage($PromoArr['PRMO_ID'], $ClientID, $res['ID'], $LiveLineID, $OrigPrice - $Price);
+        $this->Balancelogs->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought By PromoCode');
+      } else
+      $this->Balancelogs->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought');
+    }
     echo $res['ID'];
     }
     else echo 'NS';
