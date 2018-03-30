@@ -44,7 +44,7 @@ class LiveLines_model extends CI_Model{
         public function setTripCompleted($LiveLineID){
           $strSQL = "UPDATE live_lines SET
                       LVLN_COMP = 1
-                      WHERE  `TRTK_ID`= {$LiveLineID}";
+                      WHERE  `LVLN_ID`= {$LiveLineID}";
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
@@ -53,7 +53,7 @@ class LiveLines_model extends CI_Model{
         public function setTripStarted($LiveLineID){
           $strSQL = "UPDATE live_lines SET
                       LVLN_COMP = 2
-                      WHERE  `TRTK_ID`= {$LiveLineID}";
+                      WHERE  `LVLN_ID`= {$LiveLineID}";
 
           $query = $this->db->query($strSQL);
           return $query->result_array();
