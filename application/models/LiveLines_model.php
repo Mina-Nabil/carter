@@ -17,7 +17,7 @@ class LiveLines_model extends CI_Model{
                       WHERE LVLN_LINE_ID = LINE_ID
                       AND LVLN_DRVR_ID = DRVR_ID
                       AND BUS_BSTP_ID = BSTP_ID
-                      AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 3 DAY)
+                      AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 2 DAY)
                       AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -1 DAY)
                       AND LVLN_BUS_ID = BUS_ID
                       ORDER BY LVLN_TIME ";

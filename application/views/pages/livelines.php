@@ -23,7 +23,7 @@
                                         <td><?=$data['LVLN_ID']?></td>
                                         <td><?=$data['LINE_NAME']?></td>
                                         <td><?=$data['DRVR_NAME']?></td>
-                                        <td><?=$data['BUS_TYPE'] . ' / ' . $data['BUS_NUMBER']?></td>
+                                        <td><?=$data['BSTP_NAME'] . ' / ' . $data['BUS_NUMBER']?></td>
                                         <td><?=$data['LVLN_TIME']?></td>
                                         <td><?=$data['LVLN_CANC']?></td>
                                         <td><?=$data['LVLN_COMP']?></td>
