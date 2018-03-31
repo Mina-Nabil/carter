@@ -18,6 +18,18 @@ class Districts_model extends CI_Model{
 
         }
 
+        public function getRegisteredDistricts(){
+          $strSQL = "SELECT STTN_DIST_ID, DIST_NAME, DIST_CITY_ID, CITY_NAME, DIST_ARBC_NAME
+                      FROM districts, cities, stations, paths
+                      WHERE DIST_CITY_ID = CITY_ID
+                      AND PATH_STTN_ID = STTN_ID
+                      AND STTN_DIST_ID = DIST_ID
+                      GROUP BY STTN_DIST_ID 
+                      ";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+        }
+
         public function getDistrictsOnly(){
 
           $strSQL = "SELECT DIST_ID, DIST_NAME, DIST_CITY_ID, CITY_NAME, DIST_ARBC_NAME
