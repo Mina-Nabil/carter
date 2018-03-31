@@ -121,6 +121,7 @@ class LiveLines extends CI_Controller{
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
+    $data['Generate']     = true;      
 
     $this->load->view('templates/header', $header);
     $this->load->view('pages/addliveline', $data);
@@ -306,7 +307,7 @@ class LiveLines extends CI_Controller{
 
     $data['formURL']      = 'editlivelines/' . $ID  ;
 
-    $data['Generate']     = false;      
+    $data['Generate']     = false;
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
