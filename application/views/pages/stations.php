@@ -20,7 +20,6 @@
                                 <tbody>
                                   <?foreach($TableData as $data){?>
                                     <tr class="odd gradeX">
-                                        <td><?=$data['STTN_ID']?></td>
                                         <td><?=$data['STTN_NAME']?></td>
                                         <td><?=$data['STTN_ARBC_NAME']?></td>
                                         <td><?=$data['DIST_NAME']?></td>

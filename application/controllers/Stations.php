@@ -61,12 +61,11 @@ class Stations extends CI_Controller{
     $data['TableData'] = $this->Stations_model->getStations();
 
     $data['TableHeaders'] = array(
-      'ID',
-      'En Name',
-      'Ar Name',
+      'Name',
+      'Arabic Name',
       'District',
-      'Ar Address',
-      'En Address',
+      'Arabic Address',
+      'English Address',
       'Edit',
       'Delete'
     );
