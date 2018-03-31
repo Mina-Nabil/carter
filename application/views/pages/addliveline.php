@@ -215,7 +215,7 @@
                                           <br>
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
-                                        <a onclick="addTime()" class="btn btn-success">Add Line Time</a>
+                                        <a onclick="addTime()" class="btn btn-success" <?if(!$Generate) echo 'disabled'?> >Add Line Time</a>
                                     </form>
                                 </div>
                             </div>

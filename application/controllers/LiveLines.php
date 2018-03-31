@@ -306,6 +306,8 @@ class LiveLines extends CI_Controller{
 
     $data['formURL']      = 'editlivelines/' . $ID  ;
 
+    $data['Generate']     = false;      
+
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
 
