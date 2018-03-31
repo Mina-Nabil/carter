@@ -206,7 +206,7 @@
                                           <p class="help-block">If the line will be repeated, set the Time only</p>
                                         </div>
 
-                                        <div class="form-group" id=time1>
+                                        <div class="form-group" id=time0>
                                             <label>Line Start Time</label>
                                             <input
                                             class=form-control name=livelineTime[0]
