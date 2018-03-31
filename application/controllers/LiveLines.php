@@ -159,7 +159,7 @@ class LiveLines extends CI_Controller{
       $livelineTime = $livelineTimes[0]. ":00";
       $livelineDriverID = $livelineDrivers[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
-                                            $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+                                            $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
     }
 
     else{
@@ -234,7 +234,7 @@ class LiveLines extends CI_Controller{
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
-                                              $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+                                              $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
           }
       }
 
