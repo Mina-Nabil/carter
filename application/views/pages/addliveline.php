@@ -81,8 +81,8 @@
       option.value = ' . $driver['DRVR_ID'] . '; ';
       echo '
       option.required = true; ';
-      echo '
-      option.innerHTML= '. $driver['DRVR_NAME'] . '; ';
+      echo "
+      option.innerHTML= '". $driver['DRVR_NAME'] . "' ; ";
       echo '
       input.appendChild(option); ';
 
