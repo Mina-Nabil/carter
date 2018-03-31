@@ -93,7 +93,7 @@
 
     var br = document.createElement('br');
     this.max = max+1;
-    insertAfter(div1, br)
+    insertAfter(br, div1)
 
   }
 
