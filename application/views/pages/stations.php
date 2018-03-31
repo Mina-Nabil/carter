@@ -23,8 +23,8 @@
                                         <td><?=$data['STTN_ID']?></td>
                                         <td><?=$data['STTN_NAME']?></td>
                                         <td><?=$data['DIST_NAME']?></td>
-                                        <td><?=$data['STTN_ADRS']?></td>
                                         <td><?=$data['STTN_ARBC_ADRS']?></td>
+                                        <td><?=$data['STTN_ADRS']?></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['STTN_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['STTN_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
                                     </tr>
