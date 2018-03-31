@@ -65,10 +65,9 @@
 
     div1.appendChild(label);
 
-    var input = document.createElement('input');
+    var input = document.createElement('select');
     input.className = 'form-control';
     input.name = 'livelineDriverID[' + (max+1) + ']';
-    input.type = 'select'
     input.required = true
 
     <?
