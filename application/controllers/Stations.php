@@ -63,6 +63,7 @@ class Stations extends CI_Controller{
     $data['TableHeaders'] = array(
       'ID',
       'Name',
+      'Arabic Name',
       'District',
       'Arabic Address',
       'English Address',
