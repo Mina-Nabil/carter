@@ -205,7 +205,7 @@ class Promos extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $promoName = $this->input->post('promoName');
+    $promoName = $this->input->post('promoCode');
     $promoExpire = $this->input->post('promoExpire');
     $promoType = $this->input->post('promoType');
     $promoPercent = $this->input->post('promoPercent');

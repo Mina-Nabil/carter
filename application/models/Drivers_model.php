@@ -175,7 +175,7 @@ class Drivers_model extends CI_Model{
                             AND LVLN_DRVR_ID = DRVR_ID
                             AND LVLN_COMP <> 1
                             AND LVLN_TIME < DATE_ADD(NOW(), INTERVAL 1 DAY)
-                            AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -2 HOUR)
+                            AND LVLN_TIME > DATE_ADD(NOW(), INTERVAL -1 DAY)
                             AND DRVR_ID = {$DriverID}
                             ORDER BY LVLN_TIME ASC ";
 
