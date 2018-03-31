@@ -121,7 +121,7 @@ class LiveLines extends CI_Controller{
 
     $data['MSGOK']      = $MSGOK  ;
     $data['MSGErr']     = $MSGErr ;
-    $data['Generate']     = true;      
+    $data['Generate']     = true;
 
     $this->load->view('templates/header', $header);
     $this->load->view('pages/addliveline', $data);
@@ -151,11 +151,12 @@ class LiveLines extends CI_Controller{
     $livelineTicketPrice = $this->input->post('livelineTicketPrice');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
-
+    $livelineTimes = $this->input->post('livelineTime') ;
+    $livelineDrivers = $this->input->post('livelineDriverID');
+    
     $NotRepeated = $this->input->post('DR');
     if($NotRepeated == 1){
-      $livelineTimes = $this->input->post('livelineTime') ;
-      $livelineDrivers = $this->input->post('livelineDriverID');
+
       $livelineTime = $livelineTimes[0]. ":00";
       $livelineDriverID = $livelineDrivers[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
@@ -172,6 +173,7 @@ class LiveLines extends CI_Controller{
       $Thursday = $this->input->post('d6');
       $Friday = $this->input->post('d7');
       $livelineTimes = $this->input->post('livelineTime');
+      $livelineDrivers = $this->input->post('livelineDriverID');
 
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
