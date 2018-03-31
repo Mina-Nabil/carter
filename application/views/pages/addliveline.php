@@ -203,10 +203,10 @@
                                             class=form-control name=livelineTime[0]
                                             type=datetime-local
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
-                                            <br>
+
 
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label>Driver Name</label>
                                             <select class="form-control" name='livelineDriverID'>
@@ -215,7 +215,7 @@
                                               <?}?>
                                             </select>
                                         </div>
-
+                                          <br>
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
                                         <button type="reset" class="btn btn-danger">Reset Button</button>
                                         <a onclick="addTime()" class="btn btn-success">Add Line Time</a>
