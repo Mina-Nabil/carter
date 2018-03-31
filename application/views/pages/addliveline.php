@@ -139,7 +139,7 @@
                                           <select class="form-control" name='livelineBusID'>
                                                 <option value='' >Not Available</option>
                                             <?foreach($Buses as $bus){?>
-                                                <option value=<?=$bus['BUS_ID']?> <?if($LVLN_BUS_ID == $bus['BUS_ID'])  echo 'selected';?> required><?=$bus['BUS_TYPE'] . '/' . $bus['BUS_NUMBER']?></option>
+                                                <option value=<?=$bus['BUS_ID']?> <?if($LVLN_BUS_ID == $bus['BUS_ID'])  echo 'selected';?> required><?=$bus['BSTP_NAME'] . '/' . $bus['BUS_NUMBER']?></option>
                                             <?}?>
                                           </select>
                                       </div>
