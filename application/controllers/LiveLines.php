@@ -175,8 +175,9 @@ class LiveLines extends CI_Controller{
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -184,8 +185,8 @@ class LiveLines extends CI_Controller{
       if($Sunday == 1){
         $nextSat = date("Y-m-d", strtotime("next sunday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -193,8 +194,8 @@ class LiveLines extends CI_Controller{
       if($Monday == 1){
         $nextSat = date("Y-m-d", strtotime("next monday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -202,8 +203,8 @@ class LiveLines extends CI_Controller{
       if($Tuesday == 1){
         $nextSat = date("Y-m-d", strtotime("next tuesday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -211,8 +212,8 @@ class LiveLines extends CI_Controller{
       if($Wednesday == 1){
         $nextSat = date("Y-m-d", strtotime("next wednesday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -220,8 +221,8 @@ class LiveLines extends CI_Controller{
       if($Thursday == 1){
         $nextSat = date("Y-m-d", strtotime("next thursday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
@@ -229,8 +230,8 @@ class LiveLines extends CI_Controller{
       if($Friday == 1){
         $nextSat = date("Y-m-d", strtotime("next friday"));
         $begin = new DateTime( $nextSat);
-        foreach($livelineTimes as $Time){
-        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID, $livelineBusID,
+        foreach($livelineTimes as $key => $Time){
+        $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
           }
       }
