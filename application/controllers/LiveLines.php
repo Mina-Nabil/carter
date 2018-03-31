@@ -258,14 +258,12 @@ class LiveLines extends CI_Controller{
         $period = new DatePeriod($begin, $interval, $end);
 
         foreach ( $period as $dt ){
-          foreach ($livelineTimes as $key => $value) {
 
-            $time = date("H:i:s",strtotime($value));
+            $time = date("H:i:s",strtotime($livelineTimes));
             $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
 
             $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
                                                   $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
-          }
 
         }
 
