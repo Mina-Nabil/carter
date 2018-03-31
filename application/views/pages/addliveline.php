@@ -205,7 +205,7 @@
                                             value='<?if($LVLN_TIME != '') echo date("Y-m-d\TH:i", $Timestamp); else echo date("Y-m-d\TH:i");?>' required>
 
                                             <label>Driver Name</label>
-                                            <select class="form-control" name='livelineDriverID'>
+                                            <select class="form-control" name='livelineDriverID[0]'>
                                               <?foreach($Drivers as $driver){?>
                                                   <option value=<?=$driver['DRVR_ID']?> <?if($LVLN_DRVR_ID == $driver['DRVR_ID'])  echo 'selected';?> required><?=$driver['DRVR_NAME']?></option>
                                               <?}?>

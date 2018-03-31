@@ -148,14 +148,15 @@ class LiveLines extends CI_Controller{
     $livelineBusID = $this->input->post('livelineBusID');
     $livelineRevenue = $this->input->post('livelineRevenue');
     $livelineTicketPrice = $this->input->post('livelineTicketPrice');
-    $livelineDriverID = $this->input->post('livelineDriverID');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
 
     $NotRepeated = $this->input->post('DR');
     if($NotRepeated == 1){
       $livelineTimes = $this->input->post('livelineTime') ;
-      $livelineTime = $livelineTimes[1]. ":00";
+      $livelineDrivers = $this->input->post('livelineDriverID');
+      $livelineTime = $livelineTimes[0]. ":00";
+      $livelineDriverID = $livelineDrivers[0];
       $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
                                             $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
     }
