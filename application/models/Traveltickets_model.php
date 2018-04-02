@@ -193,6 +193,16 @@ class TravelTickets_model extends CI_Model{
           return $query->result_array();
 
         }
+
+        public function getTravelTicketPrice_byID($ID){
+
+          $strSQL = "SELECT TRTK_PRICE
+                    FROM traveltickets
+                    WHERE TRTK_ID = ?";
+          $query = $this->db->query($strSQL, array($ID));
+          return $query->result_array();
+
+        }
         //isAvailable
         public function isAvailable($LiveLineID, $StartIndx, $EndIndx, $NoofTickets){
           $AvailableSeats = $this->getSeatsAvailable($LiveLineID, range($StartIndx,$EndIndx,1));
@@ -250,20 +260,60 @@ class TravelTickets_model extends CI_Model{
 
         public function cancelTicketbyDriver($TicketID){
           $strSQL = "UPDATE traveltickets
-                    SET TRTK_CANC   = 2, TRTK_PAID = 0 
+                    SET TRTK_CANC   = 2, TRTK_PAID = 0, TRTK_isARRV = 0
                     WHERE  `TRTK_ID`= ?";
 
           $inputs = array($TicketID);
         return $this->db->query($strSQL, $inputs);
         }
 
+        public function confirmcancelTicketbyDriver($TicketID){
+          $strSQL = "UPDATE traveltickets
+                    SET TRTK_CANC   = 5, TRTK_PAID = 0, TRTK_isARRV = 0
+                    WHERE  `TRTK_ID`= ?";
+
+          $inputs = array($TicketID);
+        return $this->db->query($strSQL, $inputs);
+        }
+
+        public function confirmClientPaidByDriver($TravelticketID){
+          $strSQL = "UPDATE traveltickets SET
+                      TRTK_PAID = 1, TRTK_isARRV = 5, TRTK_PYMNTTYPE = 'Cash', TRTK_CANC = 0
+                      WHERE  `TRTK_ID`= ?";
+
+          return $this->db->query($strSQL, array($TravelticketID));
+        }
+
         public function cancelTicket($TicketID){
           $strSQL = "UPDATE traveltickets
-                    SET TRTK_CANC   = 1
+                    SET TRTK_CANC   = 1, TRTK_PAID = 0, TRTK_isARRV = 0
                     WHERE  `TRTK_ID`= ?";
 
           $inputs = array($TicketID);
           $query = $this->db->query($strSQL, $inputs);
+        }
+
+        public function confirmTicketStatus($TicketID){
+          $strSQL = "SELECT TRTK_CLNT_ID, TRTK_CANC, TRTK_isARRV FROM traveltickets WHERE TRTK_ID = {$TicketID}";
+          $query = $this->db->query($strSQL);
+          $TicketStatus = $this->query->result_array();
+          if(!isset($TicketStatus[0])) return false;
+          $Canc = $TicketStatus[0]['TRTK_CANC'];
+          $Arrv = $TicketStatus[0]['TRTK_isARRV'];
+
+          if($Arrv == 1 && $Canc == 0){
+            //Client Arrived
+            $this->confirmClientPaidByDriver($TicketID);
+            return array('sendPush' => 0);
+          }
+          else if($Arrv == 0 && $Canc == 2){
+            //Driver Cancelled the Client
+            $this->confirmcancelTicketbyDriver($TicketID);
+            return array('sendPush' => 1, 'ClientID' => $TicketStatus[0]['TRTK_CLNT_ID']);
+          }
+
+          }
+
         }
 
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,

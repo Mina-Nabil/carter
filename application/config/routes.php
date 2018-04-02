@@ -237,12 +237,13 @@ $route['traveltickets/modify/(:num)'] = 'Traveltickets/modifypage/$1';
 $route['edittraveltickets/(:num)'] = 'Traveltickets/edit/$1';
 $route['traveltickets/delete/(:num)'] = 'Traveltickets/delete/$1';
 
-//Controllers
+//Push
 $route['push'] = 'Push/home';
 $route['push/getAllPn'] = 'Push/getLogs/1';
 $route['push/getTopUsersPn'] = 'Push/getLogs/2';
 $route['push/getSpmsgsPn'] = 'Push/getLogs/3';
 $route['push/sendMsg'] = 'Push/initiateMsg';
+$route['sendpushfromApi'] = 'Push/sendCustomData';
 
 
 //API

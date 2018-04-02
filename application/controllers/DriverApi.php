@@ -125,4 +125,42 @@ class DriverApi extends CI_Controller{
     echo 1;
   }
 
+  public function confirmStation(){
+    $TicketIDs = $this->input->post('TicketIDs');
+    $TicketArr = json_decode($TicketIDs);
+
+    foreach($TicketArr as $Ticket){
+        $res = $this->Traveltickets_model->confirmTicketStatus($Ticket);
+        if($res['sendPush'] == 1){
+          $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
+          $ArabicTitle = 'تم فوات التذكره';
+          $ArabicMessage = 'لقد فات ميعاد التذكره رقم: ' . $Ticket . '.سوف نقوم بخصم سعر التذكره من حسابك لدينا. من فضلك قم بالاتصال بنا بأقرب قرصه ان كان هناك خطأ في العمليه ';
+          $this->sendPush($res['ClientID'], $ArabicTitle, $ArabicMessage, true);
+        }
+    }
+
+  }
+
+  private function sendPush($ClientID, $MessageTitle, $MessageContent, $Arabic = false){
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, base_url() . 'sendpushfromApi');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
+                http_build_query(array('ApiPass' => 'p@ss@Pi',
+                                       'ClientID'    => $ClientID,
+                                       'Message'     => $MessageContent,
+                                       'MsgTitle'    => $MessageTitle,
+                                       'isMsgArabic' => $Arabic)));
+
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec ($ch);
+
+    curl_close ($ch);
+
+  }
+
+
 }

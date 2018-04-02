@@ -407,13 +407,45 @@ class Api extends CI_Controller{
 
   public function getTripStatus(){
     $LiveLineID = $this->input->post('LivelineID');
-    echo json_encode($this->LiveLines_model->getTripStatus($LiveLineID), JSON_UNESCAPED_UNICODE);
+    $TicketID = $this->input->post('TicketID');
+    $TripStatus = $this->LiveLines_model->getTripStatus($LiveLineID);
+    if(isset($TripStatus[0]))$TripStatus = $TripStatus[0];
+    else $TripStatus = 'Invalid TripID'
+
+
+    $TripPrice  = $this->Traveltickets_model->getTravelTicketPrice_byID($TicketID);
+    if(isset($TripPrice[0]))$TripPrice = $TripPrice[0];
+    else $TripPrice = 'Invalid TicketID';
+
+    echo json_encode(array('Status' => $TripStatus, 'Price' => $TripPrice), JSON_UNESCAPED_UNICODE);
   }
 
   public function checkPromocode(){
     $PromoCode = $this->input->post('PromoCode');
     $ClientID = $this->input->post('ClientID');
     echo json_encode($this->Promos_model->checkValidity($PromoCode, $ClientID), JSON_UNESCAPED_UNICODE);
+  }
+
+
+  private function sendPush($ClientID, $MessageTitle, $MessageContent, $Arabic = false){
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, base_url() . 'sendpushfromApi');
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,
+                http_build_query(array('ApiPass' => 'p@ss@Pi',
+                                       'ClientID'    => $ClientID,
+                                       'Message'     => $MessageContent,
+                                       'MsgTitle'    => $MessageTitle,
+                                       'isMsgArabic' => $Arabic)));
+
+
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $server_output = curl_exec ($ch);
+
+    curl_close ($ch);
+
   }
 
   public function DefaultError(){

@@ -199,4 +199,65 @@ class Push extends CI_Controller{
     $this->home();
 	}
 
+  public function sendCustomData(){
+
+    $ApiPass  = $this->input->post('ApiPass');
+    $ClientID = $this->input->post('ClientID');
+    $Message  = $this->input->post('Message');
+    $Title    = $this->input->post('MsgTitle');
+    $Arabic    = $this->input->post('isMsgArabic');
+
+    if(strcmp($ApiPass. 'p@ss@Pi') != 0) return ;
+
+    $messageTarget = $this->Client_model->getClientTag_byID($ClientID);
+
+    if(!$Arabic){
+      $content = array(
+        "en" => $Message,
+        );
+      $title = array(
+        "en" => $Title
+        );
+
+    } else {
+      $content = array(
+        "ar" => $Message,
+        );
+      $title = array(
+        "ar" => $Title
+        );
+    }
+
+
+
+
+    $fields = array(
+      'app_id' => "dadb20f9-3370-4e4d-a44f-d9f844034f0c",
+      'include_player_ids' => array($messageTarget),
+      'contents' => $content,
+      'headings' => $title
+    );
+
+    $this->Pushlogs_model->insertPushlog($Title, $Message, 1, 3, $ClientID);
+
+    $fields = json_encode($fields);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+                          'Authorization: Basic MDYyMDkwZGEtY2JlMC00NGRhLWE3ZjAtYWRmZjBkZGJkZTM2'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+    curl_exec($ch);
+    curl_close($ch);
+
+    return "OK";
+
+
+  }
+
 }

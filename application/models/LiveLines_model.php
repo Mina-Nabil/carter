@@ -65,7 +65,7 @@ class LiveLines_model extends CI_Model{
                     FROM live_lines
                     WHERE LVLN_ID = {$ID}";
           $query = $this->db->query($strSQL);
-          return $query->result_array()[0];
+          return $query->result_array();
 
         }
 
