@@ -106,6 +106,7 @@ class Buses extends CI_Controller{
     $data['BUS_TYPE']    = ''              ;
     $data['BUS_NUMBER']    = ''              ;
     $data['BUS_SEATS']    = ''         ;
+    $data['BUS_CHAR']    = ''         ;
     $data['BUS_DRVR_ID']    = ''           ;
 
     $data['formURL']      = 'insertbuses'  ;
@@ -138,9 +139,10 @@ class Buses extends CI_Controller{
     $busType = $this->input->post('busType');
     $busNumber = $this->input->post('busNumber');
     $busSeats = $this->input->post('busSeats');
+    $busChar = $this->input->post('busChar');
     $busDriverID = $this->input->post('busDriverID');
 
-    $this->Buses_model->insertBus($busType, $busDriverID, $busNumber, $busSeats);
+    $this->Buses_model->insertBus($busType, $busDriverID, $busNumber, $busSeats, $busChar);
 
     $this->load->view('pages/buses_redirect');
 
@@ -172,6 +174,7 @@ class Buses extends CI_Controller{
     $data['BUS_TYPE']    = $Bus['BUS_TYPE']  ;
     $data['BUS_NUMBER']    = $Bus['BUS_NUMBER']   ;
     $data['BUS_SEATS']    = $Bus['BUS_SEATS']   ;
+    $data['BUS_CHAR']    = $Bus['BUS_CHAR']   ;
     $data['BUS_DRVR_ID']    = $Bus['BUS_DRVR_ID'];
 
     $data['formURL']      = 'editbuses/' . $ID  ;
@@ -206,8 +209,9 @@ class Buses extends CI_Controller{
     $busNumber = $this->input->post('busNumber');
     $busSeats = $this->input->post('busSeats');
     $busDriverID = $this->input->post('busDriverID');
+    $busChar = $this->input->post('busChar');
 
-    $this->Buses_model->editBus($ID, $busType, $busDriverID, $busNumber, $busSeats);
+    $this->Buses_model->editBus($ID, $busType, $busDriverID, $busNumber, $busSeats, $busChar);
 
     $this->load->view('pages/buses_redirect');
 

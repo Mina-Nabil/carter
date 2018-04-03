@@ -28,6 +28,11 @@
                                             <p class="help-block">Enter Bus Plate Number: ف ق ف 855.</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>Bus Ticket Extension</label>
+                                            <input class="form-control" name='busChar' type="text" value='<?=$BUS_CHAR?>' required>
+                                            <p class="help-block">Enter Bus Extension Code: AB.</p>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Bus Seat Count</label>
                                             <input class="form-control" name='busSeats' type="text" value='<?=$BUS_SEATS?>' required>
                                             <p class="help-block">Enter Bus Seats Number, Example: 14.</p>
