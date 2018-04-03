@@ -21,7 +21,7 @@
                                   <?foreach($TableData as $data){?>
                                     <tr class="odd gradeX">
                                         <td><?=$data['BUS_ID']?></td>
-                                        <td><?=$data['BUS_TYPE']?></td>
+                                        <td><?=$data['BSTP_NAME']?></td>
                                         <td><?=$data['DRVR_NAME']?></td>
                                         <td><?=$data['BUS_SEATS']?></td>
                                         <td><?=$data['BUS_NUMBER']?></td>
