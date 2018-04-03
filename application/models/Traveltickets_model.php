@@ -314,8 +314,6 @@ class TravelTickets_model extends CI_Model{
 
           }
 
-        }
-
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
                                            $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation){
 
