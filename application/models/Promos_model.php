@@ -36,7 +36,6 @@ class Promos_model extends CI_Model{
         }
 
         public function getPromo_byCode($Code){
-          echo 'code: ' . $Code . '.';
           $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT
                     FROM promos WHERE PRMO_CODE = ? ";
           $query = $this->db->query($strSQL, array($Code));
