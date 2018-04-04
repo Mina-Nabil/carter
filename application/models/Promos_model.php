@@ -75,8 +75,9 @@ class Promos_model extends CI_Model{
           $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT
                     FROM Promos WHERE PRMO_CODE = ?";
           $query = $this->db->query($strSQL, array($PromoCode));
-          if(isset($query->result_array()[0])){
-            $Discount = $query->result_array()[0]['PRMO_PRCNT'];
+          $row = $query->result_array()[0];
+          if(isset($row)){
+            $Discount = $row['PRMO_PRCNT'];
             $Price = round($TicketPrice - ($TicketPrice * $Discount / 100));
           }
           else return 'InvalidCode';
