@@ -19,8 +19,11 @@
                                     <form role="form" action='<?=base_url() . $formURL?>' method="post">
                                         <div class="form-group">
                                             <label>Bus Type</label>
-                                            <input class="form-control" name='busType' value='<?=$BUS_TYPE?>' required>
-                                            <p class="help-block">Enter Bus Type, Example: Toyota.</p>
+                                            <select class="form-control" name='busType'>
+                                              <?foreach($BusTypes as $bustype){?>
+                                                  <option value=<?=$bustype['BSTP_ID']?> <?if($BUS_DRVR_ID == $bustype['BSTP_ID'])  echo 'selected';?>><?=$bustype['BSTP_NAME']?></option>
+                                              <?}?>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Bus Plate Number</label>

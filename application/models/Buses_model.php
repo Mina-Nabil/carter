@@ -39,7 +39,7 @@ class Buses_model extends CI_Model{
         public function editBus($ID, $Type, $DriverID, $Number, $seatsNo, $Char){
             //NN Number Longitude Type DriverID
           $strSQL = "UPDATE Buses
-                    SET BUS_TYPE   = ?,
+                    SET BUS_BSTP_ID   = ?,
                         BUS_NUMBER    = ?,
                         BUS_SEATS   = ?,
                         BUS_DRVR_ID =?,

@@ -101,6 +101,7 @@ class Buses extends CI_Controller{
     }
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
+    $data['BusTypes'] = $this->Bustypes_model->getBustypes();
 
     $data['BUS_ID']      = ''              ;
     $data['BUS_TYPE']    = ''              ;
@@ -169,6 +170,7 @@ class Buses extends CI_Controller{
     $Bus = $this->Buses_model->getBus_byID($ID)[0];
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
+    $data['BusTypes'] = $this->Bustypes_model->getBustypes();
 
     $data['BUS_ID']      = $Bus['BUS_ID']  ;
     $data['BUS_TYPE']    = $Bus['BUS_TYPE']  ;
