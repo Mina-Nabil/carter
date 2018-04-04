@@ -409,7 +409,7 @@ class Api extends CI_Controller{
     $LiveLineID = $this->input->post('LivelineID');
     $TripStatus = $this->LiveLines_model->getTripStatus($LiveLineID);
     if(isset($TripStatus[0]))$TripStatus = $TripStatus[0];
-    else $TripStatus = 'Invalid TripID'
+    else $TripStatus = 'Invalid TripID';
 
     echo json_encode(array('Status' => $TripStatus), JSON_UNESCAPED_UNICODE);
   }
