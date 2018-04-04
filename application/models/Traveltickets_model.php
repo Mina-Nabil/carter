@@ -341,7 +341,7 @@ class TravelTickets_model extends CI_Model{
           $row = $query->result_array();
           if(!isset($row[0])) {
             // First Ticket
-            $strSQL = "INSERT INTO ticket_seq (TRSQ_LVLN_ID, TRSQ_TCKT_ID) VALUES ({$LiveLineID}, 1)"
+            $strSQL = "INSERT INTO ticket_seq (TRSQ_LVLN_ID, TRSQ_TCKT_ID) VALUES ({$LiveLineID}, 1)";
             $query = $this->db->query($strSQL);
             $TicketID = $busChar . '01';
           } else {
