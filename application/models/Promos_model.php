@@ -76,6 +76,7 @@ class Promos_model extends CI_Model{
           if(isset($Coderow[0])){
             $Discount = $Coderow[0]['PRMO_PRCNT'];
             $Price = round($TicketPrice - ($TicketPrice * $Discount / 100));
+            return $Price;
           }
           else return 'InvalidCode';
         }
