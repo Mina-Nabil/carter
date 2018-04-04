@@ -53,8 +53,9 @@ class Promos_model extends CI_Model{
 
         public function checkValidity($PromoCode, $ClientID){
 
-          if(!isset($this->getPromo_byCode($PromoCode)[0])) return array('PromoStatus' => 0); //Wrong Code
-          $PromoArr = $this->getPromo_byCode($PromoCode)[0];
+          $Coderow = $this->getPromo_byCode($PromoCode);
+          if(!isset($Coderow[0])) return array('PromoStatus' => 0); //Wrong Code
+          $PromoArr = $Coderow[0];
           $ExpiryType = $PromoArr['PRMO_TYPE'];
           if(strcmp($ExpiryType, 'Date') == 0){ //Expires by Date
             $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
@@ -72,12 +73,9 @@ class Promos_model extends CI_Model{
         }
 
         public function calculateNewPrice($PromoCode, $TicketPrice){
-          $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT
-                    FROM Promos WHERE PRMO_CODE = ?";
-          $query = $this->db->query($strSQL, array($PromoCode));
-          $row = $query->result_array()[0];
-          if(isset($row)){
-            $Discount = $row['PRMO_PRCNT'];
+          $Coderow = $this->getPromo_byCode($PromoCode);
+          if(isset($Coderow[0])){
+            $Discount = $Coderow[0]['PRMO_PRCNT'];
             $Price = round($TicketPrice - ($TicketPrice * $Discount / 100));
           }
           else return 'InvalidCode';
