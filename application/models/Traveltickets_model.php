@@ -333,7 +333,7 @@ class TravelTickets_model extends CI_Model{
 
 
           $this->db->trans_start();
-          $strSQL2 = "LOCK TABLE traveltickets, ticket_seq WRITE;";
+          $strSQL2 = "LOCK TABLE traveltickets WRITE, ticket_seq WRITE;";
           $query = $this->db->query($strSQL2);
 
           $strSQL = "SELECT MAX(TRSQ_TCKT_ID) as NewID FROM ticket_seq WHERE TRSQ_LVLN_ID = {$LiveLineID}";
