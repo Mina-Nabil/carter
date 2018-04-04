@@ -273,6 +273,7 @@ $route['api/add_favourite'] = 'Api/add_favourite';
 $route['api/getFreeCode'] = 'Api/getFreeCode';
 $route['api/requestSpecialBus'] = 'Api/requestSpecialBus';
 $route['api/getArticle'] = 'Api/getArticle';
+$route['api/getUsedDistricts'] = 'Api/getUsedDistricts';
 $route['api/getLineDetails'] = 'Api/getLineDetails';
 $route['api/isFavourite'] = 'Api/isFavourite';
 $route['api/getNotifications'] = 'Api/getNotifications';
