@@ -21,7 +21,7 @@
                                             <label>Bus Type</label>
                                             <select class="form-control" name='busType'>
                                               <?foreach($BusTypes as $bustype){?>
-                                                  <option value=<?=$bustype['BSTP_ID']?> <?if($BUS_DRVR_ID == $bustype['BSTP_ID'])  echo 'selected';?>><?=$bustype['BSTP_NAME']?></option>
+                                                  <option value=<?=$bustype['BSTP_ID']?> <?if($BUS_BSTP_ID == $bustype['BSTP_ID'])  echo 'selected';?>><?=$bustype['BSTP_NAME']?></option>
                                               <?}?>
                                             </select>
                                         </div>

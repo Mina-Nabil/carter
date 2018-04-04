@@ -104,7 +104,7 @@ class Buses extends CI_Controller{
     $data['BusTypes'] = $this->Bustypes_model->getBustypes();
 
     $data['BUS_ID']      = ''              ;
-    $data['BUS_TYPE']    = ''              ;
+    $data['BUS_BSTP_ID']    = ''              ;
     $data['BUS_NUMBER']    = ''              ;
     $data['BUS_SEATS']    = ''         ;
     $data['BUS_CHAR']    = ''         ;
@@ -173,7 +173,7 @@ class Buses extends CI_Controller{
     $data['BusTypes'] = $this->Bustypes_model->getBustypes();
 
     $data['BUS_ID']      = $Bus['BUS_ID']  ;
-    $data['BUS_TYPE']    = $Bus['BUS_TYPE']  ;
+    $data['BUS_BSTP_ID']    = $Bus['BUS_BSTP_ID']  ;
     $data['BUS_NUMBER']    = $Bus['BUS_NUMBER']   ;
     $data['BUS_SEATS']    = $Bus['BUS_SEATS']   ;
     $data['BUS_CHAR']    = $Bus['BUS_CHAR']   ;
