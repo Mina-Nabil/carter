@@ -40,7 +40,9 @@ class Promos_model extends CI_Model{
           $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT
                     FROM Promos WHERE PRMO_CODE = ?";
           $query = $this->db->query($strSQL, array($Code));
-          return $query->result_array();
+          $test = $query->result_array();
+          print_r($test);
+          return $test;
 
         }
 
@@ -54,22 +56,22 @@ class Promos_model extends CI_Model{
         public function checkValidity($PromoCode, $ClientID){
 
           $Coderow = $this->getPromo_byCode($PromoCode);
-          if(!isset($Coderow[0])) return array('PromoStatus' => 0); //Wrong Code
+          if(!isset($Coderow[0])) return 0; //Wrong Code
           $PromoArr = $Coderow[0];
           $ExpiryType = $PromoArr['PRMO_TYPE'];
           if(strcmp($ExpiryType, 'Date') == 0){ //Expires by Date
             $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
-            if($Expiry > date("Y-m-d H:i:s")) return array('PromoStatus' => 2); //Code Expired
+            if($Expiry > date("Y-m-d H:i:s")) return 2; //Code Expired
           }
           $Used = $this->PromoUsageCount($PromoArr['PRMO_ID'], $ClientID);
           if(strcmp($ExpiryType, 'Count') == 0){ //Expires by Count
-            if($Used >= $PromoArr['PRMO_CNT']) return array('PromoStatus' => 3); //Code Count Surpassed
+            if($Used >= $PromoArr['PRMO_CNT']) return 3; //Code Count Surpassed
           }
           if(strcmp($ExpiryType, 'Both') == 0){ //Expires by Both Count and Date
             $Expiry = strtotime($PromoArr['PRMO_EXPIRE']);
-            if($Expiry > date("Y-m-d H:i:s") || $Count >= $PromoArr['PRMO_CNT'] ) return array('PromoStatus' => 4); //Code Expired
+            if($Expiry > date("Y-m-d H:i:s") || $Count >= $PromoArr['PRMO_CNT'] ) return 4; //Code Expired
           }
-          return array('PromoStatus' => 1); //Correct Code
+          return 1; //Correct Code
         }
 
         public function calculateNewPrice($PromoCode, $TicketPrice){
