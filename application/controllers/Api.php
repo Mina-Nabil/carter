@@ -348,7 +348,7 @@ class Api extends CI_Controller{
     $res = $this->Traveltickets_model->insertTravelTicket($ClientID, $LiveLineID, $StartIndex,$EndIndex, 0, 0,
                                                           $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
 
-    if($res){
+    if($res['0']){
       $this->Clients_model->decrementBalance($ClientID, $Price * $NoofTickets);
       if(isset($PromoCode)){
         $this->Promos_model->AddUsage($PromoArr['PRMO_ID'], $ClientID, $res['ID'], $LiveLineID, $OrigPrice - $Price);

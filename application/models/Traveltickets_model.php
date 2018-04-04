@@ -314,21 +314,47 @@ class TravelTickets_model extends CI_Model{
 
           }
 
+          public function getBusTicketChar($LiveLineID){
+            $strSQL = "SELECT BUS_CHAR FROM live_lines, drivers, buses
+                       WHERE BUS_DRVR_ID = DRVR_ID
+                       AND   LVLN_DRVR_ID = DRVR_ID
+                       AND   LVLN_ID = {$LiveLineID}";
+            $query = $this->db->query($strSQL);
+            return $query->result_array();
+          }
+
         public function insertTravelTicket($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled,
                                            $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation){
+
+          $buscharRow = $this->getBusTicketChar($LiveLineID) ;
+          $busChar = '';
+          if(!isset($buscharRow[0])) return array('0' => false);
+          else $busChar = $buscharRow[0]['BUS_CHAR'];
 
 
           $this->db->trans_start();
           $strSQL2 = "LOCK TABLE traveltickets WRITE;";
           $query = $this->db->query($strSQL2);
 
-          $strSQL2 = " INSERT INTO traveltickets (TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
+          $strSQL = "SELECT MAX(TRSQ_TCKT_ID) as NewID FROM ticket_seq WHERE TRSQ_LVLN_ID = {$LiveLineID}";
+          $query = $this->db->query($strSQL);
+          $row = $query->result_array();
+          if(!isset($row[0])) {
+            // First Ticket
+            $strSQL = "INSERT INTO ticket_seq (TRSQ_LVLN_ID, TRSQ_TCKT_ID) VALUES ({$LiveLineID}, 1)"
+            $query = $this->db->query($strSQL);
+            $TicketID = $busChar . '01';
+          } else {
+            $TicketID = $busChar . sprintf("%02d",$row[0]['NewID']);
+          }
+
+          $strSQL2 = " INSERT INTO traveltickets (TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
                                                   TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, TRTK_START_STTN, TRTK_END_STTN)
-                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
+                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
 
 
 
-          $inputs = array($ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
+          $inputs = array($TicketID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
           $query = $this->db->query($strSQL2, $inputs);
 
           $strSQL =  "SELECT MAX(TRTK_ID) as maxID FROM traveltickets";
