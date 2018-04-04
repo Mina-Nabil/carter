@@ -407,23 +407,21 @@ class Api extends CI_Controller{
 
   public function getTripStatus(){
     $LiveLineID = $this->input->post('LivelineID');
-    $TicketID = $this->input->post('TicketID');
     $TripStatus = $this->LiveLines_model->getTripStatus($LiveLineID);
     if(isset($TripStatus[0]))$TripStatus = $TripStatus[0];
     else $TripStatus = 'Invalid TripID'
 
-
-    $TripPrice  = $this->Traveltickets_model->getTravelTicketPrice_byID($TicketID);
-    if(isset($TripPrice[0]))$TripPrice = $TripPrice[0];
-    else $TripPrice = 'Invalid TicketID';
-
-    echo json_encode(array('Status' => $TripStatus, 'Price' => $TripPrice), JSON_UNESCAPED_UNICODE);
+    echo json_encode(array('Status' => $TripStatus), JSON_UNESCAPED_UNICODE);
   }
 
   public function checkPromocode(){
     $PromoCode = $this->input->post('PromoCode');
+    $TripPrice = $this->input->post('TripPrice');
     $ClientID = $this->input->post('ClientID');
-    echo json_encode($this->Promos_model->checkValidity($PromoCode, $ClientID), JSON_UNESCAPED_UNICODE);
+
+    $Validity = $this->Promos_model->checkValidity($PromoCode, $ClientID);
+    $NewPrice = $this->Promos_model->calculateNewPrice($PromoCode, $TripPrice);
+    echo json_encode(array("Validity" => $Validity, "NewPrice" => ), JSON_UNESCAPED_UNICODE);
   }
 
 

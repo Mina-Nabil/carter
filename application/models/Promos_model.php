@@ -71,6 +71,17 @@ class Promos_model extends CI_Model{
           return array('PromoStatus' => 1); //Correct Code
         }
 
+        public function calculateNewPrice($PromoCode, $TicketPrice){
+          $strSQL = "SELECT PRMO_ID, PRMO_CODE, PRMO_EXPIRE, PRMO_PRCNT, PRMO_TYPE, PRMO_CNT
+                    FROM Promos WHERE PRMO_CODE = ?";
+          $query = $this->db->query($strSQL, array($Code));
+          if(isset($query->result_array()[0])){
+            $Discount = $query->result_array()[0]['PRMO_PRCNT'];
+            $Price = round($TicketPrice - ($TicketPrice * $Discount / 100));
+          }
+          else return 'InvalidCode';
+        }
+
 
         public function insertPromo($Code, $Expire, $Percent, $Type, $Count){
             //NN Expire Percent Code DistrictID
