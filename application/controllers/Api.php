@@ -421,7 +421,7 @@ class Api extends CI_Controller{
 
     $Validity = $this->Promos_model->checkValidity($PromoCode, $ClientID);
     $NewPrice = $this->Promos_model->calculateNewPrice($PromoCode, $TripPrice);
-    echo json_encode(array("Validity" => $Validity, "NewPrice" => ), JSON_UNESCAPED_UNICODE);
+    echo json_encode(array("Validity" => $Validity, "NewPrice" => $NewPrice), JSON_UNESCAPED_UNICODE);
   }
 
 
