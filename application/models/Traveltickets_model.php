@@ -11,7 +11,7 @@ class TravelTickets_model extends CI_Model{
 
         public function getTravelTickets($clientID){
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_SERIAL, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -23,7 +23,7 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_SERIAL, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -53,7 +53,7 @@ class TravelTickets_model extends CI_Model{
 
         public function getOldTravelTicketsByClient($clientID){
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_SERIAL, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS, STTN_ARBC_NAME as START_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -68,7 +68,7 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_SERIAL, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE, STTN_ARBC_NAME as END_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -102,7 +102,7 @@ class TravelTickets_model extends CI_Model{
 
         public function getNewTravelTicketsByClient($clientID){
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_SERIAL, TRTK_ISHAND, LVLN_TIME,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as START_STTN, PATH_REL_TIME, TRTK_REG_DATE, TRTK_SEATS, STTN_ARBC_NAME as START_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -118,7 +118,7 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL);
           $res1  = $query->result_array();
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, LVLN_TIME,
+          $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID, TRTK_SERIAL, TRTK_ISHAND, LVLN_TIME,
                             TRTK_PRICE, CLNT_NAME, LINE_NAME, LVLN_TIME, STTN_NAME as END_STTN, TRTK_REG_DATE, STTN_ARBC_NAME as END_STTN_ARBC_NAME
                       FROM  clients, traveltickets, live_lines, karter.lines, paths, stations
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -154,7 +154,7 @@ class TravelTickets_model extends CI_Model{
         public function getInTicketsByStations($LiveLineID, $StationID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
+                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS, TRTK_SERIAL
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -169,7 +169,7 @@ class TravelTickets_model extends CI_Model{
         public function getOutTicketsByStations($LiveLineID, $StationID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
-                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS
+                            TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS, TRTK_SERIAL
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
                       AND TRTK_LVLN_ID = LVLN_ID
@@ -184,7 +184,7 @@ class TravelTickets_model extends CI_Model{
         public function getTravelTicket_byID($ID){
 
           $strSQL = "SELECT TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, LVLN_TIME
+                            TRTK_PRICE, CLNT_NAME, LINE_NAME, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, LVLN_TIME, TRTK_SERIAL
                     FROM traveltickets, live_lines, karter.lines, clients
                     WHERE TRTK_LVLN_ID = LVLN_ID
                     AND TRTK_CLNT_ID = CLNT_ID
@@ -343,17 +343,19 @@ class TravelTickets_model extends CI_Model{
             // First Ticket
             $strSQL = "INSERT INTO ticket_seq (TRSQ_LVLN_ID, TRSQ_TCKT_ID) VALUES ({$LiveLineID}, 1)";
             $query = $this->db->query($strSQL);
-            $TicketID = $busChar . '01';
+            $TicketID = $busChar . '-' . $LiveLineID . '-' . '01';
+            $TicketSerial = $busChar . '01';
           } else {
             $NewSerial = $row[0]['NewID']+1;
-            $TicketID = $busChar . sprintf("%02d", $NewSerial);
+            $TicketID = $busChar . '-' . $LiveLineID . '-' . sprintf("%02d", $NewSerial);
+            $TicketSerial = $busChar . sprintf("%02d", $NewSerial);
             $strSQL = "INSERT INTO ticket_seq (TRSQ_LVLN_ID, TRSQ_TCKT_ID) VALUES ({$LiveLineID}, {$NewSerial})";
             $query = $this->db->query($strSQL);
           }
 
           $strSQL2 = " INSERT INTO traveltickets (TRTK_ID, TRTK_CLNT_ID, TRTK_LVLN_ID, TRTK_START_INDX, TRTK_END_INDX, TRTK_CANC, TRTK_PAID,
-                                                  TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, TRTK_START_STTN, TRTK_END_STTN)
-                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?)";
+                                                  TRTK_PRICE, TRTK_ISHAND, TRTK_REG_DATE, TRTK_SEATS, TRTK_START_STTN, TRTK_END_STTN, TRTK_SERIAL)
+                     VALUES       (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, ?)";
 
 
 
