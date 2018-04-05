@@ -359,7 +359,7 @@ class TravelTickets_model extends CI_Model{
 
 
 
-          $inputs = array($TicketID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation);
+          $inputs = array($TicketID, $ClientID, $LiveLineID, $StartIndx, $EndIndx, $isCancelled, $isPaid, $Price, $isHandi, $NoofTickets, $StartStation, $EndStation, $TicketSerial);
           $query = $this->db->query($strSQL2, $inputs);
 
           $TravelticketID = $TicketID;
@@ -390,7 +390,7 @@ class TravelTickets_model extends CI_Model{
           $query = $this->db->query($strSQL, array($Price, $ClientID, 'User subscribed Ticket ' . $TravelticketID));
 
           $this->db->trans_complete();
-          return array ('0' => $this->db->trans_status(),  'ID' => $TravelticketID);
+          return array ('0' => $this->db->trans_status(),  'ID' => $TravelticketID, 'SN' => $TicketSerial);
 
 
 //test this function

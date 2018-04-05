@@ -356,7 +356,7 @@ class Api extends CI_Controller{
       } else
       $this->Balancelogs_model->insertBalancelog($Price, $ClientID,  date("Y-m-d H:i:s"), 'Ticket Bought');
     }
-    echo $res['ID'] ;
+    echo json_encode(array('ID' => $res['ID'], 'SN' => $res['SN']), JSON_UNESCAPED_UNICODE); ;
     }
     else echo 'NS';
   }
