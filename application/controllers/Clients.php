@@ -230,7 +230,7 @@ class Clients extends CI_Controller{
                                          $clientBalance, $clientTag, $clientDistID);
 
     if(!is_null($clientPass)){
-      $this-Clients_model->changePassbyID($ID, $clientPass);
+      $this->Clients_model->changePassbyID($ID, $clientPass);
     }
 
     $this->load->view('pages/clients_redirect');
