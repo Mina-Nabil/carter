@@ -459,9 +459,10 @@ class Api extends CI_Controller{
       " . $Url;
 
       $this->sendEmail($Email, $Subject, $Text)  ;
+      echo 1;
     }
+    echo 0;
 
-    echo 1;
   }
 
   private function getEmailLink($Email){
