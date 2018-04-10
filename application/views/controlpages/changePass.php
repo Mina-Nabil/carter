@@ -45,20 +45,22 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
+                      <h3>Change Password</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" method="post" action=<?=base_url() . 'confirmPwChange'?>>
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="NewPassword" id=password type="password" onkeyup=check() autofocus>
+                                    <input class="form-control" placeholder="NewPassword" id=password type="password" onkeyup="check()" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="ConfirmPassword" id=confirm_password name="NewPass" type="password" value="">
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type=submit class="btn btn-lg btn-success btn-block" id=button onkeyup=check() value=Submit></input>
-
+                                <input type=submit class="btn btn-lg btn-success btn-block" id=button onkeyup="check()" value=Submit disabled="true"></input>
+                                <br>
+                                <br>
                                 <span class="btn btn-danger center-block" id=message >Please Enter a New Password</span>
 
                             </fieldset>
