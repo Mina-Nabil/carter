@@ -1,6 +1,8 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Encryption {
-	var $skey 	= "SuPerEncKey2010"; // you can change it
+	var $skey 	= "Batman2018"; // you can change it
 
     public  function safe_b64encode($string) {
 
