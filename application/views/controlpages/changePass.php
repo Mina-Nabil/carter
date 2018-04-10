@@ -45,7 +45,6 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" method="post" action=<?=base_url() . 'confirmPwChange'?>>
@@ -70,7 +69,7 @@
         </div>
     </div>
     <script>
-      public function check () {
+      public function check() {
         if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
         document.getElementById('message').class = 'btn btn-success center-block';

@@ -279,7 +279,7 @@ class Clients extends CI_Controller{
   }
 
   public function loadConfirmPwChange(){
-    $this->load->view("ChangePwsuccess");
+    $this->load->view("controlpages/ChangePwsuccess");
 
   }
 }
