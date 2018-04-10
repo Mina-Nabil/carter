@@ -72,7 +72,7 @@
         </div>
     </div>
     <script>
-      public function check() {
+      function check() {
         if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
         document.getElementById('message').class = 'btn btn-success center-block';
