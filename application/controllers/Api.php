@@ -451,8 +451,8 @@ class Api extends CI_Controller{
 
   public function forgotPW(){
     $Email = $this->input->post('Email');
-    if($this->Clients_model->checkClient_byEmail() == 1){
-      $Url = $this->getEmailLink();
+    if($this->Clients_model->checkClient_byEmail($Email) == 1){
+      $Url = $this->getEmailLink($Email);
       $Subject = 'Carter Password Reset';
       $Text    = 'Please use the following link in case you requested to reset your Password. If you did not request to change it, please ignore this message. ';
       $Text   .= "
