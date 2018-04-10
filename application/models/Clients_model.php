@@ -47,7 +47,7 @@ class Clients_model extends CI_Model{
 
           $strSQL = "SELECT Count(*) as TT
                       FROM Clients
-                      WHERE CLNT_EMAIL = ?";
+                      WHERE CLNT_EMAIL LIKE ?";
           $query = $this->db->query($strSQL, array($Email));
           return $query->result_array()[0]['TT'];
 
