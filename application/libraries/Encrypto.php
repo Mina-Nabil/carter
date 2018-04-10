@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Encrypto {
-	var $skey 	= "Batman2018"; // you can change it
+	var $skey 	= "Batman2804201@!8"; // you can change it
 
     public  function safe_b64encode($string) {
 
