@@ -326,11 +326,8 @@ $config['cache_query_string'] = FALSE;
 */
 $this->load->library('encryption');
 
-$key = bin2hex($this->encryption->create_key(16));
 
-// Put the same value in your config with hex2bin(),
-// so that it is still passed as binary to the library:
-$config['encryption_key'] = hex2bin($key);
+$config['encryption_key'] = hex2bin("BA78A9");
 /*
 |--------------------------------------------------------------------------
 | Session Variables
