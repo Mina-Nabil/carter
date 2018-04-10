@@ -54,12 +54,12 @@
                                     <input class="form-control" placeholder="NewPassword" id=password type="password" onKeyUp="return check()" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="ConfirmPassword" id=confirm_password name="NewPass" type="password" value="">
+                                    <input class="form-control" placeholder="ConfirmPassword" id=confirm_password name="NewPass" onKeyUp="return check()" type="password" value="">
                                     <input  name="NewPass" type="password" value="Email" hidden="true" type="hidden">
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type=submit class="btn btn-lg btn-danger btn-block" id=button onKeyUp="return check()" value=Submit disabled="true"></input>
+                                <input type=submit class="btn btn-lg btn-success btn-block" id=button  value=Submit disabled="true"></input>
                                 <br>
                                 <br>
                                 <span class="btn btn-danger center-block" id=message >Please Enter a New Password</span>
