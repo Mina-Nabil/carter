@@ -261,8 +261,8 @@ class Clients extends CI_Controller{
   }
 
   public function forgotPW($cipherEmail){
-    
-    $this->load->library('encrypt');
+
+    $this->load->library('Encryption');
     $Email = $this->encrypt->decode($cipherEmail);
     $data['Emai'] = $Email;
     $this->load->view('controlpages/changePass', $data);
