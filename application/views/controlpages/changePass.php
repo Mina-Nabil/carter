@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="ConfirmPassword" id=confirm_password name="NewPass" onKeyUp="return check()" type="password" value="">
-                                    <input  name="NewPass" type="password" value="Email" hidden="true" type="hidden">
+                                    <input  name="NewPass" type="password" name="Email" hidden="true" type="hidden" value="<?=$Email?>">
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->
