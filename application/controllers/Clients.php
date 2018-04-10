@@ -264,7 +264,7 @@ class Clients extends CI_Controller{
 
     $this->load->library('encrypto');
     $Email = $this->encrypto->decode($cipherEmail);
-    $data['Emai'] = $Email;
+    $data['Email'] = $Email;
     $this->load->view('controlpages/changePass', $data);
   }
 
