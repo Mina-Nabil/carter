@@ -76,11 +76,11 @@
         if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
         document.getElementById('message').class = 'btn btn-danger center-block';
-        document.getElementById('message').innerHTML = 'Missmatch';
+        document.getElementById('message').innerHTML = 'Match';
         document.getElementById('button').disabled = false;
       } else {
         document.getElementById('message').class = 'btn btn-primary center-block';
-        document.getElementById('message').innerHTML = 'Match';
+        document.getElementById('message').innerHTML = 'MissMatch';
         document.getElementById('button').disabled = true;
       }
       }
