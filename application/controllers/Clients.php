@@ -273,7 +273,7 @@ class Clients extends CI_Controller{
     $Email = $this->input->post('Email');
 
     $this->Clients_model->changePass($Email, $NewPass);
-    $this->load->view("PwChange_redirect");
+    $this->load->view("controlpages/PwChange_redirect");
 
 
   }
