@@ -47,8 +47,8 @@ class Clients_model extends CI_Model{
 
           $strSQL = "SELECT Count(*) as TT
                       FROM Clients
-                      WHERE CLNT_EMAIL = {$Email}";
-          $query = $this->db->query($strSQL);
+                      WHERE CLNT_EMAIL = ?";
+          $query = $this->db->query($strSQL, array($Email));
           return $query->result_array()[0]['TT'];
 
         }
@@ -134,7 +134,7 @@ class Clients_model extends CI_Model{
 
         public function changePass($Email, $Pass){
 
-          $strSQL = "UPDATE Clients SET CLNT_PASS = ? WHERE CLNT_EMAIL = ? ";
+          $strSQL = "UPDATE Clients SET CLNT_PASS = ? WHERE `CLNT_EMAIL`= ? ";
           $query = $this->db->query($strSQL, array($Pass, $Email));
           if($query) return 1;
         }
