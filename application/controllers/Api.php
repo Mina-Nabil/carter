@@ -467,7 +467,7 @@ class Api extends CI_Controller{
 
   private function getEmailLink($Email){
 
-    $this->load->library('encrypt');
+    $this->load->library('Encryption');
     $cipherEmail = $this->encrypt->encode($Email);
     return 'http://35.177.192.89/CarterCP/changePass/' . $cipherEmail;
 
