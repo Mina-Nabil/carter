@@ -88,6 +88,8 @@ $route['insertclients'] = 'Clients/insert';
 $route['clients/modify/(:num)'] = 'Clients/modifypage/$1';
 $route['editclients/(:num)'] = 'Clients/edit/$1';
 $route['clients/delete/(:num)'] = 'Clients/delete/$1';
+$route['changePass/(:any)'] = 'Clients/forgotPW/$1';
+$route['confirmPwChange'] = 'Clients/changePw';
 
 //Balancelogs ROUTES
 $route['balancelogs'] = 'Balancelogs/home';
@@ -284,6 +286,7 @@ $route['api/resetUser'] = 'Api/resetUser';
 $route['api/cancelTrip'] = 'Api/cancelTrip';
 $route['api/get_path/(:num)'] = 'Api/get_path/$1';
 $route['api/getTripStatus'] = 'Api/getTripStatus';
+$route['api/forgotPW'] = 'Api/forgotPW';
 $route['api/checkPromocode'] = 'Api/checkPromocode';
 $route['api/(:any)'] = 'Api/DefaultError/$1';
 

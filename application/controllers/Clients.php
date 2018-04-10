@@ -259,4 +259,26 @@ class Clients extends CI_Controller{
     $this->load->view('pages/clients_redirect');
 
   }
+
+  public function forgotPW($cipherEmail){
+
+    $Email = $this->encryption->decrypt($cipherEmail);
+    $data['Emai'] = $Email;
+    $this->load->view('controlpages/changePass', $data);
+  }
+
+  public function changePw(){
+    $NewPass = $this->input->post('NewPass');
+    $Email = $this->input->post('Email');
+
+    $this->Clients_model->changePass($Email, $NewPass);
+    $this->load->view("PwChange_redirect");
+
+
+  }
+
+  public function loadConfirmPwChange(){
+    $this->load->view("ChangePwsuccess");
+
+  }
 }

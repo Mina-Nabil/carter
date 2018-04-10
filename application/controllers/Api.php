@@ -449,6 +449,43 @@ class Api extends CI_Controller{
 
   }
 
+  public function forgotPW(){
+    $Email = $this->input->post('Email');
+    if($this->Clients_model->checkClient_byEmail() == 1){
+      $Url = $this->getEmailLink();
+      $Subject = 'Carter Password Reset';
+      $Text    = 'Please use the following link in case you requested to reset your Password. If you did not request to change it, please ignore this message. ';
+      $Text   .= "
+      " . $Url;
+
+      $this->sendEmail($Email, $Subject, $Text)  ;
+    }
+
+    return 1;
+  }
+
+  private function getEmailLink($Email){
+
+    $cipherEmail = $this->encryption->encrypt($Email);
+    return 'http://35.177.192.89/CarterCP/changePass/' . $cipherEmail;
+
+
+  }
+
+  private function sendEmail($To, $Subject, $Text){
+
+
+    $this->load->library('email');
+
+    $this->email->from('cartereach@gmail.com', 'Carter Application');
+    $this->email->to($To);
+
+    $this->email->subject($Subject);
+    $this->email->message($Text);
+
+    $this->email->send();
+  }
+
   public function DefaultError(){
     echo json_encode(array('Message' => 'Api Not Found'), JSON_UNESCAPED_UNICODE);
 

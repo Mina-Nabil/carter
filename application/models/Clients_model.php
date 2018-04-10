@@ -43,6 +43,16 @@ class Clients_model extends CI_Model{
 
         }
 
+        public function checkClient_byEmail($Email){
+
+          $strSQL = "SELECT Count(*) as TT
+                      FROM Clients
+                      WHERE CLNT_EMAIL = {$Email}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array()[0]['TT'];
+
+        }
+
         public function getTopBalancedClientsIDs($Percent){
 
           if(!is_numeric($Percent))return "invalidInput";
