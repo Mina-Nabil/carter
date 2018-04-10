@@ -59,7 +59,7 @@
                                 </div>
 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type=submit class="btn btn-lg btn-success btn-block" id=button onKeyUp="return check()" value=Submit disabled="true"></input>
+                                <input type=submit class="btn btn-lg btn-danger btn-block" id=button onKeyUp="return check()" value=Submit disabled="true"></input>
                                 <br>
                                 <br>
                                 <span class="btn btn-danger center-block" id=message >Please Enter a New Password</span>
@@ -75,13 +75,13 @@
       function check() {
         if (document.getElementById('password').value ==
         document.getElementById('confirm_password').value) {
-        document.getElementById('message').class = 'btn btn-success center-block';
-        document.getElementById('message').innerHTML = 'Matching';
-        document.getElementById('button').disabled = true;
-      } else {
         document.getElementById('message').class = 'btn btn-danger center-block';
-        document.getElementById('message').innerHTML = 'Matching';
+        document.getElementById('message').innerHTML = 'Missmatch';
         document.getElementById('button').disabled = false;
+      } else {
+        document.getElementById('message').class = 'btn btn-primary center-block';
+        document.getElementById('message').innerHTML = 'Match';
+        document.getElementById('button').disabled = true;
       }
       }
     </script>
