@@ -461,7 +461,7 @@ class Api extends CI_Controller{
       $this->sendEmail($Email, $Subject, $Text)  ;
       echo 1;
     }
-    echo 0;
+    else echo 0;
 
   }
 
