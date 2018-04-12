@@ -67,7 +67,7 @@ class Clients extends CI_Controller{
       'Email',
       'Telephone',
       'City',
-      'District',
+      'District / Fav District',
       'Balance',
       'Edit',
       'Delete'
@@ -113,6 +113,7 @@ class Clients extends CI_Controller{
     $data['CLNT_BLNC']    = ''              ;
     $data['CLNT_TAG']    = ''              ;
     $data['CLNT_DIST_ID']    = ''              ;
+    $data['CLNT_FAV_DIST']    = ''              ;
 
     $data['formURL']      = 'insertclients'  ;
 
@@ -146,12 +147,13 @@ class Clients extends CI_Controller{
     $clientEmail = $this->input->post('clientEmail');
     $clientImg = $this->input->post('clientImg');
     $clientDistID = $this->input->post('clientDistID');
+    $clientFavDistID = $this->input->post('clientFavDistID');
     $clientPass = $this->input->post('clientPass');
     $clientBalance = $this->input->post('clientBalance');
     $clientTag = $this->input->post('clientTag');
 
     $this->Clients_model->insertClient($clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
-                                         $clientBalance, $clientTag, $clientDistID);
+                                         $clientBalance, $clientTag, $clientDistID, $clientFavDistID);
 
     $this->load->view('pages/clients_redirect');
 
@@ -188,6 +190,7 @@ class Clients extends CI_Controller{
     $data['CLNT_BLNC']    = $Client['CLNT_BLNC']  ;
     $data['CLNT_TAG']    = $Client['CLNT_TAG']   ;
     $data['CLNT_DIST_ID']    = $Client['CLNT_DIST_ID'];
+    $data['CLNT_FAV_DIST']    = $Client['CLNT_FAV_DIST'];
 
     $data['formURL']      = 'editclients/' . $ID  ;
 
@@ -222,12 +225,13 @@ class Clients extends CI_Controller{
     $clientEmail = $this->input->post('clientEmail');
     $clientImg = $this->input->post('clientImg');
     $clientDistID = $this->input->post('clientDistID');
+    $clientFavDistID = $this->input->post('clientFavDistID');
     $clientPass = $this->input->post('clientPass');
     $clientBalance = $this->input->post('clientBalance');
     $clientTag = $this->input->post('clientTag');
 
     $this->Clients_model->editClient($ID, $clientName, $clientTel, $clientEmail, $clientImg,
-                                         $clientBalance, $clientTag, $clientDistID);
+                                         $clientBalance, $clientTag, $clientDistID, $clientFavDistID);
 
     if(!is_null($clientPass)){
       $this->Clients_model->changePassbyID($ID, $clientPass);

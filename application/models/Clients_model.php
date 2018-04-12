@@ -11,8 +11,8 @@ class Clients_model extends CI_Model{
 
         public function getClients(){
 
-          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME,
-                            CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID
+          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME, CLNT_FAV_DIST,
+                            CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID, (SELECT DIST_NAME from districts WHERE DIST_ID = CLNT_FAV_DIST) as CLNT_FAV_DIST_NAME
                       FROM Clients, cities, districts
                       WHERE DIST_CITY_ID = CITY_ID
                       AND   CLNT_DIST_ID = DIST_ID";
@@ -23,8 +23,8 @@ class Clients_model extends CI_Model{
 
         public function getClient_byID($ID){
 
-          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME, CITY_ID,
-                            Clients.CLNT_EMAIL, CLNT_IMG, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID
+          $strSQL = "SELECT CLNT_ID, CLNT_NAME, CITY_NAME, CLNT_TEL, DIST_NAME, CITY_ID, CLNT_FAV_DIST,
+                            Clients.CLNT_EMAIL, CLNT_IMG, CLNT_BLNC, CLNT_TAG, CLNT_DIST_ID, (SELECT DIST_NAME from districts WHERE DIST_ID = CLNT_FAV_DIST) as CLNT_FAV_DIST_NAME
                       FROM Clients, cities, districts
                       WHERE DIST_CITY_ID = CITY_ID
                       AND   CLNT_DIST_ID = DIST_ID AND CLNT_ID = {$ID}";
@@ -277,25 +277,25 @@ class Clients_model extends CI_Model{
         }
 
 
-        public function insertClient($Name, $Tel, $Email, $Img, $Pass, $Blnc, $Tag, $DistID){
+        public function insertClient($Name, $Tel, $Email, $Img, $Pass, $Blnc, $Tag, $DistID, $FavDistID){
             //NN Tel Email Name CityID
           $strSQL = "INSERT INTO Clients (CLNT_NAME, CLNT_TEL, CLNT_DIST_ID,
-                                          CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG)
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                          CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG, CLNT_FAV_DIST)
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?. ?)";
 
-          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag);
+          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag, $FavDistID);
 
           $query = $this->db->query($strSQL, $inputs);
 
         }
 
-        public function regClient($Name, $Tel, $Email, $Img, $Pass, $Blnc, $Tag, $DistID){
+        public function regClient($Name, $Tel, $Email, $Img, $Pass, $Blnc, $Tag, $DistID, $FavDistID){
             //NN Tel Email Name CityID
           $strSQL = "INSERT INTO Clients (CLNT_NAME, CLNT_TEL, CLNT_DIST_ID,
-                                          CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG)
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                          CLNT_EMAIL, CLNT_IMG, CLNT_PASS, CLNT_BLNC, CLNT_TAG, CLNT_FAV_DIST)
+                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag);
+          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag, $FavDistID);
 
           $query = $this->db->query($strSQL, $inputs);
 
@@ -307,15 +307,15 @@ class Clients_model extends CI_Model{
 
         }
 
-        public function editClient($ID, $Name, $Tel, $Email, $Img, $Blnc, $Tag, $DistID){
+        public function editClient($ID, $Name, $Tel, $Email, $Img, $Blnc, $Tag, $DistID, $FavDistID){
             //NN Tel Email Name CityID
           $strSQL = "UPDATE Clients
                     SET CLNT_NAME = ?, CLNT_TEL = ?, CLNT_DIST_ID = ?, CLNT_EMAIL = ?,
-                        CLNT_IMG   = ?, CLNT_BLNC = ?, CLNT_TAG   = ?
+                        CLNT_IMG   = ?, CLNT_BLNC = ?, CLNT_TAG   = ?, CLNT_FAV_DIST   = ?
                     WHERE
                         `CLNT_ID`=?";
 
-          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag, $ID);
+          $inputs = array($Name, $Tel, $DistID, $Email, $Img, $Pass, $Blnc, $Tag, $FavDistID, $ID);
           $query = $this->db->query($strSQL, $inputs);
 
         }

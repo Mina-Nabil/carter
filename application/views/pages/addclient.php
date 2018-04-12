@@ -52,12 +52,19 @@
                                             <input class="form-control" name='clientTag' type="text" value='<?=$CLNT_TAG?>'>
                                             <p class="help-block">Enter Client Tag[Development Use], Example: Ashnas45as7a4.</p>
                                         </div>
-
                                         <div class="form-group">
                                             <label>District Name</label>
                                             <select class="form-control" name='clientDistID'>
                                               <?foreach($Districts as $district){?>
                                                   <option value=<?=$district['DIST_ID']?> <?if($CLNT_DIST_ID == $district['DIST_ID'])  echo 'selected';?> required><?=$district['DIST_NAME']?></option>
+                                              <?}?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Client's Favourite District</label>
+                                            <select class="form-control" name='clientFavDistID'>
+                                              <?foreach($Districts as $district){?>
+                                                  <option value=<?=$district['DIST_ID']?> <?if($CLNT_FAV_DIST == $district['DIST_ID'])  echo 'selected';?> required><?=$district['DIST_NAME']?></option>
                                               <?}?>
                                             </select>
                                         </div>
