@@ -163,11 +163,9 @@ class Driverpackages extends CI_Controller{
     $Driverpackage = $this->Driverpackages_model->getDriverpackage_byID($ID)[0];
 
     $data['DPKG_ID']      = $Driverpackage['DPKG_ID']  ;
-    $data['DPKG_BSTP_ID']    = $Driverpackage['DPKG_BSTP_ID']  ;
-    $data['DPKG_NUMBER']    = $Driverpackage['DPKG_NUMBER']   ;
-    $data['DPKG_SEATS']    = $Driverpackage['DPKG_SEATS']   ;
-    $data['DPKG_CHAR']    = $Driverpackage['DPKG_CHAR']   ;
-    $data['DPKG_DRVR_ID']    = $Driverpackage['DPKG_DRVR_ID'];
+    $data['DPKG_NAME']    = $Driverpackage['DPKG_NAME']   ;
+    $data['DPKG_PRICE']    = $Driverpackage['DPKG_PRICE']   ;
+    $data['DPKG_TRIPS']    = $Driverpackage['DPKG_TRIPS'];
 
     $data['formURL']      = 'editdriverpackages/' . $ID  ;
 

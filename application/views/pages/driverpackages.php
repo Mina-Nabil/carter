@@ -22,7 +22,7 @@
                                     <tr class="odd gradeX">
                                         <td><?=$data['DPKG_ID']?></td>
                                         <td><?=$data['DPKG_NAME']?></td>
-                                        <td><?=$data['DPKG_NUMBER']?></td>
+                                        <td><?=$data['DPKG_TRIPS']?></td>
                                         <td><?=$data['DPKG_PRICE']?></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/modify/' . $data['DPKG_ID']?>'><img src=<?=base_url() . 'images/edit.png'?> style='width:30px;height:30px;'></a></td>
                                         <td class="center"><a href='<?=base_url() . $Url_Name . '/delete/' . $data['DPKG_ID']?>'><img src=<?=base_url() . 'images/del.png'?> style='width:30px;height:30px;'></a></td>
