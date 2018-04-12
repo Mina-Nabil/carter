@@ -11,7 +11,7 @@ class Driverpackages_model extends CI_Model{
 
         public function getDriverpackages(){
 
-          $strSQL = "SELECT DPKG_ID, DPKG_TRIPS, DRVR_NAME, DPKG_PRICE, DPKG_NAME
+          $strSQL = "SELECT DPKG_ID, DPKG_TRIPS, DPKG_PRICE, DPKG_NAME
                       FROM Driverpackages";
           $query = $this->db->query($strSQL);
           return $query->result_array();
