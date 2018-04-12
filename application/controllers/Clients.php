@@ -270,6 +270,7 @@ class Clients extends CI_Controller{
   public function changePw(){
     $NewPass = $this->input->post('NewPass');
     $cipherEmail = $this->input->post('Email');
+    echo "CipherEmail is " . $cipherEmail;
 
     $this->load->library('encrypto');
     $Email = $this->encrypto->decode($cipherEmail);
