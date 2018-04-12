@@ -99,9 +99,6 @@ class Driverpackages extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['Drivers'] = $this->Drivers_model->getDrivers();
-    $data['DriverpackageTypes'] = $this->Driverpackagetypes_model->getDriverpackagetypes();
-
     $data['DPKG_ID']      = ''              ;
     $data['DPKG_NAME']    = ''         ;
     $data['DPKG_PRICE']    = ''         ;
@@ -164,9 +161,6 @@ class Driverpackages extends CI_Controller{
     }
 
     $Driverpackage = $this->Driverpackages_model->getDriverpackage_byID($ID)[0];
-
-    $data['Drivers'] = $this->Drivers_model->getDrivers();
-    $data['DriverpackageTypes'] = $this->Driverpackagetypes_model->getDriverpackagetypes();
 
     $data['DPKG_ID']      = $Driverpackage['DPKG_ID']  ;
     $data['DPKG_BSTP_ID']    = $Driverpackage['DPKG_BSTP_ID']  ;
