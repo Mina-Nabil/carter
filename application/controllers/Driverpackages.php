@@ -99,10 +99,10 @@ class Driverpackages extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['DPKG_ID']      = ''              ;
+    $data['DPKG_ID']      = ''         ;
     $data['DPKG_NAME']    = ''         ;
-    $data['DPKG_PRICE']    = ''         ;
-    $data['DPKG_TRIPS']    = ''           ;
+    $data['DPKG_PRICE']    = ''        ;
+    $data['DPKG_TRIPS']    = ''        ;
 
     $data['formURL']      = 'insertdriverpackages'  ;
 

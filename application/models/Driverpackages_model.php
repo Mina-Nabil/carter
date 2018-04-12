@@ -32,7 +32,7 @@ class Driverpackages_model extends CI_Model{
         public function insertDriverpackage($Name, $TripsNumber, $Price){
             //NN Number Longitude Name TripsNumber
           $strSQL = "INSERT INTO Driverpackages (DPKG_NAME, DPKG_TRIPS, DPKG_PRICE)
-                     VALUES (?, ?, ?, ?)";
+                     VALUES (?, ?, ?)";
           $query = $this->db->query($strSQL, array($Name, $TripsNumber, $Price));
 
         }
