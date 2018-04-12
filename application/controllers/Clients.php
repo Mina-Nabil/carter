@@ -273,9 +273,9 @@ class Clients extends CI_Controller{
 
     $this->load->library('encrypto');
     $Email = $this->encrypto->decode($cipherEmail);
-
+    echo $Email;
     $this->Clients_model->changePass($Email, $NewPass);
-    $this->load->view("controlpages/PwChange_redirect");
+
 
 
   }
