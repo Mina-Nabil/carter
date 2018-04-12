@@ -273,7 +273,7 @@ class Clients extends CI_Controller{
 
     $this->load->library('encrypto');
     $Email = $this->encrypto->decode($cipherEmail);
-    echo $Email;
+    echo "Email is " . $Email;
     $this->Clients_model->changePass($Email, $NewPass);
 
 
