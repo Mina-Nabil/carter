@@ -40,9 +40,9 @@ class Buses_model extends CI_Model{
             //NN Number Longitude Type DriverID
           $strSQL = "UPDATE Buses
                     SET BUS_BSTP_ID   = ?,
+                        BUS_DRVR_ID =?,
                         BUS_NUMBER    = ?,
                         BUS_SEATS   = ?,
-                        BUS_DRVR_ID =?,
                         BUS_CHAR   = ?
                     WHERE
                         `BUS_ID`=?";

@@ -221,6 +221,14 @@ $route['buses/modify/(:num)'] = 'Buses/modifypage/$1';
 $route['editbuses/(:num)'] = 'Buses/edit/$1';
 $route['buses/delete/(:num)'] = 'Buses/delete/$1';
 
+//Driverpackages ROUTES
+$route['driverpackages'] = 'Driverpackages/home';
+$route['adddriverpackages'] = 'Driverpackages/addpage';
+$route['insertdriverpackages'] = 'Driverpackages/insert';
+$route['driverpackages/modify/(:num)'] = 'Driverpackages/modifypage/$1';
+$route['editdriverpackages/(:num)'] = 'Driverpackages/edit/$1';
+$route['driverpackages/delete/(:num)'] = 'Driverpackages/delete/$1';
+
 //Favourite_line ROUTES
 $route['favourite_lines'] = 'Favourite_lines/home';
 $route['addfavourite_lines'] = 'Favourite_lines/addpage';
