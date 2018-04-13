@@ -135,30 +135,62 @@ class DriverApi extends CI_Controller{
           $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
           $ArabicTitle = 'تم فوات التذكره';
           $ArabicMessage = 'لقد فات ميعاد التذكره رقم: ' . $Ticket . '.سوف نقوم بخصم سعر التذكره من حسابك لدينا. من فضلك قم بالاتصال بنا بأقرب قرصه ان كان هناك خطأ في العمليه ';
-          $this->sendPush($res['ClientID'], $ArabicTitle, $ArabicMessage, true);
+          $resu = $this->sendPush($res['ClientID'], $ArabicTitle, $ArabicMessage, true);
+          if(strcmp($resu, "OK") == 0) echo "1";
         }
     }
-
+    echo "0";
   }
 
   private function sendPush($ClientID, $MessageTitle, $MessageContent, $Arabic = false){
+
+    $messageTarget = $this->Client_model->getClientTag_byID($ClientID);
+
+    if(!$Arabic){
+      $content = array(
+        "en" => $MessageContent,
+        );
+      $title = array(
+        "en" => $MessageTitle
+        );
+
+    } else {
+      $content = array(
+        "ar" => $MessageContent,
+        );
+      $title = array(
+        "ar" => $MessageTitle
+        );
+    }
+
+
+
+
+    $fields = array(
+      'app_id' => "dadb20f9-3370-4e4d-a44f-d9f844034f0c",
+      'include_player_ids' => array($messageTarget),
+      'contents' => $content,
+      'headings' => $title
+    );
+
+    $this->Pushlogs_model->insertPushlog($Title, $Message, 1, 3, $ClientID);
+
+    $fields = json_encode($fields);
+
     $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+                          'Authorization: Basic MDYyMDkwZGEtY2JlMC00NGRhLWE3ZjAtYWRmZjBkZGJkZTM2'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_POST, TRUE);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-    curl_setopt($ch, CURLOPT_URL, base_url() . 'sendpushfromApi');
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS,
-                http_build_query(array('ApiPass' => 'p@ss@Pi',
-                                       'ClientID'    => $ClientID,
-                                       'Message'     => $MessageContent,
-                                       'MsgTitle'    => $MessageTitle,
-                                       'isMsgArabic' => $Arabic)));
+    curl_exec($ch);
+    curl_close($ch);
 
-
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $server_output = curl_exec ($ch);
-
-    curl_close ($ch);
+    return "OK";
 
   }
 
