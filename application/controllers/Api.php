@@ -21,6 +21,7 @@ class Api extends CI_Controller{
     $clientPass = $this->input->post('clientPass');
     $clientBalance = 0;
     $clientTag = $this->input->post('clientTag');
+    $clientFavDistID = $this->input->post('clientFavDistID');
 
 
     if(($clientName !== null) && ($clientTel !== null) && ($clientDistID !== null)
@@ -34,7 +35,7 @@ class Api extends CI_Controller{
   }
 
     $ID = $this->Clients_model->regClient($clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
-                                     $clientBalance, $clientTag, $clientDistID);
+                                     $clientBalance, $clientTag, $clientDistID), $clientFavDistID;
 
     echo json_encode(array(
       'State' => 'Success',
@@ -262,9 +263,8 @@ class Api extends CI_Controller{
    $StartStationID= $this->input->post('linerequestStrtSttnID');
    $EndStationID= $this->input->post('linerequestEndSttnID');
 
-   if(($Seats !== null) && ($isTwoWays !== null) && ($ClientID !== null)
-     && ($StartTime !== null) && ($StartStationID !== null) && ($EndStationID !== null)) {
-
+   if( !(is_null($Seats) ) && (!is_null($isTwoWays)) && (!is_null($ClientID) )
+     && (!is_null($StartTime)) && (!is_null($StartStationID)) && (!is_null($EndStationID )) ) {
 
    $this->Linerequests_model->insertLinerequest($Seats, $isTwoWays, $ClientID, $BackTime, $StartTime, $Notes, $StartStationID, $EndStationID);
    echo '1';
@@ -406,7 +406,7 @@ class Api extends CI_Controller{
   }
 
   public function getTripStatus(){
-    $LiveLineID = $this->input->post('LivelineID');
+    $LiveLineID = $this->input->post('LiveLineID');
     $TripStatus = $this->LiveLines_model->getTripStatus($LiveLineID);
     if(isset($TripStatus[0])){
       $TripStatus = $TripStatus[0];
