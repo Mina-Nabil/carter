@@ -144,7 +144,7 @@ class DriverApi extends CI_Controller{
 
   private function sendPush($ClientID, $MessageTitle, $MessageContent, $Arabic = false){
 
-    $messageTarget = $this->Client_model->getClientTag_byID($ClientID);
+    $messageTarget = $this->Clients_model->getClientTag_byID($ClientID);
 
     if(!$Arabic){
       $content = array(
