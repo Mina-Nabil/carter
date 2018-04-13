@@ -266,8 +266,8 @@ class Api extends CI_Controller{
    if( !(is_null($Seats) ) && (!is_null($isTwoWays)) && (!is_null($ClientID) )
      && (!is_null($StartTime)) && (!is_null($StartStationID)) && (!is_null($EndStationID )) ) {
 
-   $this->Linerequests_model->insertLinerequest($Seats, $isTwoWays, $ClientID, $BackTime, $StartTime, $Notes, $StartStationID, $EndStationID);
-   echo '1';
+  echo $this->Linerequests_model->insertLinerequest($Seats, $isTwoWays, $ClientID, $BackTime, $StartTime, $Notes, $StartStationID, $EndStationID);
+    
  }
  else echo '0';
 
