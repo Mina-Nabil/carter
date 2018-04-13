@@ -35,7 +35,7 @@ class Api extends CI_Controller{
   }
 
     $ID = $this->Clients_model->regClient($clientName, $clientTel, $clientEmail, $clientImg, $clientPass,
-                                     $clientBalance, $clientTag, $clientDistID), $clientFavDistID;
+                                     $clientBalance, $clientTag, $clientDistID, $clientFavDistID);
 
     echo json_encode(array(
       'State' => 'Success',
