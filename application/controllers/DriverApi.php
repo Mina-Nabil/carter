@@ -128,6 +128,7 @@ class DriverApi extends CI_Controller{
   public function confirmStation(){
     $TicketIDs = $this->input->post('TicketIDs');
     $TicketArr = json_decode($TicketIDs, true);
+    print_r($TicketArr);
 
     foreach($TicketArr as $Ticket){
         $res = $this->Traveltickets_model->confirmTicketStatus($Ticket);
