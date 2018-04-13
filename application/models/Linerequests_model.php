@@ -27,7 +27,7 @@ class Linerequests_model extends CI_Model{
 
           $strSQL = "SELECT LNRQ_ID, LNRQ_SEATS, LNRQ_TWO_WAYS, LNRQ_CLNT_ID, CLNT_NAME, LNRQ_BACK_TIME,
                             LNRQ_START_TIME, LNRQ_NOTES, LNRQ_START_STTN, LNRQ_END_STTN
-                      FROM Linerequests, clients, stations
+                      FROM Linerequests, clients
                       WHERE LNRQ_CLNT_ID = CLNT_ID
                       AND   LNRQ_ID = {$ID}
                       ORDER BY LNRQ_ID";
