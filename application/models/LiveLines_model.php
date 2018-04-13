@@ -69,6 +69,14 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        public function getDriverTripsPerDay($DriverID, $Date){
+          $strSQL ="SELECT Count(*) as Trips FROM live_lines
+                    WHERE LVLN_DRVR_ID = ?
+                    AND   DATE(?) = DATE(LVLN_TIME)";
+          $query = $this->db->query($strSQL, array($DriverID, $Date));
+          return $query->result_array()[0]['Trips'];
+        }
+
         public function getTicketPricebyID($ID){
 
           $strSQL = "SELECT LVLN_TCKT_PRICE

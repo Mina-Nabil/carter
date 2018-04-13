@@ -18,15 +18,6 @@ class Driverpackages_model extends CI_Model{
 
         }
 
-        public function getDriverpackage_byID($ID){
-
-          $strSQL = "SELECT DPKG_ID, DPKG_TRIPS, DPKG_PRICE, DPKG_NAME
-                    FROM Driverpackages
-                    WHERE DPKG_ID = {$ID}";
-          $query = $this->db->query($strSQL);
-          return $query->result_array();
-
-        }
 
 
         public function insertDriverpackage($Name, $TripsNumber, $Price){

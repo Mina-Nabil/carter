@@ -21,8 +21,8 @@
                                   <?foreach($TableData as $data){?>
                                     <tr class="odd gradeX">
                                         <td><?=$data['CLNT_NAME']?></td>
-                                        <td><?=$data['StartStation']?></td>
-                                        <td><?=$data['EndStation']?></td>
+                                        <td><?=$data['LNRQ_START_STTN']?></td>
+                                        <td><?=$data['LNRQ_END_STTN']?></td>
                                         <td><?=$data['LNRQ_START_TIME']?></td>
                                         <td><?=$data['LNRQ_SEATS']?></td>
                                         <td><?=$data['LNRQ_TWO_WAYS']?></td>

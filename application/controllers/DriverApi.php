@@ -130,7 +130,7 @@ class DriverApi extends CI_Controller{
     $TicketArr = json_decode($TicketIDs);
 
     foreach($TicketArr as $Ticket){
-        $res = $this->Traveltickets_model->confirmTicketStatus($Ticket['ID']);
+        $res = $this->Traveltickets_model->confirmTicketStatus($Ticket);
         if($res['sendPush'] == 1){
           $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
           $ArabicTitle = 'تم فوات التذكره';

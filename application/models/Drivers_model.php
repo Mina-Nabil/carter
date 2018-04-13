@@ -55,6 +55,16 @@ class Drivers_model extends CI_Model{
 
         }
 
+        public function getDriverpackage_byID($ID){
+
+          $strSQL = "SELECT DPKG_ID, DPKG_TRIPS, DPKG_PRICE, DPKG_NAME
+                    FROM Driverpackages, drivers
+                    WHERE DPKG_ID = {$ID}";
+          $query = $this->db->query($strSQL);
+          return $query->result_array();
+
+        }
+
         public function setImage($ID, $Image){
 
           $strSQL = "UPDATE Drivers SET DRVR_IMG = ? WHERE `DRVR_ID`='{$ID}'";

@@ -179,8 +179,13 @@ class LiveLines extends CI_Controller{
         $begin = new DateTime( $nextSat);
 
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -188,8 +193,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next sunday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -197,8 +207,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next monday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -206,8 +221,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next tuesday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -215,8 +235,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next wednesday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -224,8 +249,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next thursday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -233,8 +263,13 @@ class LiveLines extends CI_Controller{
         $nextSat = date("Y-m-d", strtotime("next friday"));
         $begin = new DateTime( $nextSat);
         foreach($livelineTimes as $key => $Time){
+          $Availability = $this->checkDriverAvailability($livelineDriverID[$key], $begin)
+          if($Availability == true)
         $this->createWeeklyLiveLines($begin, $Time , $livelineID, $livelineDriverID[$key], $livelineBusID,
                                               $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
+          else {
+              $MsgErr .= '<br> Cannot Assign Trip  '
+            }
           }
       }
 
@@ -248,7 +283,17 @@ class LiveLines extends CI_Controller{
 
   }
 
-  public function createWeeklyLiveLines($begin, $livelineTimes, $livelineID, $livelineDriverID, $livelineBusID,
+  private function checkDriverAvailability($DriverID, $Date){
+    $DriverPackage = $this->Drivers_model->getDriverpackage_byID($DriverID);
+    $DriverLimit  = $DriverPackage[0]['DPKG_TRIPS'];
+    $DriverTrips  = $this->getDriverTripsPerDay($DriverID, $Date);
+
+    if($DriverTrips < $DriverLimit) return true;
+    else return true;
+
+  }
+
+  private function createWeeklyLiveLines($begin, $livelineTimes, $livelineID, $livelineDriverID, $livelineBusID,
                                         $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue){
 
         $thisyear = date('Y');
