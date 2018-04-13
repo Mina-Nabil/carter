@@ -294,8 +294,8 @@ class TravelTickets_model extends CI_Model{
         }
 
         public function confirmTicketStatus($TicketID){
-          $strSQL = "SELECT TRTK_CLNT_ID, TRTK_CANC, TRTK_isARRV FROM traveltickets WHERE TRTK_ID = {$TicketID}";
-          $query = $this->db->query($strSQL);
+          $strSQL = "SELECT TRTK_CLNT_ID, TRTK_CANC, TRTK_isARRV FROM traveltickets WHERE TRTK_ID = ?";
+          $query = $this->db->query($strSQL, array($TicketID));
           $TicketStatus = $this->query->result_array();
           if(!isset($TicketStatus[0])) return false;
           $Canc = $TicketStatus[0]['TRTK_CANC'];

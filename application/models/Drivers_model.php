@@ -59,7 +59,7 @@ class Drivers_model extends CI_Model{
 
           $strSQL = "SELECT DPKG_ID, DPKG_TRIPS, DPKG_PRICE, DPKG_NAME
                     FROM Driverpackages, drivers
-                    WHERE DPKG_ID = {$ID}";
+                    WHERE  DRVR_DPKG = DPKG_ID AND DRVR_ID = {$ID} ";
           $query = $this->db->query($strSQL);
           return $query->result_array();
 
