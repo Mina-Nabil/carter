@@ -132,7 +132,8 @@ class DriverApi extends CI_Controller{
     foreach($TicketArr as $Ticket){
         $res = $this->Traveltickets_model->confirmTicketStatus($Ticket);
         if($res['sendPush'] == 1){
-          $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
+          $resu = $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
+          if(strcmp($resu, "OK") == 0) echo "1";
           $ArabicTitle = 'تم فوات التذكره';
           $ArabicMessage = 'لقد فات ميعاد التذكره رقم: ' . $Ticket . '.سوف نقوم بخصم سعر التذكره من حسابك لدينا. من فضلك قم بالاتصال بنا بأقرب قرصه ان كان هناك خطأ في العمليه ';
           $resu = $this->sendPush($res['ClientID'], $ArabicTitle, $ArabicMessage, true);
@@ -173,7 +174,7 @@ class DriverApi extends CI_Controller{
       'headings' => $title
     );
 
-    $this->Pushlogs_model->insertPushlog($Title, $Message, 1, 3, $ClientID);
+    $this->Pushlogs_model->insertPushlog($MessageTitle, $MessageContent, 1, 3, $ClientID);
 
     $fields = json_encode($fields);
 
