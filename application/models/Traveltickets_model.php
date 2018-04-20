@@ -153,7 +153,7 @@ class TravelTickets_model extends CI_Model{
 
         public function getInTicketsByStations($LiveLineID, $StationID){
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, TRTK_isARRV,
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS, TRTK_SERIAL
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
@@ -168,7 +168,7 @@ class TravelTickets_model extends CI_Model{
 
         public function getOutTicketsByStations($LiveLineID, $StationID){
 
-          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND,
+          $strSQL = "SELECT TRTK_ID, TRTK_CANC, TRTK_PAID, TRTK_ISHAND, TRTK_isARRV,
                             TRTK_PRICE, CLNT_NAME, CLNT_TEL, TRTK_REG_DATE, TRTK_SEATS, TRTK_SERIAL
                       FROM  clients, traveltickets, live_lines
                       WHERE TRTK_CLNT_ID = CLNT_ID
