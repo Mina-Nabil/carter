@@ -133,14 +133,14 @@ class DriverApi extends CI_Controller{
         $res = $this->Traveltickets_model->confirmTicketStatus($Ticket);
         if($res['sendPush'] == 1){
           $resu = $this->sendPush($res['ClientID'], 'Ticket Missed', 'We are confirming that you missed your Ticket: ' . $Ticket . '. We will decrement the ticket price from you balance. Please call us if there any inconvenience.' );
-          if(strcmp($resu, "OK") == 0) echo "1";
+
           $ArabicTitle = 'تم فوات التذكره';
           $ArabicMessage = 'لقد فات ميعاد التذكره رقم: ' . $Ticket . '.سوف نقوم بخصم سعر التذكره من حسابك لدينا. من فضلك قم بالاتصال بنا بأقرب قرصه ان كان هناك خطأ في العمليه ';
           $resu = $this->sendPush($res['ClientID'], $ArabicTitle, $ArabicMessage, true);
-          if(strcmp($resu, "OK") == 0) echo "1";
+        
         }
     }
-    echo "0";
+    echo "1";
   }
 
   private function sendPush($ClientID, $MessageTitle, $MessageContent, $Arabic = false){
