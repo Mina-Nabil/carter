@@ -40,7 +40,7 @@
                         <div class="well">
                           <?if(isset($MSGErr)){?>
                           <ul>
-                            <?=$MsgErr?>
+                            <?=$MSGErr?>
                           </ul>
                           <?}?>
                         </div>
