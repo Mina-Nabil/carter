@@ -281,7 +281,7 @@ class LiveLines extends CI_Controller{
             $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
                                                   $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
             else {
-              return "Driver already reached the limit on " . $dt->format( " Y-m-d " );
+              return "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
             }
         }
 

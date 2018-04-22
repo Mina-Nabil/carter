@@ -1,1 +1,1 @@
-<? header('Location: ' . base_url() . 'livelines');
+<? header('Location: ' . base_url() . 'livelines/' . $MsgErr );

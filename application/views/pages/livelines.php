@@ -38,6 +38,11 @@
                         </div>
                         <!-- /.table-responsive -->
                         <div class="well">
+                          <?if(isset($MsgErr)){?>
+                          <ul>
+                            <?=$MsgErr?> 
+                          </ul>
+                          <?}?>
                         </div>
                     </div>
                     <!-- /.panel-body -->
