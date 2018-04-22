@@ -74,7 +74,7 @@ class LiveLines_model extends CI_Model{
                     WHERE LVLN_DRVR_ID = ?
                     AND   DATE(?) = DATE(LVLN_TIME)";
           $query = $this->db->query($strSQL, array($DriverID, $Date));
-          return $query->result_array
+          return $query->result_array;
         }
 
         public function getTicketPricebyID($ID){
