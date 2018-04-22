@@ -264,7 +264,7 @@ class LiveLines extends CI_Controller{
     $DriverTrips  = $this->LiveLines_model->getDriverTripsPerDay($DriverID, $Date);
 
     if($DriverTrips < $DriverLimit) return true;
-    else return true;
+    else return false;
 
   }
 

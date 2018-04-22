@@ -38,9 +38,9 @@
                         </div>
                         <!-- /.table-responsive -->
                         <div class="well">
-                          <?if(isset($MsgErr)){?>
+                          <?if(isset($MSGErr)){?>
                           <ul>
-                            <?=$MsgErr?> 
+                            <?=$MsgErr?>
                           </ul>
                           <?}?>
                         </div>
