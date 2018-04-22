@@ -174,6 +174,7 @@ class LiveLines extends CI_Controller{
       $livelineTimes = $this->input->post('livelineTime');
       $livelineDriverID = $this->input->post('livelineDriverID');
       $MsgErr = "";
+      $i = 0;
 
       if($Saturday == 1){
         $nextSat = date("Y-m-d", strtotime("next saturday"));
@@ -246,7 +247,11 @@ class LiveLines extends CI_Controller{
 
           }
       }
-
+      echo "Loading";
+      for(; $i < 3 ; $i++){
+        echo ".";
+      }
+      $i = $i % 3;
     }
     $data['Message'] = $MsgErr;
     $this->load->view('pages/livelines_redirect', $data);
@@ -256,7 +261,7 @@ class LiveLines extends CI_Controller{
   private function checkDriverAvailability($DriverID, $Date){
     $DriverPackage = $this->Drivers_model->getDriverpackage_byID($DriverID);
     $DriverLimit  = $DriverPackage[0]['DPKG_TRIPS'];
-    $DriverTrips  = $this->getDriverTripsPerDay($DriverID, $Date);
+    $DriverTrips  = $this->LiveLines_model->getDriverTripsPerDay($DriverID, $Date);
 
     if($DriverTrips < $DriverLimit) return true;
     else return true;
