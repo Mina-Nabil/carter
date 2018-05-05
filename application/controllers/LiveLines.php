@@ -262,7 +262,7 @@ class LiveLines extends CI_Controller{
 
     }
     $data['Message'] = $MsgErr;
-   $this->load->view('pages/livelines_redirect', $data);
+  // $this->load->view('pages/livelines_redirect', $data);
 
   }
 
