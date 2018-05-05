@@ -168,7 +168,7 @@ class LiveLines extends CI_Controller{
                                               $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
       }
       else {
-        $MsgErr .= "<li>Driver already reached the limit on " . $livelineTime->format( "D Y-M-d" ) . "</li>";
+        $MsgErr .= "<li>Driver already reached the limit on " . date_format($livelineTime, "D Y-M-d") . "</li>";
       }
 
     }
