@@ -283,10 +283,11 @@ class LiveLines extends CI_Controller{
             $time = date("H:i:s",strtotime($livelineTimes));
             $combinedDT = date('Y-m-d H:i:s', strtotime($dt->format( " Y-m-d " ) . " $time"));
             $Availability = $this->checkDriverAvailability($livelineDriverID, $combinedDT);
-            if($Availability == true)
-            $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
-                                                  $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
-            echo "<br>Loading...";
+            if($Availability == true){
+              $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
+                                                     $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+              echo "<br>Loading...";
+            }
             else {
               $Msg .= "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
               echo "<br>Loading...";
