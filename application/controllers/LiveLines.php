@@ -87,7 +87,7 @@ class LiveLines extends CI_Controller{
     $this->load->view('templates/header', $header);
     $this->load->view('pages/livelines', $data);
     $this->load->view('templates/footer');
-
+    $this->session->unset_userdata('MSGErr');
   }
 
   public function addpage($MSGErr = '', $MSGOK = ''){
@@ -156,6 +156,7 @@ class LiveLines extends CI_Controller{
     $livelineisCancelled = $this->input->post('livelineisCancelled');
     $MsgErr = "";
     $NotRepeated = $this->input->post('DR');
+
     if($NotRepeated == 1){
       $livelineTimes = $this->input->post('livelineTime') ;
       $livelineDrivers = $this->input->post('livelineDriverID');
@@ -167,8 +168,7 @@ class LiveLines extends CI_Controller{
                                               $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
       }
       else {
-        $MsgErr .= "<li>Driver already reached the limit on " . $livelineTime->format( " Y-m-d " ) . "</li>";
-        echo "<br>Loading...";
+        $MsgErr .= "<li>Driver already reached the limit on " . $livelineTime->format( "D Y-M-d" ) . "</li>";
       }
 
     }
@@ -297,7 +297,7 @@ class LiveLines extends CI_Controller{
               echo "<br>Loading...";
             }
             else {
-              $Msg .= "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
+              $Msg .= "<li>Driver already reached the limit on " . $dt->format( "D Y-M-d" ) . "</li>";
               echo "<br>Loading...";
             }
         }
