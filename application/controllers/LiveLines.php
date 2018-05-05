@@ -79,7 +79,10 @@ class LiveLines extends CI_Controller{
     $data['Url_Name']   = 'livelines';
 
     $data['MSGOK']      = $MSGOK  ;
-    $data['MSGErr']     = $MSGErr ;
+
+    if(isset($this->session->MSGErr)){
+      $data['MSGErr']     = $this->session->MSGErr ;
+    }
 
     $this->load->view('templates/header', $header);
     $this->load->view('pages/livelines', $data);
@@ -247,14 +250,11 @@ class LiveLines extends CI_Controller{
 
           }
       }
-      echo "<br>Loading";
-      for(; $i < 3 ; $i++){
-        echo ".";
-      }
-      $i = $i % 3;
+      echo "<br>Loading...";
+
     }
     $data['Message'] = $MsgErr;
-  //  $this->load->view('pages/livelines_redirect', $data);
+   $this->load->view('pages/livelines_redirect', $data);
 
   }
 
@@ -276,6 +276,7 @@ class LiveLines extends CI_Controller{
 
         $interval = DateInterval::createFromDateString('7 day');
         $period = new DatePeriod($begin, $interval, $end);
+        $Msg = "";
 
         foreach ( $period as $dt ){
 
@@ -285,11 +286,13 @@ class LiveLines extends CI_Controller{
             if($Availability == true)
             $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $combinedDT, $livelineBusID,
                                                   $livelineisComplete, $livelineisCancelled, $livelineTicketPrice, $livelineRevenue);
+            echo "<br>Loading...";
             else {
-              echo "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
-              return "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
+              $Msg .= "<li>Driver already reached the limit on " . $dt->format( " Y-m-d " ) . "</li>";
+              echo "<br>Loading...";
             }
         }
+        return $Msg;
 
   }
 
