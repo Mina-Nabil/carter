@@ -154,15 +154,23 @@ class LiveLines extends CI_Controller{
     $livelineTicketPrice = $this->input->post('livelineTicketPrice');
     $livelineisComplete = $this->input->post('livelineisComplete');
     $livelineisCancelled = $this->input->post('livelineisCancelled');
-
+    $MsgErr = "";
     $NotRepeated = $this->input->post('DR');
     if($NotRepeated == 1){
       $livelineTimes = $this->input->post('livelineTime') ;
       $livelineDrivers = $this->input->post('livelineDriverID');
       $livelineTime = $livelineTimes[0]. ":00";
       $livelineDriverID = $livelineDrivers[0];
-      $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
-                                            $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
+      $Availability = $this->checkDriverAvailability($livelineDriverID, $livelineTime);
+      if($Availability == true){
+        $this->LiveLines_model->insertLiveLine($livelineID, $livelineDriverID, $livelineTime, $livelineBusID,
+                                              $livelineisComplete, $livelineisCancelled, $livelineRevenue, $livelineTicketPrice);
+      }
+      else {
+        $MsgErr .= "<li>Driver already reached the limit on " . $livelineTime->format( " Y-m-d " ) . "</li>";
+        echo "<br>Loading...";
+      }
+
     }
 
     else{
@@ -176,7 +184,7 @@ class LiveLines extends CI_Controller{
       $Friday = $this->input->post('d7');
       $livelineTimes = $this->input->post('livelineTime');
       $livelineDriverID = $this->input->post('livelineDriverID');
-      $MsgErr = "";
+
       $i = 0;
 
       if($Saturday == 1){
