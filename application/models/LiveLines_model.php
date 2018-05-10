@@ -40,6 +40,14 @@ class LiveLines_model extends CI_Model{
 
         }
 
+        private function refreshLineRevenue($LiveLineID){
+          $strSQL = "UPDATE live_lines
+                     SET LVLN_REVN = (SELECT SUM(TRTK_PRICE) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_isARRV = 5 AND TRTK_PAID = 1)
+                     WHERE LVLN_ID = {$LiveLineID}";
+          $query = $this->db->query($strSQL);
+          return ;
+        }
+
 
         public function setTripCompleted($LiveLineID){
           $strSQL = "UPDATE live_lines SET
@@ -47,6 +55,7 @@ class LiveLines_model extends CI_Model{
                       WHERE  `LVLN_ID`= {$LiveLineID}";
 
           $query = $this->db->query($strSQL);
+          $this->refreshLineRevenue($LiveLineID);
           return ;
         }
 
@@ -167,6 +176,29 @@ class LiveLines_model extends CI_Model{
 
         return $adjustedArray;
 
+        }
+
+        public function getLineReport($DriverID, $StartDate, $EndDate){
+          $strSQL = "SELECT t1.LVLN_ID  , LVLN_TIME, LINE_NAME, DPKG_NAME, DRVR_NAME, LVLN_TCKT_PRICE,
+                        (SELECT COUNT(TRTK_ID) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID) as Tickets,
+                        (SELECT COUNT(TRTK_ID) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_CANC = 1) as Tickets_Canc,
+                        (SELECT SUM(TRTK_SEATS) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_isARRV = 5) as Clients_Arr,
+                        (SELECT SUM(TRTK_SEATS) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_CANC = 5) as Clients_Missed,
+                        (SELECT SUM(TRTK_PRICE) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_isARRV = 5) as Paid_total,
+                        (SELECT Count(PRUS_ID) FROM promouses WHERE PRUS_LVLN_ID = t1.LVLN_ID ) as Promo_Count,
+                        (SELECT SUM(PRUS_VALUE) FROM promouses WHERE PRUS_LVLN_ID = t1.LVLN_ID ) as Promo_total,
+                        (SELECT SUM(TRTK_PRICE) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_isARRV = 5 AND TRTK_PAID = 0) as Paid_Visa,
+                        (SELECT SUM(TRTK_PRICE) FROM traveltickets WHERE TRTK_LVLN_ID = t1.LVLN_ID AND TRTK_isARRV = 5 AND TRTK_PAID = 1) as Paid_cash
+                     FROM live_lines as t1, drivers, Driverpackages, karter.lines
+                     WHERE LVLN_DRVR_ID = DRVR_ID
+                     AND   DRVR_DPKG = DPKG_ID
+                     AND   LVLN_LINE_ID = LINE_ID
+                     AND   DRVR_ID = ?
+                     AND   LVLN_TIME >= ?
+                     AND   LVLN_TIME <= ?";
+           $inputs = array($DriverID, $StartDate, $EndDate);
+           $query = $this->db->query($strSQL, $inputs);
+           return $query->result_array;
         }
 
 

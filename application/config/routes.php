@@ -256,6 +256,9 @@ $route['push/sendMsg'] = 'Push/initiateMsg';
 $route['sendpushfromApi'] = 'Push/sendCustomData';
 
 
+//Reports
+$route['reports/drivers'] = 'Reports/drivers';
+
 //API
 $route['api/login'] = 'Api/login';
 $route['api/register'] = 'Api/register';
