@@ -257,7 +257,7 @@ $route['sendpushfromApi'] = 'Push/sendCustomData';
 
 
 //Reports
-$route['reports/drivers'] = 'Reports/drivers';
+$route['report/drivers'] = 'Reports/getDriverReport';
 
 //API
 $route['api/login'] = 'Api/login';

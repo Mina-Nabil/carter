@@ -40,7 +40,7 @@ class Push extends CI_Controller{
   }
 
   public function getDriverReport(){
-    $result = $this->CheckUser2('Report/drivers');
+    $result = $this->CheckUser2('report/drivers');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
@@ -55,7 +55,7 @@ class Push extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['formURL'] = 'Reports/drivers';
+    $data['formURL'] = 'reports/drivers';
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
 
@@ -66,7 +66,7 @@ class Push extends CI_Controller{
   }
 
   public function DriverReport(){
-    $result = $this->CheckUser2('Report/drivers');
+    $result = $this->CheckUser2('report/drivers');
     if($result == false){
       // User not logged in
       $this->load->view("login_redirect");
