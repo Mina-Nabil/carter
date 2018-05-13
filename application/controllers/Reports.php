@@ -102,7 +102,7 @@ class Reports extends CI_Controller{
 
 
     $this->load->view('templates/header', $header);
-    $this->load->view('Reports/DriversReport', $data);
+    $this->load->view('Reports/DriverReport', $data);
     $this->load->view('templates/footer');
 
 
