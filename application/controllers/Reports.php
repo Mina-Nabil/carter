@@ -55,12 +55,12 @@ class Reports extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $data['formURL'] = 'reports/drivers';
+    $data['formURL'] = 'reports/show_drivers';
 
     $data['Drivers'] = $this->Drivers_model->getDrivers();
 
     $this->load->view('templates/header', $header);
-    $this->load->view('Reports/getDriversReport');
+    $this->load->view('Reports/getDriversReport', $data);
     $this->load->view('templates/footer');
 
   }
@@ -81,6 +81,29 @@ class Reports extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
+    $data['TableHeaders'] = array(
+      'Time',
+      'Line Name',
+      'Package',
+      'Driver',
+      'Ticket Prc.',
+      'Tickets / Canc.',
+      'Clients / Miss',
+      'Paid',
+      'Cash / Visa',
+      'Promo Count / Paid'
+    );
+
+    $DriverID = $this->input->post('repDriverID');
+    $startTime = $this->input->post('startTime');
+    $endTime = $this->input->post('endTime');
+
+    $data['TableData'] = $this->LiveLines_model->getLineReport($DriverID, $startTime, $endTime);
+
+
+    $this->load->view('templates/header', $header);
+    $this->load->view('Reports/DriversReport', $data);
+    $this->load->view('templates/footer');
 
 
 

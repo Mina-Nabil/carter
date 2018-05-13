@@ -19,7 +19,7 @@
                                     <form role="form" action='<?=base_url() . $formURL?>' method="post">
                                         <div class="form-group">
                                             <label>Driver Name</label>
-                                            <select class="form-control" name='busDriverID'>
+                                            <select class="form-control" name='repDriverID'>
                                               <?foreach($Drivers as $driver){?>
                                                   <option ><?=$driver['DRVR_NAME']?></option>
                                               <?}?>
@@ -38,7 +38,7 @@
                                         required>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
-                                      
+
                                     </form>
                                 </div>
                             </div>

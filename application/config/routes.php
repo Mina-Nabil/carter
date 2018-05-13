@@ -58,6 +58,7 @@ $route['checklogin'] = 'Main/checkLoginData';
 
 //Reports
 $route['report/drivers'] = 'Reports/getDriverReport';
+$route['reports/show_drivers'] = 'Reports/DriverReport';
 
 //Cities ROUTES
 $route['cities'] = 'Cities/home';
