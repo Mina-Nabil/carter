@@ -56,6 +56,8 @@ $route['logout'] = 'Main/logout';
 $route['home']  = 'Main/home';
 $route['checklogin'] = 'Main/checkLoginData';
 
+//Reports
+$route['report/drivers'] = 'Reports/getDriverReport';
 
 //Cities ROUTES
 $route['cities'] = 'Cities/home';
@@ -257,7 +259,6 @@ $route['sendpushfromApi'] = 'Push/sendCustomData';
 
 
 //Reports
-$route['report/drivers'] = 'Reports/getDriverReport';
 
 //API
 $route['api/login'] = 'Api/login';
