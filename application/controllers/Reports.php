@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Push extends CI_Controller{
+class Reports extends CI_Controller{
 
   public function __construct()
   {
@@ -81,7 +81,7 @@ class Push extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-  
+
 
 
   }
