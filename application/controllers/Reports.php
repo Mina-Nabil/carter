@@ -95,8 +95,8 @@ class Reports extends CI_Controller{
     );
 
     $DriverID = $this->input->post('repDriverID');
-    $startTime = $this->input->post('startTime');
-    $endTime = $this->input->post('endTime');
+    $startTime = $this->input->post('startTime'). ":00";
+    $endTime = $this->input->post('endTime'). ":00";
 
     $data['TableData'] = $this->LiveLines_model->getLineReport($DriverID, $startTime, $endTime);
 
