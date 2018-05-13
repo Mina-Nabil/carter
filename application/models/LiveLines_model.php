@@ -199,7 +199,7 @@ class LiveLines_model extends CI_Model{
                      AND   LVLN_TIME <= ?";
            $inputs = array($DriverID, $StartDate, $EndDate);
            $query = $this->db->query($strSQL, $inputs);
-           return $query->result_array;
+           return $query->result_array();
         }
 
 
