@@ -28,13 +28,13 @@
                                         <label>Start Time</label>
                                         <input
                                         class=form-control name=startTime
-                                        type=date
+                                        type=datetime-local
                                         required>
 
                                         <label>End Time</label>
                                         <input
                                         class=form-control name=endTime
-                                        type=date
+                                        type=datetime-local
                                         required>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>

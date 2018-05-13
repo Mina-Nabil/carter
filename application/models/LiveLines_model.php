@@ -193,6 +193,7 @@ class LiveLines_model extends CI_Model{
                      WHERE LVLN_DRVR_ID = DRVR_ID
                      AND   DRVR_DPKG = DPKG_ID
                      AND   LVLN_LINE_ID = LINE_ID
+                     AND   LVLN_COMP = 1
                      AND   DRVR_ID = ?
                      AND   LVLN_TIME >= ?
                      AND   LVLN_TIME <= ?";
