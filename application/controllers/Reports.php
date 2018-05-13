@@ -81,7 +81,7 @@ class Push extends CI_Controller{
       $header['OrgArr'] = $this->Master_model->getPagesByType();
     }
 
-    $Table =
+  
 
 
   }
