@@ -34,7 +34,7 @@
                                         <label>End Time</label>
                                         <input
                                         class=form-control name=endTime
-                                        type=datetime-local
+                                        type=date-local
                                         required>
 
                                         <button type="submit" class="btn btn-submit">Submit Button</button>
